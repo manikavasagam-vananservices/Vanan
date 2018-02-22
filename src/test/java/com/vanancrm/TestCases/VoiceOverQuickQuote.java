@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -73,7 +74,9 @@ public class VoiceOverQuickQuote extends TestBase {
     public void beforeClass() {
 
         System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
-        driver = new ChromeDriver();
+        DesiredCapabilities capability = DesiredCapabilities.chrome();
+        capability.setCapability("chrome.binary","/tmp/chromedriver");
+        driver = new ChromeDriver(capability);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         fullScreen(driver);
     }
