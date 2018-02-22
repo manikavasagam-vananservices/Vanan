@@ -118,8 +118,8 @@ public class AllSiteChecking extends TestBase {
 		// System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 
 		// Headless Chrome option
-		ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.addArguments("--no-sandbox");
+		//ChromeOptions chromeOptions = new ChromeOptions();
+		//chromeOptions.addArguments("--no-sandbox");
 		// chromeOptions.addArguments("--headless");
 		// driver = new ChromeDriver(chromeOptions);
 
