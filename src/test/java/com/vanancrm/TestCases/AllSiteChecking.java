@@ -123,7 +123,7 @@ public class AllSiteChecking extends TestBase {
 		// chromeOptions.addArguments("--headless");
 		// driver = new ChromeDriver(chromeOptions);
 
-		driver = new ChromeDriver(chromeOptions);
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		readAllSiteUrl();
 		fullScreen(driver);
