@@ -1,8 +1,10 @@
 package com.vanan.CRM.PageObjects.MainPages;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -14,16 +16,18 @@ import com.vanancrm.PageObjects.MainPages.AccessingElement;
 
 public class EmailConversation extends AccessingElement {
 
-	private WebDriver driver;
-	private Actions builder;
-	private Action mouseOverHome;
-	private EmailConversation emailConversation;
+    private WebDriver driver;
+    private Actions builder;
+    private Action mouseOverHome;
+    private EmailConversation emailConversation;
+    private JavascriptExecutor js;
 
 	public EmailConversation(WebDriver driver) {
 
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-		builder = new Actions(driver);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        builder = new Actions(driver);
+        js = (JavascriptExecutor) driver;
 
 	}
 
@@ -40,10 +44,55 @@ public class EmailConversation extends AccessingElement {
 	@FindBy(linkText = "Close")
 	private WebElement closeButton;
 
-	public void clickReadMore() {
+    @FindBy(linkText = "Upload")
+    private WebElement fileUploadButtonElement;
+
+    @FindBy(xpath = "//a[contains(text(),'Compose Email')]")
+    private WebElement composeEmailElement;
+
+    @FindBy(xpath = "//button[@id='upload']")
+    private WebElement sendButtonElement;
+
+    @FindBy(xpath = "//input[@name='cc_address[]']")
+    private WebElement ccElement;
+
+    public void clickReadMore() {
 
         clickElement(readMoreButton);
     }
+
+    public void clickComposeEmail() {
+
+        clickElement(composeEmailElement);
+    }
+
+    public void enterCCEmail(String mailid) {
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(ccElement).build();
+        mouseOverHome.perform();
+        enterTestBoxValues(ccElement, mailid);
+    }
+
+    public void clickSendEmail() {
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(sendButtonElement).build();
+        mouseOverHome.perform();
+        clickElement(sendButtonElement);
+        waitForPageLoad(driver);
+    }
+
+    public void enterEmailBodyContent(String message) {
+        int size = driver.findElements(By.tagName("iframe")).size();
+        //System.out.println("Frame Size : " + size);
+        driver.switchTo().frame(0);
+        List<WebElement> elements = driver.findElements(By.xpath("//p"));
+        //System.out.println("P tag Size : " + elements.size());
+        js.executeScript("arguments[0].innerText = '" + message + "'",
+                elements.get(0));
+        driver.switchTo().defaultContent();
+    }
+
+
 
     public void clickReadMore(String message) {
         List<WebElement> elements = driver.findElements(By.xpath("//li[contains" +
@@ -62,7 +111,18 @@ public class EmailConversation extends AccessingElement {
         }
 
     }
+	
+    public void clickFileUpload() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(fileUploadButtonElement).build();
+            mouseOverHome.perform();
+            clickElement(fileUploadButtonElement);
+        } catch (Exception ex) {
 
+        }
+
+    }
     public void clickFirstReadMore() {
 
         clickElement(readMoreButton);
@@ -167,10 +227,9 @@ public class EmailConversation extends AccessingElement {
                             eachElement = driver.findElement(
                                     By.xpath("//table[@id='paysummary']/tbody/tr[" + i
                                             + "]/td[" + j + "]/p"));
-                            //System.out.println("4 cvaluesize : = : " +
-                                   // eachElement
-                                    //.getText());
-                            if (eachElement.getText().equals(field)) {
+                            /*System.out.println(" cvaluesize : = : " +
+                                    eachElement.getText());*/
+                            if (((eachElement.getText()).trim()).equals(field)) {
                                 /**System.out.println("+++++++++++"+eachElement
                                         .getText() +
                                         "+++++++++++++");**/

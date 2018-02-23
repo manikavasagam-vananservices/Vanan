@@ -4,6 +4,8 @@ import com.vanancrm.PageObjects.MainPages.AccessingElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -28,6 +30,12 @@ public class FileUploadFromTicket extends AccessingElement {
 
     @FindBy(id = "filesubmit")
     private WebElement submitButtonElement;
+
+    @FindBy(id = "filesubject")
+    private WebElement fileSubjectElement;
+
+    private Actions builder;
+    private Action mouseOverHome;
 
     public FileUploadFromTicket(WebDriver driver) {
 
@@ -88,5 +96,17 @@ public class FileUploadFromTicket extends AccessingElement {
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
+        TimeUnit.SECONDS.sleep(10);
+    }
+
+    public void selectSuject(String option) {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(fileSubjectElement).build();
+            mouseOverHome.perform();
+            selectDropDown(fileSubjectElement, option);
+        } catch (Exception e) {
+            System.out.println("Unable to select subject " + e);
+        }
     }
 }

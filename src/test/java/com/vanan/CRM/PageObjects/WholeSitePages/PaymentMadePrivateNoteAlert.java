@@ -13,37 +13,32 @@ import java.util.concurrent.TimeUnit;
 
 public class PaymentMadePrivateNoteAlert extends AccessingElement {
 
-	private WebDriver driver;
-	private JavascriptExecutor js;
-
-	public PaymentMadePrivateNoteAlert(WebDriver driver) {
-
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-		js = (JavascriptExecutor) driver;
-	}
-
-	@FindBy(name = "approvedby")
-	private WebElement approvedByElement;
-
-	@FindBy(name = "paymentdate")
-	private WebElement paymentDateElement;
-
-	@FindBy(name = "paid_now")
-	private WebElement paidAmountElement;
-
-	@FindBy(xpath = "//span[text()='Submit']")
-	private WebElement signin;
-
-	@FindBy(id = "paid_mode")
-	private WebElement paidModeElement;
-
-    @FindBy(xpath ="//form[@id='paid_privatenote']//*//div[@class='modal-header" +
+    private WebDriver driver;
+    private JavascriptExecutor js;
+    @FindBy(name = "approvedby")
+    private WebElement approvedByElement;
+    @FindBy(name = "paymentdate")
+    private WebElement paymentDateElement;
+    @FindBy(name = "paid_now")
+    private WebElement paidAmountElement;
+    @FindBy(xpath = "//span[text()='Submit']")
+    private WebElement signin;
+    @FindBy(id = "paid_mode")
+    private WebElement paidModeElement;
+    @FindBy(xpath = "//form[@id='paid_privatenote']//*//div[@class='modal-header" +
             "']/span[@class='close']")
     private WebElement closeElement;
 
-	public void selectApprovedBy(String username) {
-		try {
+    public PaymentMadePrivateNoteAlert(WebDriver driver) {
+
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        js = (JavascriptExecutor) driver;
+    }
+
+    public void selectApprovedBy(String username) {
+        try {
+            waitForPageLoad(driver);
             selectDropDown(approvedByElement, username);
 		} catch (Exception e) {
 			System.out.println("Unable to enter a approved by user " + e);
@@ -76,13 +71,20 @@ public class PaymentMadePrivateNoteAlert extends AccessingElement {
     }
 
     public void clickSubmit() {
-		
-		clickElement(signin);
-	}
 
-    public void clickClose() {
-
-        clickElement(closeElement);
+        clickElement(signin);
+        waitForPageLoad(driver);
     }
 
+    public void clickClose() {
+        if (closeElement.isDisplayed()) {
+            clickElement(closeElement);
+        }
+
+    }
+
+    public boolean isCloseDisplayed() {
+
+        return closeElement.isDisplayed();
+    }
 }

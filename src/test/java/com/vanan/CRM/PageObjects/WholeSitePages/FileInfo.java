@@ -32,6 +32,7 @@ public class FileInfo extends AccessingElement {
             String qty, String qc, String scnt, String misComment) throws
             IOException {
 
+        waitForPageLoad(driver);
         List<WebElement> elements = driver.findElements(By.xpath
                 ("//table[@id='process_list']/tbody/tr"));
         WebElement element;

@@ -30,11 +30,20 @@ public class FreeTrailPage extends AccessingElement {
     @FindBy(id = "qnamecrm")
     private WebElement tcname;
 
+    @FindBy(id = "qlastnamecrm")
+    private WebElement tlname;
+
     @FindBy(id = "qemailcrm")
     private WebElement tcemail;
 
+    @FindBy(id = "videolengthcrm")
+    private WebElement videoLength;
+
     @FindBy(id = "qcountryscrm")
     private WebElement tccountry;
+
+    @FindBy(id = "servicefrequency")
+    private WebElement serviceFreq;
 
     @FindBy(id = "qphonecrm")
     private WebElement tcphone;
@@ -96,6 +105,15 @@ public class FreeTrailPage extends AccessingElement {
     @FindBy(id="qtatcrm")
     private  WebElement datePickerElement;
 
+    @FindBy(id="qnotecrm")
+    private  WebElement noteCertElement;
+
+    @FindBy(id="qmailcrm")
+    private  WebElement mailSentElement;
+
+    @FindBy(id="qmailmsgcrm")
+    private  WebElement mailAddressElement;
+
     public void enterName(String name) {
         try {
             enterTestBoxValues(tcname, name);
@@ -104,11 +122,27 @@ public class FreeTrailPage extends AccessingElement {
         }
     }
 
+    public void enterLastName(String name) {
+        try {
+            enterTestBoxValues(tlname, name);
+        } catch (Exception e) {
+            System.out.println("Unable to enter a last name value " + e);
+        }
+    }
+
     public void enterEmail(String email) {
         try {
             enterTestBoxValues(tcemail, email);
         } catch (Exception e) {
             System.out.println("Unable to enter a email value " + e);
+        }
+    }
+
+    public void enterVideoLength(String videoLen) {
+        try {
+            enterTestBoxValues(videoLength, videoLen);
+        } catch (Exception e) {
+            System.out.println("Unable to enter a video length value " + e);
         }
     }
 
@@ -126,6 +160,15 @@ public class FreeTrailPage extends AccessingElement {
 
         } catch (Exception e) {
             System.out.println("Unable to select country " + e);
+        }
+    }
+
+    public void selectServiceFrequency(String frequency) {
+        try {
+            selectDropDown(serviceFreq, frequency);
+
+        } catch (Exception e) {
+            System.out.println("Unable to select service frequency " + e);
         }
     }
 
@@ -264,6 +307,36 @@ public class FreeTrailPage extends AccessingElement {
         }
     }
 
+    public void clickNotAndCertificate() {
+        try {
+            if(!noteCertElement.isSelected()) {
+                clickElement(noteCertElement);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Unable to click Notarization Certificate checkbox " + e);
+        }
+    }
+
+    public void enterAddress(String address) {
+        try {
+            enterTestBoxValues(mailAddressElement, address);
+        } catch (Exception e) {
+            System.out.println("Unable to enter a address " + e);
+        }
+    }
+
+    public void clickMail() {
+        try {
+            if(!mailSentElement.isSelected()) {
+                clickElement(mailSentElement);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Unable to click Mail the document checkbox " + e);
+        }
+    }
+
     public void selectFormatting(String format) {
         try {
             selectDropDown(formattingElement, format);
@@ -311,6 +384,7 @@ public class FreeTrailPage extends AccessingElement {
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
+        TimeUnit.SECONDS.sleep(10);
     }
 
     public String getUploadedFileName() {

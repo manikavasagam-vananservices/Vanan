@@ -96,4 +96,30 @@ public class AccessingElement {
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
+
+    public void waitForPageLoad(WebDriver driver) {
+        for (int i = 1; i <= 12; i++) {
+            try {
+                if (driver.findElement(By.xpath("//div[@class='loading_img']"))
+                        .isDisplayed()) {
+                    if (driver.findElement(By.xpath("//div[@class='loading_img']"))
+                            .getCssValue("display").contains("block")) {
+                        try {
+                            TimeUnit.SECONDS.sleep(5);
+                        } catch (Exception ex) {
+
+                        }
+                    } else if (driver.findElement(By.xpath("//div[@class='loading_img']"))
+                            .getCssValue("display").contains("none")) {
+                        break;
+                    }
+
+                } else {
+                    continue;
+                }
+            } catch (Exception ex) {
+
+            }
+        }
+    }
 }

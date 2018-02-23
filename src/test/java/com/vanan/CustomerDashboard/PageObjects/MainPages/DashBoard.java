@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DashBoard extends AccessingElement {
 
@@ -22,6 +23,15 @@ public class DashBoard extends AccessingElement {
 
     @FindBy(xpath = "//div[@id='sidebar-menu']//*//a[contains(text(), 'Typing')]")
     private WebElement typingMenu;
+
+    @FindBy(xpath = "//div[@id='sidebar-menu']//*//a[contains(text(), 'Translation')]")
+    private WebElement translationMenu;
+
+    @FindBy(xpath = "//div[@id='sidebar-menu']//*//a[contains(text(), 'Transcription')]")
+    private WebElement transcriptionMenu;
+
+    @FindBy(xpath = "//div[@id='sidebar-menu']//*//a[contains(text(), 'Captioning')]")
+    private WebElement captioningMenu;
 
     @FindBy(xpath = "//a[contains(text(),'Back to dashboard')]")
     private WebElement backToDashBoardElement;
@@ -49,8 +59,24 @@ public class DashBoard extends AccessingElement {
         clickElement(typingMenu);
     }
 
+    public void clickTranslationMenu() {
+
+        clickElement(translationMenu);
+    }
+
+    public void clickTranscriptionMenu() {
+
+        clickElement(transcriptionMenu);
+    }
+
+    public void clickCaptioningMenu() {
+
+        clickElement(captioningMenu);
+    }
+
     public void clickPopUpCloseButton() {
 
+        waitForPageLoad(driver);
         try {
             if(popUpCloseButtonElement.isDisplayed()) {
                 js.executeScript("$('.close').click();");
@@ -61,6 +87,7 @@ public class DashBoard extends AccessingElement {
         } catch (Exception ex) {
             System.out.println("Unable to close pop window : " + ex);
         }
+        waitForPageLoad(driver);
     }
 
     public void clickBackToDashBoardPage() {
@@ -70,6 +97,7 @@ public class DashBoard extends AccessingElement {
 
     public void clickLogOut() {
 
+        waitForPageLoad(driver);
         WebElement element = driver.findElement(By.xpath
                 ("//div[@class='nav_menu']/nav/ul/li/a"));
         element.click();
@@ -84,6 +112,7 @@ public class DashBoard extends AccessingElement {
 
     public String getTicketNumber() {
 
+        waitForPageLoad(driver);
         String value = driver.findElement(
                 By.xpath("//table[@id='my_table']/tbody/tr[1]/td[2]")).getText();
         return value;
@@ -119,28 +148,34 @@ public class DashBoard extends AccessingElement {
 
     public void clickParticularTicket(String ticketID) {
 
+        waitForPageLoad(driver);
         if (getTicketNumber().contains(ticketID)) {
 
             clickElement(driver.findElement(By.xpath(
                     "//table[@id='my_table']/tbody/tr[1]/td[2]")));
         }
+        waitForPageLoad(driver);
     }
 
     public void clickOrderInfo() {
+
         if (!driver.findElement(By.id("home-tab"))
                 .isSelected()) {
 
             js.executeScript("$('#home-tab').click();");
         }
+        waitForPageLoad(driver);
     }
 
     public void clickUploadedFileDetails() {
+
         WebElement element = driver.findElement(By.xpath
                 ("//li[@id='content4']/a[@id='profile-tab']"));
         if (!element
                 .isSelected()) {
             clickElement(element);
         }
+        waitForPageLoad(driver);
     }
 
 
@@ -204,5 +239,6 @@ public class DashBoard extends AccessingElement {
 
             js.executeScript("$('.close').click();");
         }
+        waitForPageLoad(driver);
     }
 }

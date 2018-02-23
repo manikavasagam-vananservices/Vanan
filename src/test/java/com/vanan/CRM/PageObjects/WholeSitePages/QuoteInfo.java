@@ -2,6 +2,7 @@ package com.vanan.CRM.PageObjects.WholeSitePages;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -335,6 +336,8 @@ public class QuoteInfo extends AccessingElement {
     }
 
     public void clickMoveToLocation() {
+
+        waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(moveToLocationButton).build();
         mouseOverHome.perform();
@@ -514,6 +517,92 @@ public class QuoteInfo extends AccessingElement {
                         ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
                         "]//*//textarea[@id='quote_details[comments][]']")
                         ), misComment);
+                break;
+            }
+        }
+    }
+
+
+    public void setFileDetailsForVoiceOver(String fileName, String srcLang,
+            String targLang, String service, String mp, String cost,
+            String misComment, boolean minutes, String totalCost) throws
+            IOException {
+
+        List<WebElement> elements = driver.findElements(By.xpath
+                ("//table[@id='process_list']/tbody/tr"));
+        WebElement element;
+        for (int i = 1; i <= elements.size(); i++) {
+            element = driver.findElement(By.xpath
+                    ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                            "]/td[2]/a/span"));
+            //System.out.println("Entering)))))))" + element.getText());
+            if(element.getText().contains(fileName)) {
+                element = driver.findElement(By.xpath(
+                        "//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                "]//*//input[@name='quote_details[file_selected" +
+                                "][]']"));
+                if(element.isSelected()!=true) {
+                    clickElement(driver.findElement(By.xpath(
+                            "//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                    "]//*//input[@name='quote_details[file_selected][]']")));
+                } else {
+                    System.out.println("Already checkbox is selected");
+                }
+                //System.out.println("Entering)))))))!="+ fileName);
+
+                //System.out.println("Entering)))))))!");
+                selectDropDown(driver.findElement(By.xpath
+                                ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                        "]//*//select[@id='quote_details[source_lang][]']")),
+                        srcLang);
+                //System.out.println("Entering)))))))@");
+                selectDropDown(driver.findElement(By.xpath
+                                ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                        "]//*//select[@id='quote_details[target_lang][]']")),
+                        targLang);
+                //System.out.println("Entering)))))))#");
+                selectDropDown(driver.findElement(By.xpath
+                                ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                        "]//*//select[@id='quote_details[service_id][]']")),
+                        service);
+                if(minutes) {
+                    //System.out.println("Entering)))))))$");
+                    String min = mp.substring(0,mp.indexOf("-"));
+                    String ss = mp.substring(mp.indexOf("-") +1,mp.length());
+                    enterTestBoxValues(driver.findElement(By.xpath
+                            ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                            "]//*//input[@name='quote_details[page_length_job_hr][]']")
+                    ), min);
+                    //System.out.println("Entering)))))))%");
+                    enterTestBoxValues(driver.findElement(By.xpath
+                            ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                    "]//*//input[@name='quote_details[page_length_job_min][]']")
+                    ), ss);
+
+
+                } else {
+                    //System.out.println("Entering)))))))^");
+                    enterTestBoxValues(driver.findElement(By.xpath
+                            ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                    "]//*//input[@name='quote_details[page_length_job_hr][]']")
+                    ), mp);
+                }
+
+                //System.out.println("Entering)))))))&");
+                enterTestBoxValues(driver.findElement(By.xpath
+                        ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                "]//*//input[@id='quote_details[cost][]']")
+                ), cost);
+
+                enterTestBoxValues(driver.findElement(By.xpath
+                        ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                "]//*//input[@name='quote_details[total_cost][]']")
+                ), totalCost);
+                //System.out.println("Entering)))))))*");
+                enterTestBoxValues(driver.findElement(By.xpath
+                        ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                                "]//*//textarea[@id='quote_details[comments][]']")
+                ), misComment);
                 break;
             }
         }
