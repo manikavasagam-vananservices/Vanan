@@ -56,7 +56,7 @@ public class VoiceOverQuoteFromCD extends TestBase {
     private String service = "Voice Over";
     private String scriptComment = "auto-test";
     private String status = "Yes";
-    private String fileName = "voice";
+    private String fileName = "";
     private String fileExtension = ".txt";
     private String numberOfVoice = "2";
     private String url = "vananservices.com";
@@ -69,6 +69,7 @@ public class VoiceOverQuoteFromCD extends TestBase {
     private String[] sourceLang = {"English", "Spanish"};
     private String[] targetLang = {"Tamil", "Arabic"};
 
+    public String ticketID = "";
     private String channel = "";
 
 
@@ -100,8 +101,8 @@ public class VoiceOverQuoteFromCD extends TestBase {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
-        getCRMCreadential();
-        channel = "Customer Dashboard";System.getProperty("channel");
+        fileName = service.replace(" ", "") + fileExtension;
+        channel = "Customer Dashboard";
     }
 
 
@@ -171,14 +172,13 @@ public class VoiceOverQuoteFromCD extends TestBase {
         DashBoardPage dashBoardPage = login.signIn(username, password);
         menus = dashBoardPage.clickAllProcess();
         checkTickets(menus, srcLang, targetLang, purpose, serviceFreq);
-        waitForProcessCompletion(10);
         menus.clickSignOut();
     }
 
     private void checkTickets(Menus menus, String srcLang, String targetLang,
                               String purpose, String serviceFreq) {
 
-        String ticketID = "";
+        ticketID = "";
         readTableData = menus.clickNewMenu();
         List<String> tickets = readTableData.readTableRows();
 
@@ -187,10 +187,8 @@ public class VoiceOverQuoteFromCD extends TestBase {
             if (tickets.get(i).contains(service)) {
 
                 viewTicketDetails = new ViewTicketDetails(driver);
-                waitForProcessCompletion(20);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
-                waitForProcessCompletion(20);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
                 if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
@@ -241,7 +239,6 @@ public class VoiceOverQuoteFromCD extends TestBase {
         Edit edit = menus.clickEdit();
         edit.selectStatus("Others");
         edit.clickUpdateButton();
-        waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
         emailConversation.clickReadMore(channel);
     }
@@ -324,5 +321,13 @@ public class VoiceOverQuoteFromCD extends TestBase {
         /*System.out.println("ETAT : " + viewTicketDetails
                 .getRunTimeTicketFieldValues("ETAT"));*/
         System.out.println("===========================================\n");
+    }
+
+    public String getTicketID() throws AWTException, InterruptedException, IOException {
+
+        beforeClass();
+        voiceoverService();
+        afterClass();
+        return  ticketID;
     }
 }

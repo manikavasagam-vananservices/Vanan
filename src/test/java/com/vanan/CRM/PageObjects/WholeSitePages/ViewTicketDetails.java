@@ -1,14 +1,21 @@
 package com.vanan.CRM.PageObjects.WholeSitePages;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.vanancrm.PageObjects.MainPages.AccessingElement;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class ViewTicketDetails extends AccessingElement {
 
@@ -216,6 +223,41 @@ public class ViewTicketDetails extends AccessingElement {
 		WebElement eachElement = driver.findElement(
 				By.xpath("//div[@class='form-group   comments ']/div/p"));
 
-		return eachElement.getText();
-	}
+        return eachElement.getText();
+    }
+
+    public void waitForPageLoad() {
+        waitTime();
+        for(int i = 1; i <= 12; i++) {
+            try {
+                if(driver.findElement(By.xpath("//div[@class='loading_img']"))
+                        .isDisplayed()) {
+                    if(driver.findElement(By.xpath("//div[@class='loading_img']"))
+                            .getCssValue("display").contains("block")) {
+                        waitTime();
+                    } else if(driver.findElement(By.xpath("//div[@class='loading_img']"))
+                            .getCssValue("display").contains("none")){
+                        break;
+                    }
+
+                } else {
+                    continue;
+                }
+            } catch (Exception ex) {
+
+            }
+        }
+    }
+
+    private void waitTime() {
+        waitForProcessCompletion(5);
+    }
+
+    public void waitForProcessCompletion(int waitTime) {
+        try {
+            TimeUnit.SECONDS.sleep(waitTime);
+        } catch (Exception e) {
+        }
+    }
+
 }

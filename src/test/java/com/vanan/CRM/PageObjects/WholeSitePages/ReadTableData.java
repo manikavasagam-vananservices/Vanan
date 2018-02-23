@@ -5,16 +5,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class ReadTableData {
 
@@ -214,7 +215,7 @@ public class ReadTableData {
         WebElement service;
 
         try {
-
+            waitForPageLoad();
             service = driver.findElement(
                     By.xpath("//div[@id='process_lists_wrapper']/table/tbody/tr["
                             + row + "]/td[5]"));
@@ -279,24 +280,22 @@ public class ReadTableData {
     public ViewTicketDetails clickOldTableService(String serviceName, int row) {
         WebElement service;
 
-		try {
-
-			service = driver.findElement(
-					By.xpath("//div[@id='process_lists_wrapper']/table/tbody/tr["
-							+ row + "]/td[4]"));
-
-			if (service.getText().equals(serviceName)) {
-				service.click();
-
-				if (isAlertPresent()) {
-					Alert alert = driver.switchTo().alert();
-					System.out.println(alert.getText());
-					alert.accept();
-				}
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+        try {
+            waitForPageLoad();
+            service = driver.findElement(
+                    By.xpath("//div[@id='process_lists_wrapper']/table/tbody/tr["
+                            + row + "]/td[4]"));
+            if (service.getText().equals(serviceName)) {
+                if (isAlertPresent()) {
+                    Alert alert = driver.switchTo().alert();
+                    System.out.println(alert.getText());
+                    alert.accept();
+                }
+                service.click();
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
 		ViewTicketDetails viewTicketDetails = new ViewTicketDetails(driver);
 		return viewTicketDetails;
@@ -311,12 +310,39 @@ public class ReadTableData {
 		}
 	}
 
-	public boolean isAlertPresent() {
-		try {
-			driver.switchTo().alert();
-			return true;
-		} catch (NoAlertPresentException ex) {
-			return false;
-		}
-	}
+    public boolean isAlertPresent() {
+        try {
+            driver.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException ex) {
+            return false;
+        }
+    }
+
+    public void waitForPageLoad() {
+        waitTime();
+        for(int i = 1; i <= 12; i++) {
+            try {
+                if(driver.findElement(By.xpath("//div[@class='loading_img']"))
+                        .isDisplayed()) {
+                    if(driver.findElement(By.xpath("//div[@class='loading_img']"))
+                            .getCssValue("display").contains("block")) {
+                        waitTime();
+                    } else if(driver.findElement(By.xpath("//div[@class='loading_img']"))
+                            .getCssValue("display").contains("none")){
+                        break;
+                    }
+
+                } else {
+                    continue;
+                }
+            } catch (Exception ex) {
+
+            }
+        }
+    }
+
+    private void waitTime() {
+        waitForProcessCompletion(5);
+    }
 }

@@ -1,8 +1,7 @@
 package com.vanan.CRM.PageObjects.WholeSitePages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.vanan.CRM.PageObjects.MainPages.*;
+import org.openqa.selenium.*;
 
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -10,19 +9,20 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.vanan.CRM.PageObjects.MainPages.Edit;
-import com.vanan.CRM.PageObjects.MainPages.EmailConversation;
-
 import com.vanancrm.PageObjects.MainPages.AccessingElement;
 
 public class Menus extends AccessingElement {
 
     private WebDriver driver;
+    private Actions builder;
+    private Action mouseOverHome;
+    private JavascriptExecutor js;
 
     public Menus(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        js = (JavascriptExecutor) driver;
     }
 
     @FindBy(xpath = "//ul[@class='sidebar-menu']/li[@class='treeview scroll']/a")
@@ -40,7 +40,7 @@ public class Menus extends AccessingElement {
     @FindBy(id = "auto_New")
     private WebElement newMenu;
 
-    @FindBy(linkText = "Private Note Added")
+    @FindBy(id = "auto_PrivateNoteAdded")
     private WebElement privateNoteAdded;
 
     @FindBy(linkText = "Opportunity")
@@ -169,11 +169,17 @@ public class Menus extends AccessingElement {
     @FindBy(linkText = "Quote Info")
     private WebElement quoteInfo;
 
-    @FindBy(id = "mail_discussion_btn")
+    @FindBy(xpath = "//*[@title='Email Conversation']")
     private WebElement emailConversation;
 
     @FindBy(xpath = "//*[@title='Edit']")
     private WebElement editMenu;
+
+    @FindBy(xpath = "//*[@title='Vendor Allocation']")
+    private WebElement vendorAllocationMenu;
+
+    @FindBy(xpath = "//*[@title='Private Note']")
+    private WebElement privateNoteMenu;
 
     @FindBy(xpath = "//*[@title='View']")
     private WebElement viewMenu;
@@ -184,6 +190,9 @@ public class Menus extends AccessingElement {
     @FindBy(xpath = "//*[@title='Quote Info']")
     private WebElement quoteInfoMenu;
 
+    @FindBy(xpath = "//*[@title='Delivery']")
+    private WebElement deliveryMenu;
+
     @FindBy(xpath = "//span[contains(text(), 'Unknown Email')]")
     private WebElement unknownMail;
 
@@ -193,25 +202,29 @@ public class Menus extends AccessingElement {
     @FindBy(xpath = "//span[contains(text(), 'ALLOCATOR DASHBOARD')]")
     private WebElement allocatorDashboard;
 
+    @FindBy(id = "auto_Allocator_Completed")
+    private WebElement completedElement;
+
     @FindBy(name = "search_mail")
     private WebElement searchTicketId;
 
     @FindBy(xpath = "//button[@title='Search']")
     private WebElement searchButtonElement;
 
-    private Actions builder;
-    private Action mouseOverHome;
-
     public ReadTableData clickNewMenu() {
+
+        waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(newMenu).build();
         mouseOverHome.perform();
-        clickElement(newMenu);
+        js.executeScript("$('#auto_New').click();");
         ReadTableData readTableData = new ReadTableData(driver);
         return readTableData;
     }
 
     public ReadTableData clickOthersMenu() {
+
+        waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(others).build();
         mouseOverHome.perform();
@@ -235,6 +248,14 @@ public class Menus extends AccessingElement {
         clickElement(trialFlow);
     }
 
+    public void clickPrivateNoteAdded() {
+
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(privateNoteAdded).build();
+        mouseOverHome.perform();
+        js.executeScript("$('#auto_PrivateNoteAdded').click();");
+    }
+
     public void clickPaymentMade() {
 
         clickElement(paymentmade);
@@ -255,6 +276,7 @@ public class Menus extends AccessingElement {
 
     public void searchCustomerDetails(String customerDetails) {
 
+        waitForPageLoad(driver);
         enterCustomerDetails(customerDetails);
         clickSearchButton();
     }
@@ -268,6 +290,7 @@ public class Menus extends AccessingElement {
 
     public EmailConversation clickEmailConversation() {
 
+        waitForPageLoad(driver);
         clickElement(emailConversation);
         EmailConversation emailCon = new EmailConversation(driver);
         return emailCon;
@@ -279,22 +302,47 @@ public class Menus extends AccessingElement {
     }
 
     public Edit clickEdit() {
-
+	
+        waitForPageLoad(driver);
         clickElement(editMenu);
         Edit edit = new Edit(driver);
         return edit;
     }
 
+    public PrivateNote clickPrivateNote() {
+
+        waitForPageLoad(driver);
+        clickElement(privateNoteMenu);
+        PrivateNote privateNote = new PrivateNote(driver);
+        return privateNote;
+    }
+    public VendorAllocation clickVendorAllocation() {
+
+        waitForPageLoad(driver);
+        clickElement(vendorAllocationMenu);
+        VendorAllocation vendorAllocation = new VendorAllocation(driver);
+        return vendorAllocation;
+    }
     public void clickFileInfo() {
 
+        waitForPageLoad(driver);
         clickElement(fileInfoMenu);
     }
 
     public QuoteInfo clickQuoteInfo() {
 
+        waitForPageLoad(driver);
         clickElement(quoteInfoMenu);
         QuoteInfo quoteInfo = new QuoteInfo(driver);
         return quoteInfo;
+    }
+
+    public Delivery clickDelivery() {
+
+        waitForPageLoad(driver);
+        clickElement(deliveryMenu);
+        Delivery delivery = new Delivery(driver);
+        return delivery;
     }
 
     public void clickAddNewTicket() {
@@ -333,11 +381,24 @@ public class Menus extends AccessingElement {
         clickElement(viewMenu);
     }
 
-    public void clickAllocatorDashboard() {
+    public AllocatorDashboard  clickAllocatorDashboard() {
+
+        waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(allocatorDashboard).build();
         mouseOverHome.perform();
         clickElement(allocatorDashboard);
+        AllocatorDashboard allocatorDashboard = new AllocatorDashboard(driver);
+        return allocatorDashboard;
+    }
+
+    public void clickCompleted() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(completedElement).build();
+        mouseOverHome.perform();
+        js.executeScript("$('#auto_Allocator_Completed').click();");
     }
 
     public void clickUnknownMail() {
@@ -352,6 +413,7 @@ public class Menus extends AccessingElement {
 
     public void clickSignOut() {
 
+        waitForPageLoad(driver);
         WebElement element = driver.findElement(By.className("user-image"));
         element.click();
         element = driver.findElement(By.linkText("Sign out"));
