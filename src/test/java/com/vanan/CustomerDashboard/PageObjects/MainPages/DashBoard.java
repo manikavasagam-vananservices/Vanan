@@ -1,22 +1,27 @@
 package com.vanan.CustomerDashboard.PageObjects.MainPages;
 
-import com.vanan.CRM.PageObjects.WholeSitePages.Menus;
-import com.vanancrm.PageObjects.MainPages.AccessingElement;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import com.vanancrm.PageObjects.MainPages.AccessingElement;
 
 public class DashBoard extends AccessingElement {
 
     private WebDriver driver;
     private JavascriptExecutor js;
-
+    private Actions builder;
+    private Action mouseOverHome;
+    
     @FindBy(xpath = "//div[@id='sidebar-menu']//*//a[contains(text(), 'Voice " +
             "Over')]")
     private WebElement voiceOverMenu;
@@ -49,28 +54,48 @@ public class DashBoard extends AccessingElement {
         js = (JavascriptExecutor) driver;
     }
 
-    public void clickVoiceOverMenu() {
+   public void clickVoiceOverMenu() {
 
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(voiceOverMenu).build();
+        mouseOverHome.perform();
         clickElement(voiceOverMenu);
     }
 
     public void clickTypingMenu() {
 
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(typingMenu).build();
+        mouseOverHome.perform();
         clickElement(typingMenu);
     }
 
     public void clickTranslationMenu() {
 
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(translationMenu).build();
+        mouseOverHome.perform();
         clickElement(translationMenu);
     }
 
     public void clickTranscriptionMenu() {
 
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(transcriptionMenu).build();
+        mouseOverHome.perform();
         clickElement(transcriptionMenu);
     }
 
     public void clickCaptioningMenu() {
 
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(captioningMenu).build();
+        mouseOverHome.perform();
         clickElement(captioningMenu);
     }
 
