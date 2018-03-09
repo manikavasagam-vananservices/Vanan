@@ -104,10 +104,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         changePaymentMadeStatus();
         checkCustomerDashboardStatus(ticketStatus[0], false);
         
-        login = new Login(driver);
-        dashBoardPage = login.signIn(username, password);
-        menus = dashBoardPage.clickAllProcess();
-        dashBoardPage = new DashBoardPage(driver);
+        driver.navigate().to(driver.getCurrentUrl());
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
@@ -120,9 +117,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
                         getETAT(), comment, "Good", "Legal", vendorPersonName);
         vendorAllocation.clickAllocateFile();
 
-        login = new Login(driver);
-        dashBoardPage = login.signIn(username, password);
-        dashBoardPage = new DashBoardPage(driver);
+        driver.navigate().to(driver.getCurrentUrl());
         allocatorDashboard = menus.clickAllocatorDashboard();
         allocatorDashboard.selectFile(fileName, username,
                 vendorPersonName);
@@ -154,8 +149,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
             }
         }
         
-        login = new Login(driver);
-        dashBoardPage = login.signIn(username, password);
+        driver.navigate().to(driver.getCurrentUrl());
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
@@ -174,9 +168,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         editTicketDetails(driver);
         edit.selectStatus("Others");
         edit.clickUpdateButton();
-        login = new Login(driver);
-        dashBoardPage = login.signIn(username, password);
-        dashBoardPage = new DashBoardPage(driver);
+        driver.navigate().to(driver.getCurrentUrl());
         allocatorDashboard = menus.clickAllocatorDashboard();
         menus.clickCompleted();
         allocatorDashboard.clickFileInCompletedSection(fileName,
