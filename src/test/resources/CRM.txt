@@ -1,2 +1,7 @@
 USERNAME=developer
 PASSWORD=devcrm2@rvr
+SALESNAME=Sales-Test
+SALESPASSWORD=AhjkB(r#@1234
+ALLOCATORNAME=Allocator-Test
+ALLOCATORPASSWORD=devallocator@nsk
+VENDORNAME=Vendor-Test
