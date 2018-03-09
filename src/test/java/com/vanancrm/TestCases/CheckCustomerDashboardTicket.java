@@ -1,25 +1,32 @@
 package com.vanancrm.TestCases;
 
-import com.vanan.CRM.PageObjects.MainPages.*;
-import com.vanan.CRM.PageObjects.WholeSitePages.*;
-import com.vanan.CustomerDashboard.PageObjects.MainPages.DashBoard;
-import com.vanan.CustomerDashboard.PageObjects.WholeSitePages.LoginPage;
-import com.vanancrm.Common.TestBase;
-import com.vanancrm.PageObjects.MainPages.TrackOrder;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import java.awt.*;
+import java.io.*;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.*;
+import java.util.List;
+
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.awt.*;
-import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import com.vanan.CRM.PageObjects.MainPages.*;
+import com.vanan.CRM.PageObjects.WholeSitePages.*;
+
+import com.vanan.CustomerDashboard.PageObjects.MainPages.DashBoard;
+import com.vanan.CustomerDashboard.PageObjects.WholeSitePages.LoginPage;
+
+import com.vanancrm.Common.TestBase;
+
 
 /**
  * Author - Manikavasagam (manikavasagam@vananservices.com)
@@ -51,6 +58,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
     private String[] ticketStatus = {"In Progress", "Delivered"};
 
     private AllocatorDashboard allocatorDashboard;
+    private ChromeOptions chromeOptions;
     private DashBoardPage dashBoardPage;
     private Edit edit;
     private EmailConversation emailConversation;
@@ -183,13 +191,15 @@ public class CheckCustomerDashboardTicket extends TestBase {
     @BeforeClass
     public void beforeClass() throws IOException, InterruptedException, AWTException {
 
-        System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
-        driver = new ChromeDriver();
+        //System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
+        chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver(chromeOptions);
+        //driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
         getCRMCreadential();
-        fileName = service.replace(" ", "") + fileExtenstion;
-
+       
         if(System.getProperty("service").equals("Transcription")) {
 
             TranscriptionQuoteFromCD transcriptionQuoteFromCD = new
@@ -228,13 +238,14 @@ public class CheckCustomerDashboardTicket extends TestBase {
             service1=true;
             service2=true;
         }
+         fileName = service.replace(" ", "") + fileExtenstion;
     }
 
     @AfterClass
     public void afterClass() {
 
         screenshot(driver, "CheckCustomerDashboardTicket");
-        //driver.quit();
+        driver.quit();
     }
 
     private String getETAT() {
@@ -290,7 +301,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
 
     private void changePaymentMadeStatus() {
 
-        WebDriver driver1 = new ChromeDriver();
+        WebDriver driver1 = new ChromeDriver(chromeOptions);
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
         driver1.get("https://secure-dt.com/crm/user/login");
@@ -338,7 +349,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
     private void checkCustomerDashboardStatus(String status, boolean
             orderDeliver) {
 
-        WebDriver driver1 = new ChromeDriver();
+        WebDriver driver1 = new ChromeDriver(chromeOptions);
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
         driver1.get("https://vananservices.com/customer/index.php");
