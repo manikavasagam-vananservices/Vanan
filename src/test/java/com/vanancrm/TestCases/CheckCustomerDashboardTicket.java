@@ -191,7 +191,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
     @BeforeClass
     public void beforeClass() throws IOException, InterruptedException, AWTException {
 
-        //System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
