@@ -105,6 +105,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         checkCustomerDashboardStatus(ticketStatus[0], false);
         
         driver.navigate().to(driver.getCurrentUrl());
+        waitForProcessCompletion(20);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
