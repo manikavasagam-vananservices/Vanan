@@ -195,6 +195,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
+        chromeOptions.addArguments("window-size=1900,1200");
         //driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
