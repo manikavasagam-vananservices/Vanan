@@ -194,9 +194,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("window-size=1900,1200");
-        //chromeOptions.addArguments("--no-sandbox");
         driver = new ChromeDriver(chromeOptions);
-        //driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
         getCRMCreadential();
@@ -301,7 +299,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
     }
 
     private void changePaymentMadeStatus() {
-
+        
+        chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("window-size=1900,1200");
         WebDriver driver1 = new ChromeDriver(chromeOptions);
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
@@ -349,7 +349,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
 
     private void checkCustomerDashboardStatus(String status, boolean
             orderDeliver) {
-
+        
+        chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("window-size=1900,1200");
         WebDriver driver1 = new ChromeDriver(chromeOptions);
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
