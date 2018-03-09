@@ -120,7 +120,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
                         getETAT(), comment, "Good", "Legal", vendorPersonName);
         vendorAllocation.clickAllocateFile();
 
-        driver.navigate().refresh();
+        login = new Login(driver);
+        dashBoardPage = login.signIn(username, password);
+        dashBoardPage = new DashBoardPage(driver);
         allocatorDashboard = menus.clickAllocatorDashboard();
         allocatorDashboard.selectFile(fileName, username,
                 vendorPersonName);
@@ -151,7 +153,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
                 break;
             }
         }
-        driver.navigate().refresh();
+        
+        login = new Login(driver);
+        dashBoardPage = login.signIn(username, password);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
@@ -170,8 +174,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
         editTicketDetails(driver);
         edit.selectStatus("Others");
         edit.clickUpdateButton();
-
-        driver.navigate().refresh();
+        login = new Login(driver);
+        dashBoardPage = login.signIn(username, password);
+        dashBoardPage = new DashBoardPage(driver);
         allocatorDashboard = menus.clickAllocatorDashboard();
         menus.clickCompleted();
         allocatorDashboard.clickFileInCompletedSection(fileName,
