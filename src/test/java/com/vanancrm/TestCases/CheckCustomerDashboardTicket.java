@@ -103,8 +103,10 @@ public class CheckCustomerDashboardTicket extends TestBase {
         changePrivateModeStatus();
         changePaymentMadeStatus();
         checkCustomerDashboardStatus(ticketStatus[0], false);
-        driver.navigate().refresh();
-
+        
+        login = new Login(driver);
+        dashBoardPage = login.signIn(username, password);
+        menus = dashBoardPage.clickAllProcess();
         dashBoardPage = new DashBoardPage(driver);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
@@ -296,6 +298,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
                     false);
         }
         quoteInfo.clickUpdateQuoteInfo();
+        menus.clickSignOut();
     }
 
     private void changePaymentMadeStatus() {
