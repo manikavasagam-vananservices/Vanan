@@ -295,7 +295,6 @@ public class CheckCustomerDashboardTicket extends TestBase {
                     false);
         }
         quoteInfo.clickUpdateQuoteInfo();
-        menus.clickSignOut();
     }
 
     private void changePaymentMadeStatus() {
