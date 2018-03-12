@@ -139,11 +139,15 @@ public class CheckCustomerDashboardTicket extends TestBase {
         vendorAllocation.clickAllocateFile();
 
         driver.navigate().to(driver.getCurrentUrl());
+        menus = new Menus(driver);
         allocatorDashboard = menus.clickAllocatorDashboard();
         allocatorDashboard.selectFile(fileName, username,
                 vendorPersonName);
         allocatorDashboard.selectStatus("Completed");
         allocatorDashboard.clickChangeStatus();
+        
+        driver.navigate().to(driver.getCurrentUrl());
+        dashBoardPage = new DashBoardPage(driver);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
@@ -171,6 +175,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         }
 
         driver.navigate().to(driver.getCurrentUrl());
+        dashBoardPage = new DashBoardPage(driver);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
@@ -183,13 +188,16 @@ public class CheckCustomerDashboardTicket extends TestBase {
         edit.selectStatus("Order Delivered");
         edit.clickUpdateButton();
         checkCustomerDashboardStatus(ticketStatus[1], true);
-        driver.navigate().refresh();
+        driver.navigate().to(driver.getCurrentUrl());
+        dashBoardPage = new DashBoardPage(driver);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
         edit.selectStatus("Others");
         edit.clickUpdateButton();
+        
         driver.navigate().to(driver.getCurrentUrl());
+        menus = new Menus(driver);
         allocatorDashboard = menus.clickAllocatorDashboard();
         menus.clickCompleted();
         allocatorDashboard.clickFileInCompletedSection(fileName,
