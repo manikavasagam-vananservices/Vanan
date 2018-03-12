@@ -13,6 +13,8 @@ import com.vanancrm.Common.TestBase;
 import com.vanancrm.PageObjects.MainPages.FreeTrailPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -85,7 +87,9 @@ public class CaptioningQuoteFromCD extends TestBase {
     public void beforeClass() throws IOException {
 
         System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("window-size=1900,1200");
+        driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
         driver.get("https://vananservices.com/customer/");
