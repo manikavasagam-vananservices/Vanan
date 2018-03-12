@@ -1,17 +1,23 @@
 package com.vanancrm.TestCases;
 
-import java.awt.*;
-import java.io.*;
+import java.awt.AWTException;
+
+import java.io.FileReader;
+import java.io.IOException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+import java.util.Set;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -19,8 +25,22 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.vanan.CRM.PageObjects.MainPages.*;
-import com.vanan.CRM.PageObjects.WholeSitePages.*;
+import com.vanan.CRM.PageObjects.MainPages.AllocatorDashboard;
+import com.vanan.CRM.PageObjects.MainPages.DashBoardPage;
+import com.vanan.CRM.PageObjects.MainPages.Delivery;
+import com.vanan.CRM.PageObjects.MainPages.Edit;
+import com.vanan.CRM.PageObjects.MainPages.EmailConversation;
+import com.vanan.CRM.PageObjects.MainPages.VendorAllocation;
+import com.vanan.CRM.PageObjects.MainPages.PrivateNote;
+
+import com.vanan.CRM.PageObjects.WholeSitePages.FileInfo;
+import com.vanan.CRM.PageObjects.WholeSitePages.FileUploadFromTicket;
+import com.vanan.CRM.PageObjects.WholeSitePages.Login;
+import com.vanan.CRM.PageObjects.WholeSitePages.Menus;
+import com.vanan.CRM.PageObjects.WholeSitePages.PaymentMadePrivateNoteAlert;
+import com.vanan.CRM.PageObjects.WholeSitePages.ReadTableData;
+import com.vanan.CRM.PageObjects.WholeSitePages.QuoteInfo;
+import com.vanan.CRM.PageObjects.WholeSitePages.ViewTicketDetails;
 
 import com.vanan.CustomerDashboard.PageObjects.MainPages.DashBoard;
 import com.vanan.CustomerDashboard.PageObjects.WholeSitePages.LoginPage;
@@ -103,9 +123,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
         changePrivateModeStatus();
         changePaymentMadeStatus();
         checkCustomerDashboardStatus(ticketStatus[0], false);
-        
-        login = new Login(driver);
-        dashBoardPage = login.signIn(username, password);
+        driver.navigate().to(driver.getCurrentUrl());
+
+        dashBoardPage = new DashBoardPage(driver);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
@@ -149,7 +169,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
                 break;
             }
         }
-        
+
         driver.navigate().to(driver.getCurrentUrl());
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
@@ -198,7 +218,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
         getCRMCreadential();
-       
+
         if(System.getProperty("service").equals("Transcription")) {
 
             TranscriptionQuoteFromCD transcriptionQuoteFromCD = new
@@ -237,7 +257,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
             service1=true;
             service2=true;
         }
-         fileName = service.replace(" ", "") + fileExtenstion;
+        fileName = service.replace(" ", "") + fileExtenstion;
     }
 
     @AfterClass
@@ -299,11 +319,8 @@ public class CheckCustomerDashboardTicket extends TestBase {
     }
 
     private void changePaymentMadeStatus() {
-        
-        /*chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("window-size=1900,1200");
-        WebDriver driver1 = new ChromeDriver(chromeOptions);*/
-        WebDriver driver1 = new ChromeDriver();
+
+        WebDriver driver1 = new ChromeDriver(chromeOptions);
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
         driver1.get("https://secure-dt.com/crm/user/login");
@@ -325,7 +342,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
                         .getRunTimeTicketFieldValues("Channel") +" = "+
                         viewTicketDetails.getOrderNo());*/
                 //viewTicketDetails.getOrderNo().contains(ticketID)
-                  //      &&
+                //      &&
                 if ( viewTicketDetails.getRunTimeTicketFieldValues("Channel")
                         .contains(channel)) {
 
@@ -350,11 +367,8 @@ public class CheckCustomerDashboardTicket extends TestBase {
 
     private void checkCustomerDashboardStatus(String status, boolean
             orderDeliver) {
-        
-        /*chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("window-size=1900,1200");
-        WebDriver driver1 = new ChromeDriver(chromeOptions);*/
-        WebDriver driver1 = new ChromeDriver();
+
+        WebDriver driver1 = new ChromeDriver(chromeOptions);
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
         driver1.get("https://vananservices.com/customer/index.php");
@@ -394,7 +408,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         if(service1) {
             message = "no";
         } else {
-          message = "yes";
+            message = "yes";
         }
         evaluateCondition("Verbatim", dashBoard
                 .getOrderInfoTableValues("Verbatim"), message);
