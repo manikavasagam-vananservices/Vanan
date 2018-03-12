@@ -320,7 +320,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
 
     private void changePaymentMadeStatus() {
 
-        WebDriver driver1 = new ChromeDriver(chromeOptions);
+        WebDriver driver1 = new ChromeDriver();
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
         driver1.get("https://secure-dt.com/crm/user/login");
@@ -368,7 +368,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
     private void checkCustomerDashboardStatus(String status, boolean
             orderDeliver) {
 
-        WebDriver driver1 = new ChromeDriver(chromeOptions);
+        WebDriver driver1 = new ChromeDriver();
         driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         fullScreen(driver1);
         driver1.get("https://vananservices.com/customer/index.php");
