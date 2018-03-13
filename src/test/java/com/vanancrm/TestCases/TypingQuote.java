@@ -167,7 +167,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
     private void raiseTicket(String fileType, String language, String category,
             String timeCode, String format, boolean offer, int tier, boolean
             cate, boolean formatting, boolean usnativesp, boolean notar, boolean
-            mailin, boolean verb) throws AWTException, InterruptedException,
+            mailin, boolean verb, String channel) throws AWTException, InterruptedException,
             IOException {
 
         driver.get(url);
@@ -213,11 +213,15 @@ public class TypingQuote extends TestBase implements TypingPrice {
             //off = typing.getOfferDiscount();
         }
 
-        checkPrice(fileType, tier, cate, formatting, timeCode,
-                usnativesp, offer, notar, mailin, typing.getBasePrice(),
-                typing.getUnitCost(), off, typing.getGrandTotal(),
-                typing.getTransactionFee(), typing.getOrderTotal(),
-                verb, typing.getVerbatim(), typing.getTimeCode());
+       if(!channel.equals("Request for Quote")) {
+            checkPrice(fileType, tier, cate, formatting, timeCode,
+                    usnativesp, offer, notar, mailin, typing.getBasePrice(),
+                    typing.getUnitCost(), off, typing.getGrandTotal(),
+                    typing.getTransactionFee(), typing.getOrderTotal(),
+                    verb, typing.getVerbatim(), typing.getTimeCode());
+        } else {
+            System.out.println("Quote Scenario no price displayed");
+        }
         if (language.equals(languages[2])) {
 
             /*if (typing.isCustomMessageDisplayed()) {
@@ -663,7 +667,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
             InterruptedException, IOException {
 
         raiseTicket(fileType, language, category, timeCode, format, offer, tier,
-                cate, formatting, usnativesp, notar, mailin, verb);
+                cate, formatting, usnativesp, notar, mailin, verb, channel);
         getCRMCreadential();
         checkCRM(fileType, language, category, timeCode, format, offer, tier,
                 cate, formatting, usnativesp, notar, mailin, verb, channel);
