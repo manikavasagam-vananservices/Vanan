@@ -110,6 +110,8 @@ public class TypingQuote extends TestBase implements TypingPrice {
             testScenario(fileTypes[0], languages[0], categorys[1], "",
                     formattings[1],false, tiers[0],
                     true, false, false, true, true, false, channels[0]);*/
+            System.out.println("\nScenario #2");
+            System.out.println("\n======================================");
             testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
                     "", false, tiers[1],
                     true, false, true, false, false, true, channels[1]);
@@ -119,6 +121,8 @@ public class TypingQuote extends TestBase implements TypingPrice {
             testScenario(fileTypes[1], languages[0], categorys[1], timecodes[1],
                     "",false, tiers[0],
                     true, false, false, false, false, false, channels[0]);*/
+            System.out.println("\nScenario #3");
+            System.out.println("\n======================================");
             testScenario(fileTypes[0], languages[2], categorys[0], "",
                     formattings[0], false, 0,
                     true, true, false, true, true, false, channels[2]);
@@ -132,6 +136,8 @@ public class TypingQuote extends TestBase implements TypingPrice {
             testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
                     "", false, tiers[1],
                     true, false, true, false, false, true, channels[1]);
+            System.out.println("\nScenario #2");
+            System.out.println("\n======================================");
             testScenario(fileTypes[0], languages[2], categorys[0], "",
                     formattings[0], false, 0,
                     true, true, false, true, true, false, channels[2]);
@@ -251,7 +257,9 @@ public class TypingQuote extends TestBase implements TypingPrice {
             boolean offer, boolean notary, boolean mailing, double baPrice,
             double ucost, double oPri, double gtotal, double transFee, double
             total, boolean verbat, double verba, double timea) {
-
+        System.out.println("\n======================================");
+        System.out.println("\n Website UI Price Checking");
+        System.out.println("\n======================================");
         min = Integer.parseInt(minute);
         if (fileType.equals(fileTypes[0]) && tier == tiers[0]) {
             bPrice = basePri[1];
@@ -629,6 +637,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
         } else {
             System.out.println("No Action  message is not present");
         }
+        System.out.println("===========================================");
     }
 
     private void checkViewTicketInfo(String channel) {
