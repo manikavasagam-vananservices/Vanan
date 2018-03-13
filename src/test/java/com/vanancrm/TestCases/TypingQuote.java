@@ -41,7 +41,8 @@ public class TypingQuote extends TestBase implements TypingPrice {
     private static String password = "";
     private WebDriver driver;
 
-    private String[] channels = {"Email Quote", "Direct Payment", "Request for Quote"};
+    private String[] channels = {"Email Quote", "Direct Payment",
+            "Request for Quote"};
     private String[] categorys = {"General", "Legal"};
     private String[] languages = {"English", "Spanish", "Tamil"};
     private String[] timecodes = {"Every 3 sec", "Every 1 minute",
@@ -101,7 +102,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
         if (!url.contains("Upload")) {
 
             testScenario(fileTypes[0], languages[0], categorys[0], "",
-                    formattings[0],false, tiers[0],
+                    formattings[0], false, tiers[0],
                     true, true, false, true, true, false, channels[0]);
             /*testScenario(fileTypes[0], languages[0], categorys[0], "",
                     formattings[1],false, tiers[0],
@@ -110,7 +111,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
                     formattings[1],false, tiers[0],
                     true, false, false, true, true, false, channels[0]);*/
             testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
-                    "",false, tiers[1],
+                    "", false, tiers[1],
                     true, false, true, false, false, true, channels[1]);
             /*testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
                     "",false, tiers[0],
@@ -119,7 +120,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
                     "",false, tiers[0],
                     true, false, false, false, false, false, channels[0]);*/
             testScenario(fileTypes[0], languages[2], categorys[0], "",
-                    formattings[0],false, 0,
+                    formattings[0], false, 0,
                     true, true, false, true, true, false, channels[2]);
             /*testScenario(fileTypes[0], languages[1], categorys[0], "",
                     formattings[1],false, tiers[1],
@@ -129,10 +130,10 @@ public class TypingQuote extends TestBase implements TypingPrice {
                     true, false, false, true, true, false, channels[0]);*/
         } else {
             testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
-                    "",false, tiers[1],
+                    "", false, tiers[1],
                     true, false, true, false, false, true, channels[1]);
             testScenario(fileTypes[0], languages[2], categorys[0], "",
-                    formattings[0],false, 0,
+                    formattings[0], false, 0,
                     true, true, false, true, true, false, channels[2]);
         }
 
@@ -176,10 +177,10 @@ public class TypingQuote extends TestBase implements TypingPrice {
         if (fileType.equals(fileTypes[0])) {
 
             typing.selectFormatting(format);
-            if(notar) {
+            if (notar) {
                 typing.selectNotarization();
             }
-            if(mailin) {
+            if (mailin) {
                 typing.selectRequestMailCopy(country, address);
             }
             fileExtention = ".txt";
@@ -187,8 +188,8 @@ public class TypingQuote extends TestBase implements TypingPrice {
             typing.selectTimeCode(timeCode);
             typing.selectVerbatim();
             if (language.equals(languages[0])) {
-                if(usnativesp) {
-                typing.selectUSNativeTranscriber();
+                if (usnativesp) {
+                    typing.selectUSNativeTranscriber();
                 }
             }
             fileExtention = ".mp3";
@@ -254,18 +255,18 @@ public class TypingQuote extends TestBase implements TypingPrice {
         min = Integer.parseInt(minute);
         if (fileType.equals(fileTypes[0]) && tier == tiers[0]) {
             bPrice = basePri[1];
-        } else  if (fileType.equals(fileTypes[0]) && tier == tiers[1]) {
+        } else if (fileType.equals(fileTypes[0]) && tier == tiers[1]) {
             bPrice = basePri[3];
         } else if (fileType.equals(fileTypes[1])) {
             bPrice = basePri[0];
         }
-        if(category && tier == tiers[0]) {
+        if (category && tier == tiers[0]) {
             bPrice = basePri[2];
-        } else  if(category && tier == tiers[1]) {
+        } else if (category && tier == tiers[1]) {
             bPrice = basePri[3];
         }
-        if(fileType.equals(fileTypes[1])) {
-            if(category) {
+        if (fileType.equals(fileTypes[1])) {
+            if (category) {
                 bPrice = basePri[1];
             } else {
                 bPrice = basePri[0];
@@ -280,12 +281,12 @@ public class TypingQuote extends TestBase implements TypingPrice {
             timePrice = timecodePri[1];
         }
 
-        if(formatting && tier == tiers[0]) {
+        if (formatting && tier == tiers[0]) {
             bPrice = formattingPri[0];
         } else if (formatting && tier == tiers[1]) {
             bPrice = formattingPri[1];
         }
-        if(usnativeSpeaker) {
+        if (usnativeSpeaker) {
             bPrice = usNativeTranscriberPri;
         }
         String message = "Base price Actual";
@@ -302,18 +303,18 @@ public class TypingQuote extends TestBase implements TypingPrice {
         if (verbat) {
             verbe = verbatimPri;
         }
-        if(notary) {
+        if (notary) {
             notaryFee = notaryPri;
             processingFee = processingFeePri;
         }
-        if(mailing) {
+        if (mailing) {
             mailingFee = mailingPri;
         }
 
-        if(fileType.equals(fileTypes[0])) {
+        if (fileType.equals(fileTypes[0])) {
 
             gtot = offerPr + notaryFee + mailingFee + processingFee;
-        } else if(fileType.equals(fileTypes[1])) {
+        } else if (fileType.equals(fileTypes[1])) {
 
             if (verbat) {
                 message = "Verbatim";
@@ -321,7 +322,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
             }
             message = "Time Code";
             evaluateCondition(message, timePrice * min, timea);
-            System.out.println(offerPr +""+ (timePrice * min) +""+ (verbe * min));
+            System.out.println(offerPr + "" + (timePrice * min) + "" + (verbe * min));
             gtot = offerPr + (timePrice * min) + (verbe * min);
         }
 
@@ -338,7 +339,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
     }
 
     private void evaluateCondition(String message, double first,
-                                   double second) {
+            double second) {
 
         System.out.print(message + " : " + second);
         if (first == second) {
@@ -375,10 +376,10 @@ public class TypingQuote extends TestBase implements TypingPrice {
         menus.clickSignOut();
     }
 
-    private void checkTickets(Menus menus,String fileType, String language, String category,
-            String timeCode, String format, boolean offer, int tier, boolean
-            cate, boolean formatting, boolean usnativesp, boolean notar, boolean
-            mailin, boolean verb, String channel) {
+    private void checkTickets(Menus menus, String fileType, String language,
+            String category, String timeCode, String format, boolean offer,
+            int tier, boolean cate, boolean formatting, boolean usnativesp,
+            boolean notar, boolean mailin, boolean verb, String channel) {
 
         String ticketID = "";
         readTableData = menus.clickNewMenu();
@@ -411,7 +412,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
                     changeTicketStatus();
                     checkCRMEmailConversation(fileType, language, category,
                             timeCode, format, offer, tier, cate, formatting,
-                            usnativesp, notar, mailin, verb);
+                            usnativesp, notar, mailin, verb, channel);
                     break;
                 } else {
                     ticketID = "\n\nEither ticket is Not created or Still" +
@@ -450,13 +451,21 @@ public class TypingQuote extends TestBase implements TypingPrice {
     private void checkCRMEmailConversation(String fileType, String language,
             String category, String timeCode, String format, boolean offer,
             int tier, boolean cate, boolean formatting, boolean usnativesp,
-            boolean notar, boolean mailin, boolean verb) {
+            boolean notar, boolean mailin, boolean verb, String chanel) {
 
         System.out.println("\n===========================================");
         System.out.println("Checking Email Conversation");
         System.out.println("===========================================\n");
         emailConversation = menus.clickEmailConversation();
-        emailConversation.clickReadMore("Quote");
+        String message = "";
+        if(chanel.equals("Direct Payment")) {
+            message = "Price Quote";
+        } else if (chanel.equals("Email Quote")) {
+            message = chanel;
+        } else if (chanel.equals("Request for Quote")) {
+            message = "Quote";
+        }
+        emailConversation.clickReadMore(message);
         if (emailConversation.getServiceDetailsFromEmailHeading(service)) {
             System.out.println(service + " heading is correct");
         } else {
@@ -464,53 +473,53 @@ public class TypingQuote extends TestBase implements TypingPrice {
         }
         if (tier != 0) {
             evaluateCondition("Language", emailConversation
-                    .getTicketFieldValuesFromPayment("Language", false),
+                            .getTicketFieldValuesFromPayment("Language", false),
                     language);
             evaluateCondition("Category", emailConversation
-                    .getTicketFieldValuesFromPayment("Category",false), category);
+                    .getTicketFieldValuesFromPayment("Category", false), category);
 
-            if(verb) {
+            if (verb) {
                 evaluateCondition("Verbatim", emailConversation
-                        .getTicketFieldValuesFromPayment("Verbatim", false),
+                                .getTicketFieldValuesFromPayment("Verbatim", false),
                         "" + verbe * min);
             }
 
-            if(fileType.equals(fileTypes[1])) {
+            if (fileType.equals(fileTypes[1])) {
                 evaluateCondition("Cost per minute", emailConversation
                         .getTicketFieldValuesFromPayment("Cost per minute",
-                        false), "" + bPrice);
+                                false), "" + bPrice);
                 evaluateCondition("Minutes", emailConversation
                         .getTicketFieldValuesFromPayment("Minutes", false), minute);
                 evaluateCondition("Time code", emailConversation
-                        .getTicketFieldValuesFromPayment("Time code", false),
-                        ""+(timePrice*min));
+                                .getTicketFieldValuesFromPayment("Time code", false),
+                        "" + (timePrice * min));
             } else if (fileType.equals(fileTypes[0])) {
                 evaluateCondition("Number of page(s)", emailConversation
                         .getTicketFieldValuesFromPayment("Number of page(s)",
-                        false), minute);
+                                false), minute);
                 evaluateCondition("Cost per page", emailConversation
                         .getTicketFieldValuesFromPayment("Cost per page",
-                        false), ""+bPrice);
+                                false), "" + bPrice);
             }
             if (notar) {
                 evaluateCondition("Notary", emailConversation
                         .getTicketFieldValuesFromPayment("Notary",
-                        false), ""+notaryFee);
+                                false), "" + notaryFee);
                 evaluateCondition("Processing fee", emailConversation
                         .getTicketFieldValuesFromPayment("Processing fee",
-                        false), ""+processingFee);
+                                false), "" + processingFee);
             }
-            if(mailin) {
+            if (mailin) {
                 evaluateCondition("Mailing", emailConversation
                         .getTicketFieldValuesFromPayment("Mailing",
-                        false), ""+mailingFee);
+                                false), "" + mailingFee);
             }
             evaluateCondition("Cost", emailConversation
                     .getTicketFieldValuesFromPayment("Cost",
-                    false), "" + bPrice * min);
+                            false), "" + bPrice * min);
             evaluateCondition("Grand total", emailConversation
                     .getTicketFieldValuesFromPayment("Grand total",
-                    false), "" + gtot);
+                            false), "" + gtot);
             evaluateCondition("Transaction fee", emailConversation
                     .getTicketFieldValuesFromPayment("Transaction fee",
                             false), "" + trans);
@@ -564,14 +573,14 @@ public class TypingQuote extends TestBase implements TypingPrice {
 
                 evaluateCondition("Time code", emailConversation
                                 .getTicketValuesFromPayment("Time code", false),
-                        ""+timePrice*min);
+                        "" + timePrice * min);
 
                 evaluateCondition("Mailed", emailConversation
                         .getTicketValuesFromPayment("Mailed", false), "No");
                 evaluateCondition("Notarized", emailConversation
                         .getTicketValuesFromPayment("Notarized", false), "No");
-                if(verb) {
-                    if(tier == tiers[1]) {
+                if (verb) {
+                    if (tier == tiers[1]) {
                         evaluateCondition("Verbatim", emailConversation
                                 .getTicketValuesFromPayment("Verbatim",
                                         false), "" + verbe * min);
@@ -581,9 +590,9 @@ public class TypingQuote extends TestBase implements TypingPrice {
                     }
 
                 }
-                if(usnativesp) {
+                if (usnativesp) {
                     evaluateCondition("U.S Native Speaker", emailConversation
-                            .getTicketValuesFromPayment("U.S Native Speaker", false),
+                                    .getTicketValuesFromPayment("U.S Native Speaker", false),
                             "Yes");
                 }
             }
