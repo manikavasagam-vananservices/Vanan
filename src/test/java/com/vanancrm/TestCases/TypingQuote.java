@@ -596,38 +596,38 @@ public class TypingQuote extends TestBase implements TypingPrice {
                             "Yes");
                 }
             }
-
-            if (!language.equals(languages[1])) {
-                if (emailConversation
-                        .getParticularHeadingDetailsFromAllMsg(service + " " +
-                                "Additional Information")) {
-                    System.out.println("Additional Info Message is present");
-                } else {
-                    System.out.println("Additional Info Message is not present");
-                }
-            } else {
-                if (emailConversation
-                        .getParticularHeadingDetailsFromAllMsg(service + " Additional Information")) {
-                    System.out.println("This scenario not have, Additional Info " +
-                            "page. But the Message is present");
-                }
-            }
-
+        }
+        
+        if (!language.equals(languages[1])) {
             if (emailConversation
-                    .getParticularHeadingDetailsFromAllMsg("Others")) {
-                System.out.println("Others message is present");
+                .getParticularHeadingDetailsFromAllMsg(service + " " +
+                "Additional Information")) {
+                System.out.println("Additional Info Message is present");
             } else {
-                System.out.println("Others message is not present");
+                System.out.println("Additional Info Message is not present");
             }
-            System.out.println("===========================================");
-            emailConversation.clickNoActionButton();
-            waitForProcessCompletion(5);
+        } else {
             if (emailConversation
-                    .getParticularHeadingDetailsFromAllMsg("No Action")) {
-                System.out.println("No Action message is present");
-            } else {
-                System.out.println("No Action  message is not present");
+                .getParticularHeadingDetailsFromAllMsg(service + " Additional Information")) {
+                System.out.println("This scenario not have, Additional Info " +
+                                   "page. But the Message is present");
             }
+        }
+        
+        if (emailConversation
+            .getParticularHeadingDetailsFromAllMsg("Others")) {
+            System.out.println("Others message is present");
+        } else {
+            System.out.println("Others message is not present");
+        }
+        System.out.println("===========================================");
+        emailConversation.clickNoActionButton();
+        waitForProcessCompletion(5);
+        if (emailConversation
+            .getParticularHeadingDetailsFromAllMsg("No Action")) {
+            System.out.println("No Action message is present");
+        } else {
+            System.out.println("No Action  message is not present");
         }
     }
 
