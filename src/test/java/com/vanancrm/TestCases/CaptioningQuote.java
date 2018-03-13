@@ -1,6 +1,7 @@
 package com.vanancrm.TestCases;
 
 import java.awt.AWTException;
+
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -9,11 +10,6 @@ import java.util.Properties;
 
 import java.util.concurrent.TimeUnit;
 
-import com.vanan.CRM.PageObjects.WholeSitePages.*;
-import com.vanancrm.Common.CaptioningPrice;
-import com.vanancrm.Common.TranslationPrice;
-import com.vanancrm.PageObjects.MainPages.Captioning;
-import com.vanancrm.PageObjects.MainPages.Translation;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,16 +18,20 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.vanancrm.PageObjects.MainPages.AdditionalInformation;
 import com.vanan.CRM.PageObjects.MainPages.DashBoardPage;
 import com.vanan.CRM.PageObjects.MainPages.Edit;
 import com.vanan.CRM.PageObjects.MainPages.EmailConversation;
 
-import com.vanan.CRM.PageObjects.MainPages.UnknownEmail;
+import com.vanan.CRM.PageObjects.WholeSitePages.Login;
+import com.vanan.CRM.PageObjects.WholeSitePages.Menus;
+import com.vanan.CRM.PageObjects.WholeSitePages.ReadTableData;
+import com.vanan.CRM.PageObjects.WholeSitePages.ViewTicketDetails;
 
+import com.vanancrm.PageObjects.MainPages.AdditionalInformation;
+import com.vanancrm.PageObjects.MainPages.Captioning;
 
+import com.vanancrm.Common.CaptioningPrice;
 import com.vanancrm.Common.TestBase;
-import com.vanancrm.Common.TranslationPrice;
 
 /**
  * Author - Manikavasagam (manikavasagam@vananservices.com)
@@ -182,7 +182,7 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
             }
             checkPrice(offer, off, captioning.getBasePrice(),
                     captioning.getTranslationPrice(), captioning
-                    .getTranslationPrice(), captioning.getTimeCodePrice(),
+                            .getTranslationPrice(), captioning.getTimeCodePrice(),
                     captioning.getGrandTotal(), captioning.getTransactionFee(),
                     captioning.getOrderTotal(), captioning.getTotalUnitCost(),
                     srcLang, translation, transcription, tier);
@@ -303,7 +303,7 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
     }
 
     private void evaluateCondition(String message, double first,
-            double second) {
+                                   double second) {
 
         System.out.print(message + " : " + second);
         if (first == second) {
@@ -371,8 +371,9 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
 
                     System.out.println(channel + " Ticket ID: " + ticketID);
                     changeTicketStatus();
-                    checkCRMEmailConversation(srcLang, targetLang, fileFormat, specificationPay,
-                            translation, transcription, offer);
+                    checkCRMEmailConversation(srcLang, targetLang, fileFormat,
+                            specificationPay, translation, transcription, offer,
+                            channel);
                     break;
                 } else {
                     ticketID = "\n\nEither ticket is Not created or Still" +
@@ -410,13 +411,21 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
 
     private void checkCRMEmailConversation(String srcLang, String targetLang,
             String fileFormat, String specificationPay, boolean translation,
-            boolean transcription, boolean offer) {
+            boolean transcription, boolean offer, String channel) {
 
         System.out.println("\n===========================================");
         System.out.println("Checking Email Conversation");
         System.out.println("===========================================\n");
         emailConversation = menus.clickEmailConversation();
-        emailConversation.clickReadMore("Quote");
+        String message = "";
+        if(channel.equals("Direct Payment")) {
+            message = "Price Quote";
+        } else if (channel.equals("Email Quote")) {
+            message = channel;
+        } else if (channel.equals("Request for Quote")) {
+            message = "Quote";
+        }
+        emailConversation.clickReadMore(message);
         if (emailConversation.getServiceDetailsFromEmailHeading(service)) {
             System.out.println(service + " heading is correct");
         } else {
@@ -439,11 +448,11 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
                     .getTicketFieldValuesFromPayment("Minutes", false),
                     minute);
             evaluateCondition("Cost per minutes", emailConversation
-                    .getTicketFieldValuesFromPayment("Cost per minutes", false),
+                            .getTicketFieldValuesFromPayment("Cost per minutes", false),
                     "" + bPrice);
             evaluateCondition("Cost", emailConversation
                     .getTicketFieldValuesFromPayment("Cost",
-                   false), "" + (bPrice * min));
+                            false), "" + (bPrice * min));
             if(translation) {
                 evaluateCondition("Translation fee", emailConversation
                         .getTicketFieldValuesFromPayment("Translation fee", false),
@@ -456,19 +465,19 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
             }
             if(offer) {
                 evaluateCondition("New year offer", emailConversation
-                                .getTicketFieldValuesFromPayment("New year offer", false),
+                        .getTicketFieldValuesFromPayment("New year offer", false),
                         "" + offerPr);
             }
             if(srcLang.equals(targetLang) && targetLang.equals(targetLang)) {
 
             } else {
                 evaluateCondition("Timecode fee", emailConversation
-                         .getTicketFieldValuesFromPayment("Timecode fee", false),
+                        .getTicketFieldValuesFromPayment("Timecode fee", false),
                         "" + btimecode);
             }
             evaluateCondition("Grand total",
                     emailConversation.getTicketFieldValuesFromPayment(
-                    "Grand total", false), "" + gtot);
+                            "Grand total", false), "" + gtot);
             evaluateCondition("Transaction fee",
                     emailConversation.getTicketFieldValuesFromPayment(
                             "Transaction fee", false), "" + trans);
@@ -483,10 +492,10 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
 
             evaluateCondition("Email Id", emailConversation
                     .getTicketValuesFromPayment("Email Id",
-                    false), mailId);
+                            false), mailId);
             evaluateCondition("Source Language", emailConversation
                     .getTicketValuesFromPayment("Source Language",
-                    false), srcLang);
+                            false), srcLang);
             evaluateCondition("Target Language", emailConversation
                     .getTicketValuesFromPayment("Target Language",
                             false), targetLang);
@@ -495,13 +504,13 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
                             false), specificationPay);
             evaluateCondition("Format", emailConversation
                     .getTicketValuesFromPayment("Format",
-                    false), fileFormat);
+                            false), fileFormat);
             evaluateCondition("Minutes", emailConversation
                     .getTicketValuesFromPayment("Minutes",
-                   false), minute);
+                            false), minute);
             evaluateCondition("Special words", emailConversation
                     .getTicketValuesFromPayment("Special words",
-                   false), comment);
+                            false), comment);
         }
 
         if (!srcLang.equals(srclanguages[1])) {
@@ -513,8 +522,9 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
                 System.out.println("Additional Info Message is not present");
             }
         } else {
-            if (emailConversation
-                    .getParticularHeadingDetailsFromAllMsg(service + " Additional Information")) {
+            if (emailConversation.getParticularHeadingDetailsFromAllMsg(
+                    service + " Additional Information")) {
+
                 System.out.println("This scenario not have, Additional Info " +
                         "page. But the Message is present");
             }
