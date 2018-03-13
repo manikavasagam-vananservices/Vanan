@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -79,14 +80,14 @@ public class VoiceOverQuoteFromCD extends TestBase {
         System.out.println("\n======================================");
         System.out.println("\nScenario Started");
         System.out.println("\n======================================");
-        driver.get("https://vananservices.com/customer/");
+        getCRMCreadential();
+        driver.get("https://vananservices.com/customer");
         LoginPage loginPage = new LoginPage(driver);
         dashBoard = loginPage.signIn(mailId,
                 password);
         dashBoard.clickPopUpCloseButton();
         waitForProcessCompletion(20);
         dashBoard.clickVoiceOverMenu();
-        testScenario(sourceLang[0], targetLang[1], purposes[0], serviceFreqs[1]);
         System.out.println(
                 "=============================================================================");
         System.out.println("Test Completed");
@@ -98,10 +99,16 @@ public class VoiceOverQuoteFromCD extends TestBase {
     public void beforeClass() throws IOException {
 
         System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
-        driver = new ChromeDriver();
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        //chromeOptions.addArguments("--no-sandbox");
+        //driver = new ChromeDriver();
+        // chromeOptions.addArguments("--headless");
+        //fullScreen(driver);
+        chromeOptions.addArguments("window-size=1900,1200");
+        driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-        fullScreen(driver);
-        fileName = service.replace(" ", "") + fileExtension;
+        fileName = service.replace(" ", "");
         channel = "Customer Dashboard";
     }
 
@@ -150,7 +157,6 @@ public class VoiceOverQuoteFromCD extends TestBase {
             throws IOException, InterruptedException, AWTException {
 
         raiseTicket(srcLang, targetLang, purpose, serviceFreq);
-        getCRMCreadential();
         checkCRM(srcLang, targetLang, purpose, serviceFreq);
     }
 
