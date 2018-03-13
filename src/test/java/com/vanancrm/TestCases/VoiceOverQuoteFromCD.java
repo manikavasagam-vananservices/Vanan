@@ -88,6 +88,7 @@ public class VoiceOverQuoteFromCD extends TestBase {
         dashBoard.clickPopUpCloseButton();
         waitForProcessCompletion(20);
         dashBoard.clickVoiceOverMenu();
+        testScenario(sourceLang[0], targetLang[1], purposes[0], serviceFreqs[1]);
         System.out.println(
                 "=============================================================================");
         System.out.println("Test Completed");
