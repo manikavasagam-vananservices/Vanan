@@ -92,6 +92,13 @@ public class Edit extends AccessingElement {
     @FindBy(name = "verbatim")
     private WebElement verbatimElement;
 
+    @FindBy(name = "purpose")
+    private WebElement purposeElement;
+
+    @FindBy(name = "purposevoiceover")
+    private WebElement voiceOverPurposeElement;
+
+	
     public void selectStatus(String option) {
 		try {
 			selectDropDown(status, option);
@@ -106,6 +113,24 @@ public class Edit extends AccessingElement {
             selectDropDown(posibileClosureElement, option);
         } catch (Exception e) {
             System.out.println("Unable to select Possible Closure " + e);
+        }
+    }
+	
+   public void enterPurpose(String content) {
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(purposeElement).build();
+        mouseOverHome.perform();
+        enterTestBoxValues(purposeElement, content);
+    }
+
+    public void selectVoiceOverPurpose(String content) {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(voiceOverPurposeElement).build();
+            mouseOverHome.perform();
+            selectDropDown(voiceOverPurposeElement, content);
+        } catch (Exception e) {
+            System.out.println("Unable to select voice over purpose " + e);
         }
     }
 
