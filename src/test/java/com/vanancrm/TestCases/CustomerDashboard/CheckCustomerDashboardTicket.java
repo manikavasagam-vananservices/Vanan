@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -149,12 +148,10 @@ public class CheckCustomerDashboardTicket extends TestBase {
         driver.navigate().to(driver.getCurrentUrl());
         menus = new Menus(driver);
         allocatorDashboard = menus.clickAllocatorDashboard();
-        waitForProcessCompletion(15);
         allocatorDashboard.selectFile(fileName, username,
                 vendorPersonName);
         allocatorDashboard.selectStatus("Completed");
         allocatorDashboard.clickChangeStatus();
-        waitForProcessCompletion(10);
         
         driver.navigate().to(driver.getCurrentUrl());
         dashBoardPage = new DashBoardPage(driver);
@@ -200,6 +197,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         menus.clickEdit();
         edit.selectStatus("Order Delivered");
         edit.clickUpdateButton();
+        menus.clickSignOut();
 
         checkCustomerDashboardStatus(ticketStatus[1], true);
         driver.get("https://secure-dt.com/crm/user/login");
@@ -242,7 +240,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
         fullScreen(driver);
         getCRMCreadential();
 
-        //if(System.getProperty("service").equals("Transcription")) {
+        if(System.getProperty("service").equals("Transcription")) {
 
             TranscriptionQuoteFromCD transcriptionQuoteFromCD = new
                     TranscriptionQuoteFromCD();
@@ -250,7 +248,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
             service = "Transcription";
             service1 = false;
             service2 = true;
-        /*} else if (System.getProperty("service").equals("Typing")) {
+        } else if (System.getProperty("service").equals("Typing")) {
 
             TypingQuoteFromCD typingQuoteFromCD = new TypingQuoteFromCD();
             ticketID = typingQuoteFromCD.getTicketID();
@@ -279,7 +277,7 @@ public class CheckCustomerDashboardTicket extends TestBase {
             service = "Captioning";
             service1=true;
             service2=true;
-        }*/
+        }
         fileName = service.replace(" ", "") + fileExtenstion;
     }
 
@@ -330,6 +328,12 @@ public class CheckCustomerDashboardTicket extends TestBase {
         edit.enterETAT(getETAT());
         edit.enterOrderValue("42");
         edit.enterKeyword(comment);
+        if(!service.equals("Voice Over")) {
+            edit.enterPurpose(comment + " Message");
+        } else {
+            edit.selectVoiceOverPurpose(" Broadcast ");
+        }
+
         edit.selectSalesPerson(salesPersonName);
         edit.selectAllocator(allocatorPersonName);
         edit.clickUpdateButton();
@@ -361,42 +365,22 @@ public class CheckCustomerDashboardTicket extends TestBase {
         dashBoardPage = login.signIn(salesPersonName, salesPersonPwd);
         menus = dashBoardPage.clickProcess();
         menus.clickPrivateNoteAdded();
-        readTableData = new ReadTableData(driver);
-        List<String> tickets = readTableData.readTableRows();
+        editTicketDetails(driver);
+        PrivateNote privateNote = menus.clickPrivateNote();
+        privateNote.clickPaymentMadePrivateNote();
+        PaymentMadePrivateNoteAlert paymentMadePrivateNoteAlert =
+                new PaymentMadePrivateNoteAlert(driver);
+        paymentMadePrivateNoteAlert.selectApprovedBy(allocatorPersonName);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        paymentMadePrivateNoteAlert.enterPaymentDate(dateFormat.format(date));
+        paymentMadePrivateNoteAlert.enterPaidAmount("42");
+        paymentMadePrivateNoteAlert.selectPaymentMode("PayPal");
+        paymentMadePrivateNoteAlert.clickSubmit();
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Payment made status changed");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
 
-        for (int i = 0; i < tickets.size(); i++) {
-
-            if (tickets.get(i).contains(service)) {
-
-                viewTicketDetails = new ViewTicketDetails(driver);
-                viewTicketDetails = readTableData.clickService(service,
-                        (i + 1));
-                /*System.out.println("Channel " + viewTicketDetails
-                        .getRunTimeTicketFieldValues("Channel") +" = "+
-                        viewTicketDetails.getOrderNo());*/
-                //viewTicketDetails.getOrderNo().contains(ticketID)
-                //      &&
-                if ( viewTicketDetails.getRunTimeTicketFieldValues("Channel")
-                        .contains(channel)) {
-
-                    PrivateNote privateNote = menus.clickPrivateNote();
-                    privateNote.clickPaymentMadePrivateNote();
-                    PaymentMadePrivateNoteAlert paymentMadePrivateNoteAlert =
-                            new PaymentMadePrivateNoteAlert(driver);
-                    paymentMadePrivateNoteAlert.selectApprovedBy(allocatorPersonName);
-                    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                    Date date = new Date();
-                    paymentMadePrivateNoteAlert.enterPaymentDate(dateFormat.format(date));
-                    paymentMadePrivateNoteAlert.enterPaidAmount("42");
-                    paymentMadePrivateNoteAlert.selectPaymentMode("PayPal");
-                    paymentMadePrivateNoteAlert.clickSubmit();
-                    System.out.println("\t++++++++++++++++++++++++++++++++++++");
-                    System.out.println("\t Payment made status changed");
-                    System.out.println("\t++++++++++++++++++++++++++++++++++++");
-                    break;
-                }
-            }
-        }
         menus.clickSignOut();
     }
 
