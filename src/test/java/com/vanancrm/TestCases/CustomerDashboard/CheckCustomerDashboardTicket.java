@@ -149,10 +149,12 @@ public class CheckCustomerDashboardTicket extends TestBase {
         driver.navigate().to(driver.getCurrentUrl());
         menus = new Menus(driver);
         allocatorDashboard = menus.clickAllocatorDashboard();
+        waitForProcessCompletion(15);
         allocatorDashboard.selectFile(fileName, username,
                 vendorPersonName);
         allocatorDashboard.selectStatus("Completed");
         allocatorDashboard.clickChangeStatus();
+        waitForProcessCompletion(10);
         
         driver.navigate().to(driver.getCurrentUrl());
         dashBoardPage = new DashBoardPage(driver);
