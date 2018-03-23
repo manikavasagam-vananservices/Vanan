@@ -11,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.vanancrm.PageObjects.MainPages.AccessingElement;
 
+import java.util.concurrent.TimeUnit;
+
 public class Menus extends AccessingElement {
 
     private WebDriver driver;
@@ -428,5 +430,13 @@ public class Menus extends AccessingElement {
         element.click();
         element = driver.findElement(By.linkText("Sign out"));
         element.click();
+        waitForProcessCompletion(15);
+    }
+
+    public void waitForProcessCompletion(int waitTime) {
+        try {
+            TimeUnit.SECONDS.sleep(waitTime);
+        } catch (Exception e) {
+        }
     }
 }
