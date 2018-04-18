@@ -153,8 +153,8 @@ public class CaptioningFreeTrialPage extends TestBase {
                 if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
-                        .contains(channel) && viewTicketDetails
-                        .getRunTimeTicketFieldValues("Websites")) {
+                        .contains(channel) && url.contains(viewTicketDetails
+                        .getRunTimeTicketFieldValues("Websites"))) {
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);
