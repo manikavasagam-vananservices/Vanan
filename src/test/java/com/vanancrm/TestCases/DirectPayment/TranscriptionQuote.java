@@ -480,7 +480,8 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                 if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
-                        .contains(channel)) {
+                        .contains(channel) && viewTicketDetails
+                        .getRunTimeTicketFieldValues("Websites")) {
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);
