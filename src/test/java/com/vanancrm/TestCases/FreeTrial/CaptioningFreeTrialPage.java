@@ -78,12 +78,13 @@ public class CaptioningFreeTrialPage extends TestBase {
     }
 
     @BeforeClass
-    public void beforeClass() {
+    public void beforeClass() throws IOException {
 
         System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
+        getCRMCreadential();
     }
 
     @AfterClass
