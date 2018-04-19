@@ -84,8 +84,6 @@ public class CaptioningFreeTrialPage extends TestBase {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         fullScreen(driver);
-        username = System.getProperty("username");
-        password = System.getProperty("password");
     }
 
     @AfterClass
@@ -122,7 +120,7 @@ public class CaptioningFreeTrialPage extends TestBase {
     private void checkCRM(String slanguage, String tlanguage, String
         fileFormat, String transcription) {
 
-        driver.get(System.getProperty("crm"));
+        driver.get("https://secure-dt.com/crm/user/login");
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
         waitForProcessCompletion(10);
@@ -200,6 +198,16 @@ public class CaptioningFreeTrialPage extends TestBase {
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
         emailConversation.clickReadMore();
+    }
+    
+    private static void getCRMCreadential() throws IOException {
+
+        FileReader fileReader = new FileReader(System.getProperty("user.dir")
+            + "/src/test/resources/CRM.txt");
+        Properties properties = new Properties();
+        properties.load(fileReader);
+        username = properties.getProperty("USERNAME");
+        password = properties.getProperty("PASSWORD");
     }
 
     private void checkCRMEmailConversation(String slanguage, String tlanguage,
