@@ -20,15 +20,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class AdditionalInformation extends AccessingElement {
 
     WebDriver driver;
 
+    @FindBy(id = "privacy_policy")
+    private WebElement privacyPolicy;
+
     public AdditionalInformation(WebDriver driver) {
 
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void enterCustomerName(String customerName) {
@@ -150,5 +156,21 @@ public class AdditionalInformation extends AccessingElement {
 
         WebElement fileUploadButton = driver.findElement(By.className("ui-upolad"));
         return fileUploadButton.isDisplayed();
+    }
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 }
