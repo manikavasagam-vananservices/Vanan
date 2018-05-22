@@ -98,6 +98,9 @@ public class Translation extends AccessingElement {
     @FindBy(id = "getquote")
     private WebElement getQuote;
 
+    @FindBy(id = "privacy_policy")
+    private WebElement privacyPolicy;
+
     @FindBy(id = "filecomments")
     private WebElement comments;
 
@@ -589,6 +592,22 @@ public class Translation extends AccessingElement {
         } catch (Exception e) {
             System.out.println("Unable to click Get Quote button " + e);
         }
+    }
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+               clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 
     public boolean isCustomMessageDisplayed() {
