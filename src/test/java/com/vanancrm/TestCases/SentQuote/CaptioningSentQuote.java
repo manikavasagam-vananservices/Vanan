@@ -248,11 +248,11 @@ public class CaptioningSentQuote extends TestBase {
                 emailConversation.getTicketFieldValues("Source Language"), slanguage);
         evaluateCondition("Target Language",
                 emailConversation.getTicketFieldValues("Target Language"), tlanguage);
-        evaluateCondition("Files", emailConversation
-                .getTicketFieldValues("Files"), fileName + fileExtenstion);
+        evaluateCondition("File(s)", emailConversation
+                .getTicketFieldValues("File(s)"), fileName + fileExtenstion);
 
-        evaluateCondition("Files Link", emailConversation
-                .getTicketFieldValues("Files Link"), fileName + fileExtenstion);
+        evaluateCondition("File(s) Link", emailConversation
+                .getTicketFieldValues("File(s) Link"), fileName + fileExtenstion);
         evaluateCondition("Video Length", emailConversation
                 .getTicketFieldValues("Video Length"), minute);
         evaluateCondition("Formats", emailConversation

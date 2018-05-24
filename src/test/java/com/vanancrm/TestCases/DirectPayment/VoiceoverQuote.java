@@ -138,6 +138,13 @@ public class VoiceoverQuote extends TestBase {
         voiceover.selectServiceFrequency(serviceFreq);
         voiceover.enterComment(comments);
         voiceover.clickQuote();
+        if(voiceover.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+            System.out.println("Accept button checked = > Pass");
+        } else {
+            System.out.println("Fail");
+        }
+        voiceover.clickPrivacyPolicy();
+        voiceover.clickQuote();
         waitForProcessCompletion(10);
         String currentUrl = driver.getCurrentUrl();
         checkCondition(currentUrl, "success.php");

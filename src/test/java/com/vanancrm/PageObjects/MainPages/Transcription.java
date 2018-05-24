@@ -109,6 +109,9 @@ public class Transcription extends AccessingElement {
     @FindBy(id = "filecomments")
     private WebElement comments;
 
+    @FindBy(id = "privacy_policy")
+    private WebElement privacyPolicy;
+
     public void enterHours(String hour) {
         try {
             enterTestBoxValues(hours, hour);
@@ -486,5 +489,21 @@ public class Transcription extends AccessingElement {
 
         return driver.findElement(By.xpath("//div[@class='qt_msg ui-msg']"))
                 .getText().contains("Customized rate apply for");
+    }
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 }

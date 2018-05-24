@@ -87,6 +87,9 @@ public class Typing extends AccessingElement {
     @FindBy(id = "trlverbacost_disp")
     private WebElement verbatimElement;
 
+    @FindBy(id = "privacy_policy")
+    private WebElement privacyPolicy;
+
     public Typing(WebDriver driver) {
 
         this.driver = driver;
@@ -318,5 +321,21 @@ public class Typing extends AccessingElement {
         } catch (Exception e) {
             System.out.println("Unable to enter a file length value " + e);
         }
+    }
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 }

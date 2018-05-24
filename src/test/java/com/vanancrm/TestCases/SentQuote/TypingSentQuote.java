@@ -265,10 +265,10 @@ public class TypingSentQuote extends TestBase {
         evaluateCondition("Language", emailConversation
                 .getTicketFieldValues("Language"), language);
 
-        evaluateCondition("Files", emailConversation
-                .getTicketFieldValues("Files"), fileName + fileExtenstion);
-        evaluateCondition("Files Link", emailConversation
-                .getTicketFieldValues("Files Link"), fileName + fileExtenstion);
+        evaluateCondition("File(s)", emailConversation
+                .getTicketFieldValues("File(s)"), fileName + fileExtenstion);
+        evaluateCondition("File(s) Link", emailConversation
+                .getTicketFieldValues("File(s) Link"), fileName + fileExtenstion);
         System.out.println("Turnaround Time : " + emailConversation
                 .getTicketFieldValues("Turnaround Time"));
         /*evaluateCondition("Turnaround Time", emailConversation

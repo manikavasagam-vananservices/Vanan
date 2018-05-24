@@ -85,6 +85,9 @@ public class Voiceover extends AccessingElement {
     @FindBy(id = "qsubmitcrm")
     private WebElement submitbutton;
 
+    @FindBy(id = "confirm_agreement")
+    private WebElement privacyPolicy;
+
     public void enterName(String name) {
         try {
             enterTestBoxValues(cname, name);
@@ -260,5 +263,21 @@ public class Voiceover extends AccessingElement {
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
         TimeUnit.SECONDS.sleep(10);
+    }
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 }

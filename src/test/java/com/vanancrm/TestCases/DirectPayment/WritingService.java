@@ -112,6 +112,16 @@ public class WritingService extends TestBase {
         writingServices.enterPaperDetails(paperDetails);
         writingServices.enterComment(comments);
         writingServices.clickQuote();
+        if(writingServices.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+            System.out.println("Accept button checked = > Pass");
+        } else {
+            System.out.println("Fail");
+        }
+        writingServices.clickPrivacyPolicy();
+        writingServices.clickQuote();
+        waitForProcessCompletion(10);
+        String currentUrl = driver.getCurrentUrl();
+        checkCondition(currentUrl, "success.php");
         waitForProcessCompletion(10);
     }
 
@@ -294,5 +304,13 @@ public class WritingService extends TestBase {
         raiseTicket(academicLevel, paperType);
         getCRMCreadential();
         checkCRM(academicLevel, paperType);
+    }
+
+    private void checkCondition(String currentUrl, String site) {
+        if (currentUrl.contains(site)) {
+            System.out.println(currentUrl + " and it pass");
+        } else {
+            System.out.println(currentUrl + " and it fail");
+        }
     }
 }

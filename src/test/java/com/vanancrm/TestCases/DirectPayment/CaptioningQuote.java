@@ -195,10 +195,31 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
 
         if (fileFormat.equals(fileFormats[1])) {
             captioning.clickGetQuote();
+            if(captioning.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+                System.out.println("Accept button checked = > Pass");
+            } else {
+                System.out.println("Fail");
+            }
+            captioning.clickPrivacyPolicy();
+            captioning.clickGetQuote();
         } else if (srcLang.equals(srclanguages[1])) {
+            captioning.clickProceedPayment();
+            if(captioning.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+                System.out.println("Accept button checked = > Pass");
+            } else {
+                System.out.println("Fail");
+            }
+            captioning.clickPrivacyPolicy();
             captioning.clickProceedPayment();
         } else if (srcLang.equals(srclanguages[0]) || srcLang.equals
                 (srclanguages[2])) {
+            captioning.clickEmailMeGetQuote();
+            if(captioning.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+                System.out.println("Accept button checked = > Pass");
+            } else {
+                System.out.println("Fail");
+            }
+            captioning.clickPrivacyPolicy();
             captioning.clickEmailMeGetQuote();
         }
 
@@ -509,9 +530,9 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
             evaluateCondition("Minutes", emailConversation
                     .getTicketValuesFromPayment("Minutes",
                             false), minute);
-            evaluateCondition("Special words", emailConversation
+            /*evaluateCondition("Special words", emailConversation
                     .getTicketValuesFromPayment("Special words",
-                            false), comment);
+                            false), comment);*/
         }
 
         if (!srcLang.equals(srclanguages[1])) {

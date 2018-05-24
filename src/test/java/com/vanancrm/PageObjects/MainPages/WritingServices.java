@@ -1,5 +1,6 @@
 package com.vanancrm.PageObjects.MainPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,6 +64,9 @@ public class WritingServices extends AccessingElement {
 
     @FindBy(id = "qsubmitcrm")
     private WebElement submitbutton;
+
+    @FindBy(id = "confirm_agreement")
+    private WebElement privacyPolicy;
 
     public void enterName(String name) {
         try {
@@ -185,5 +189,21 @@ public class WritingServices extends AccessingElement {
 
     public void clickQuote() {
         clickElement(submitbutton);
+    }
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 }
