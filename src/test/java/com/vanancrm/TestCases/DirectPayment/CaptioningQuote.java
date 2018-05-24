@@ -237,6 +237,7 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
             additionalInformation.selectServiceType(serviceType);
             //additionalInformation.selectAdditionalServices(additionalService);
             additionalInformation.enterComments(comment);
+            additionalInformation.clickPrivacyPolicy();
             additionalInformation.clickSubmitButton();
         } else {
             checkCondition(currentUrl, "paypal");

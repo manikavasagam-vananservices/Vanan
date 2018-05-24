@@ -277,6 +277,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             additionalInformation.selectServiceType(serviceType);
             //additionalInformation.selectAdditionalServices(additionalService);
             additionalInformation.enterComments(comment);
+            additionalInformation.clickPrivacyPolicy();
             additionalInformation.clickSubmitButton();
         } else {
             checkCondition(currentUrl, "paypal");
