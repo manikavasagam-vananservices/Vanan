@@ -11,6 +11,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import com.vanancrm.PageObjects.MainPages.FreeTrailPage;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -105,16 +106,32 @@ public class TranslationFreeTrialPage extends TestBase {
         freeTrailPage.selectFileType(fileType);
         fileName = generateName() + "";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
-        waitForProcessCompletion(90);
+        waitForProcessCompletion(30);
         freeTrailPage.enterComment(comments);
         waitForProcessCompletion(10);
         freeTrailPage.clickSubmit();
+        screenshot(driver, url.substring(url.indexOf("//")+2,url.indexOf(".")));
+        if(freeTrailPage.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+            System.out.println("Accept button is pressed => Pass");
+        } else {
+            System.out.println("Accept button is not pressed => Fail");
+        }
+        freeTrailPage.clickPrivacyPolicy();
+        freeTrailPage.clickSubmit();
         waitForProcessCompletion(30);
+        String currentUrl = driver.getCurrentUrl();
+        if (currentUrl.contains("success.php")) {
+            System.out.println(currentUrl + " and it pass");
+        } else {
+            System.out.println(currentUrl + " and it fail");
+        }
     }
 
     private void checkCRM(String slanguage, String tlanguage, String fileType) {
 
         driver.get("https://secure-dt.com/crm/user/login");
+        Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
+        driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
         waitForProcessCompletion(10);
@@ -224,10 +241,10 @@ public class TranslationFreeTrialPage extends TestBase {
             emailConversation.getTicketFieldValues("Translate To"), tlanguage);
         evaluateCondition("File Type",
             emailConversation.getTicketFieldValues("File Type"), fileType);
-        evaluateCondition("Files", emailConversation
-            .getTicketFieldValues("Files"), fileName + fileExtenstion);
-        evaluateCondition("Files Link", emailConversation
-            .getTicketFieldValues("Files Link"), fileName + fileExtenstion);
+        evaluateCondition("File(s)", emailConversation
+            .getTicketFieldValues("File(s)"), fileName + fileExtenstion);
+        evaluateCondition("File(s) Link", emailConversation
+            .getTicketFieldValues("File(s) Link"), fileName + fileExtenstion);
         /*evaluateCondition("Turnaround Time", emailConversation
             .getTicketFieldValues("Turnaround Time"), status);*/
         System.out.println("Turnaround Time : " + emailConversation

@@ -88,6 +88,9 @@ public class QuickQuote extends AccessingElement {
         xpath = "//div[@class='col-lg-12']/div[@class='row']/input[@type='submit']")
     private WebElement getQuote;
 
+    @FindBy(id = "confirm_agreement")
+    private WebElement privacyPolicy;
+
     public void enterEmail(String email) {
         try {
             enterTestBoxValues(mailid, email);
@@ -285,6 +288,32 @@ public class QuickQuote extends AccessingElement {
     public void clickPopupSubmit() {
         clickElement(driver.findElement(By.xpath(
             "//div[@class='modal-footer']/..//button[contains(text(),'Submit')]")));
+    }
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public void clickPrivacyPolicyUsingJScript() {
+        try {
+
+            js.executeScript("$('#privacy_policy').click();");
+
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 
 }

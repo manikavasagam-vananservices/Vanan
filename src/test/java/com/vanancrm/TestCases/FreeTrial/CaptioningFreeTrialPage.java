@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.vanancrm.PageObjects.MainPages.FreeTrailPage;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -90,8 +91,18 @@ public class CaptioningFreeTrialPage extends TestBase {
     @AfterClass
     public void afterClass() throws IOException {
 
-        screenshot(driver, "TranslationFreeTrialPage");
+        screenshot(driver, url.substring(url.indexOf("//")+2,url.indexOf(".")));
         driver.quit();
+    }
+
+    private static void getCRMCreadential() throws IOException {
+
+        FileReader fileReader = new FileReader(System.getProperty("user.dir")
+                + "/src/test/resources/CRM.txt");
+        Properties properties = new Properties();
+        properties.load(fileReader);
+        username = properties.getProperty("USERNAME");
+        password = properties.getProperty("PASSWORD");
     }
 
     private void raiseTicket(String slanguage, String tlanguage, String
@@ -113,15 +124,30 @@ public class CaptioningFreeTrialPage extends TestBase {
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         waitForProcessCompletion(20);
         freeTrailPage.enterComment(comments);
-        waitForProcessCompletion(10);
+        freeTrailPage.clickSubmit();
+        screenshot(driver, url.substring(url.indexOf("//")+2,url.indexOf(".")));
+        if(freeTrailPage.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+            System.out.println("Accept button is pressed => Pass");
+        } else {
+            System.out.println("Accept button is not pressed => Fail");
+        }
+        freeTrailPage.clickPrivacyPolicy();
         freeTrailPage.clickSubmit();
         waitForProcessCompletion(30);
+        String currentUrl = driver.getCurrentUrl();
+        if (currentUrl.contains("success.php")) {
+            System.out.println(currentUrl + " and it pass");
+        } else {
+            System.out.println(currentUrl + " and it fail");
+        }
     }
 
     private void checkCRM(String slanguage, String tlanguage, String
         fileFormat, String transcription) {
 
         driver.get("https://secure-dt.com/crm/user/login");
+        Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
+        driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
         waitForProcessCompletion(10);
@@ -232,11 +258,11 @@ public class CaptioningFreeTrialPage extends TestBase {
             emailConversation.getTicketFieldValues("Source Language"), slanguage);
         evaluateCondition("Target Language",
             emailConversation.getTicketFieldValues("Target Language"), tlanguage);
-        evaluateCondition("Files", emailConversation
-            .getTicketFieldValues("Files"), fileName + fileExtenstion);
+        evaluateCondition("File(s)", emailConversation
+            .getTicketFieldValues("File(s)"), fileName + fileExtenstion);
 
-        evaluateCondition("Files Link", emailConversation
-            .getTicketFieldValues("Files Link"), fileName + fileExtenstion);
+        evaluateCondition("File(s) Link", emailConversation
+            .getTicketFieldValues("File(s) Link"), fileName + fileExtenstion);
         evaluateCondition("Formats", emailConversation
                 .getTicketFieldValues("Formats"), fileFormat);
         System.out.println("Turnaround Time : " + emailConversation
