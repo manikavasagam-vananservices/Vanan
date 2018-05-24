@@ -230,30 +230,30 @@ public class TypingQuote extends TestBase implements TypingPrice {
             }*/
         }
         if (tier == 0) {
-            typing.clickGetQuote();
+            /*typing.clickGetQuote();
             if(typing.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             typing.clickPrivacyPolicy();
             typing.clickGetQuote();
         } else if (tier == tiers[1]) {
-            typing.clickProceedPayment();
+            /*typing.clickProceedPayment();
             if(typing.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             typing.clickPrivacyPolicy();
             typing.clickProceedPayment();
         } else if (tier == tiers[0]) {
-            typing.clickEmailMeGetQuote();
+            /*typing.clickEmailMeGetQuote();
             if(typing.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             typing.clickPrivacyPolicy();
             typing.clickEmailMeGetQuote();
         }
