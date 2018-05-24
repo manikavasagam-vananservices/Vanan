@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import org.openqa.selenium.Cookie;
 import java.awt.*;
 import java.io.FileReader;
 import java.io.IOException;
@@ -130,6 +130,8 @@ public class TranscriptionQuoteFromCD extends TestBase {
     private void checkCRM(String language) {
 
         driver.get("https://secure-dt.com/crm/user/login");
+        Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
+        driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
         menus = dashBoardPage.clickAllProcess();
