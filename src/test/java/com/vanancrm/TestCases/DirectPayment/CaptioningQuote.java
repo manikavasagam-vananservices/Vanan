@@ -194,31 +194,31 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
         }
 
         if (fileFormat.equals(fileFormats[1])) {
-            captioning.clickGetQuote();
+            /*captioning.clickGetQuote();
             if(captioning.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             captioning.clickPrivacyPolicy();
             captioning.clickGetQuote();
         } else if (srcLang.equals(srclanguages[1])) {
-            captioning.clickProceedPayment();
+            /*captioning.clickProceedPayment();
             if(captioning.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             captioning.clickPrivacyPolicy();
             captioning.clickProceedPayment();
         } else if (srcLang.equals(srclanguages[0]) || srcLang.equals
                 (srclanguages[2])) {
-            captioning.clickEmailMeGetQuote();
+            /*captioning.clickEmailMeGetQuote();
             if(captioning.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             captioning.clickPrivacyPolicy();
             captioning.clickEmailMeGetQuote();
         }
