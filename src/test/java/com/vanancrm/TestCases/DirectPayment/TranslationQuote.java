@@ -239,31 +239,31 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             }
         }
         if (fileType.equals(fileTypes[1])) {
-            translation.clickGetQuote();
+            /*translation.clickGetQuote();
             if(translation.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             translation.clickPrivacyPolicy();
             translation.clickGetQuote();
         } else if (srcLang.equals(srclanguages[1])) {
-            translation.clickProceedPayment();
+            /*translation.clickProceedPayment();
             if(translation.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             translation.clickPrivacyPolicy();
             translation.clickProceedPayment();
         } else if (srcLang.equals(srclanguages[0]) || srcLang.equals
                 (srclanguages[2])) {
-            translation.clickEmailMeGetQuote();
+            /*translation.clickEmailMeGetQuote();
             if(translation.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
             } else {
                 System.out.println("Fail");
-            }
+            }*/
             translation.clickPrivacyPolicy();
             translation.clickEmailMeGetQuote();
         }
