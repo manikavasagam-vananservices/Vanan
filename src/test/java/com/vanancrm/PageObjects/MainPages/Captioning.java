@@ -91,6 +91,9 @@ public class Captioning extends AccessingElement {
     @FindBy(id = "durationnewpay-0")
     private WebElement fileLength;
 
+    @FindBy(id = "privacy_policy")
+    private WebElement privacyPolicy;
+
     private Actions builder;
     private Action mouseOverHome;
 
@@ -359,5 +362,19 @@ public class Captioning extends AccessingElement {
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
+    public void clickPrivacyPolicy() {
+        try {
 
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
+    }
 }

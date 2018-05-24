@@ -188,7 +188,8 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     transcription.getBasePrice(), transcription.getUnitCost(),
                     off, 0, transcription.getDiscountPrice(),
                     transcription.getVerbatim(), transcription.getTimeCode(),
-                    transcription.getESsubTotalCost(), 0,
+                    //transcription.getESsubTotalCost(), 0,
+                    0,0,
                     transcription.getExpedite(), transcription.getTotalCost(),
                     transcription.getAddtionalQtyCheck(),
                     transcription.getTranscationFee(), transcription
@@ -200,7 +201,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     transcription.getBasePrice(), transcription.getUnitCost(),
                     off, 0, transcription.getDiscountPrice(),
                     transcription.getVerbatim(), transcription.getTimeCode(),
-                    transcription.getESsubTotalCost(), 0.5,
+                    0,0.5,//transcription.getESsubTotalCost(), 0.5,
                     transcription.getExpedite(), transcription.getTotalCost(),
                     transcription.getAddtionalQtyCheck(),
                     transcription.getTranscationFee(), transcription.getGrandTotal(), language);
@@ -211,7 +212,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     transcription.getBasePrice(), transcription.getUnitCost(),
                     off, 0, transcription.getDiscountPrice(),
                     transcription.getVerbatim(), transcription.getTimeCode(),
-                    transcription.getESsubTotalCost(), 0.5,
+                    0,0.5,//transcription.getESsubTotalCost(), 0.5,
                     transcription.getExpedite(), transcription.getTotalCost(),
                     transcription.getAddtionalQtyCheck(),
                     transcription.getTranscationFee(), transcription.getGrandTotal(), language);
@@ -222,7 +223,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     transcription.getBasePrice(), transcription.getUnitCost(),
                     off, 0, transcription.getDiscountPrice(),
                     transcription.getVerbatim(), transcription.getTimeCode(),
-                    transcription.getESsubTotalCost(), 0,
+                    0,0,//transcription.getESsubTotalCost(), 0,
                     transcription.getExpedite(), transcription.getTotalCost(),
                     transcription.getAddtionalQtyCheck(),
                     transcription.getTranscationFee(), transcription.getGrandTotal(), language);
@@ -235,9 +236,30 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
         }
         if (language.equals(languages[2])) {
             transcription.clickGetQuote();
+            if(transcription.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+                System.out.println("Accept button checked = > Pass");
+            } else {
+                System.out.println("Fail");
+            }
+            transcription.clickPrivacyPolicy();
+            transcription.clickGetQuote();
         } else if (language.equals(languages[1])) {
             transcription.clickProceedPayment();
+            if(transcription.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+                System.out.println("Accept button checked = > Pass");
+            } else {
+                System.out.println("Fail");
+            }
+            transcription.clickPrivacyPolicy();
+            transcription.clickProceedPayment();
         } else if (language.equals(languages[0])) {
+            transcription.clickEmailMeGetQuote();
+            if(transcription.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+                System.out.println("Accept button checked = > Pass");
+            } else {
+                System.out.println("Fail");
+            }
+            transcription.clickPrivacyPolicy();
             transcription.clickEmailMeGetQuote();
         }
 
