@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Properties;
 
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -175,6 +177,8 @@ public class VoiceOverQuoteFromCD extends TestBase {
                           String serviceFreq) {
 
         driver.get("https://secure-dt.com/crm/user/login");
+        Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
+        driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
         menus = dashBoardPage.clickAllProcess();
