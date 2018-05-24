@@ -271,6 +271,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
             additionalInformation.selectServiceType(serviceType);
             //additionalInformation.selectAdditionalServices(additionalService);
             additionalInformation.enterComments(comment);
+            additionalInformation.clickPrivacyPolicy();
             additionalInformation.clickSubmitButton();
         } else {
             checkCondition(currentUrl, "paypal");
