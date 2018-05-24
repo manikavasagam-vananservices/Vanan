@@ -268,10 +268,10 @@ public class VoiceoverQuote extends TestBase {
 
         evaluateCondition("Script",
                 emailConversation.getTicketFieldValues("Script"), status);
-        evaluateCondition("Files", emailConversation
-                .getTicketFieldValues("Files"), fileName + fileExtension);
-        evaluateCondition("Files Link", emailConversation
-                .getTicketFieldValues("Files Link"), fileName
+        evaluateCondition("File(s)", emailConversation
+                .getTicketFieldValues("File(s)"), fileName + fileExtension);
+        evaluateCondition("File(s) Link", emailConversation
+                .getTicketFieldValues("File(s) Link"), fileName
                 + fileExtension);
 
         evaluateCondition("Script Comment", emailConversation
