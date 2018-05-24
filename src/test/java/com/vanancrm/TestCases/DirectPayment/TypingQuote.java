@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -400,6 +401,8 @@ public class TypingQuote extends TestBase implements TypingPrice {
             mailin, boolean verb, String channel) {
 
         driver.get("https://secure-dt.com/crm/user/login");
+        Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
+        driver.manage().addCookie(name);
         Login login = new Login(driver);
         dashBoardPage = login.signIn(username, password);
         menus = dashBoardPage.clickAllProcess();
