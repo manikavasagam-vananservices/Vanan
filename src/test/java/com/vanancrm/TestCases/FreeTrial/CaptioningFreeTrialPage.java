@@ -226,16 +226,6 @@ public class CaptioningFreeTrialPage extends TestBase {
         emailConversation = menus.clickEmailConversation();
         emailConversation.clickReadMore();
     }
-    
-    private static void getCRMCreadential() throws IOException {
-
-        FileReader fileReader = new FileReader(System.getProperty("user.dir")
-            + "/src/test/resources/CRM.txt");
-        Properties properties = new Properties();
-        properties.load(fileReader);
-        username = properties.getProperty("USERNAME");
-        password = properties.getProperty("PASSWORD");
-    }
 
     private void checkCRMEmailConversation(String slanguage, String tlanguage,
                                            String fileFormat, String transcription) {
