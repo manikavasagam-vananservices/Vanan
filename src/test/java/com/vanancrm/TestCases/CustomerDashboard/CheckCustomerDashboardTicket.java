@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -114,7 +113,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
         editTicketDetails(driver);
         edit.selectStatus("New");
         edit.clickUpdateButton();
-
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t File details are added in file info");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
         menus.clickFileInfo();
         FileInfo fileInfo = new FileInfo(driver);
         fileInfo.setFileDetails(fileName,
@@ -123,21 +124,27 @@ public class CheckCustomerDashboardTicket extends TestBase {
         changePrivateModeStatus();
         changePaymentMadeStatus();
         checkCustomerDashboardStatus(ticketStatus[0], false);
-        driver.navigate().to(driver.getCurrentUrl());
 
-        dashBoardPage = new DashBoardPage(driver);
+        driver.get("https://secure-dt.com/crm/user/login");
+        login = new Login(driver);
+        dashBoardPage = login.signIn(username, password);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
         quoteInfo = menus.clickQuoteInfo();
         quoteInfo.clickMoveToLocation();
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t File is moved to allocation");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
         VendorAllocation vendorAllocation = menus
                 .clickVendorAllocation();
         vendorAllocation.allocateFileIntoVendor
                 (fileName, minute, false, "1",
                         getETAT(), comment, "Good", "Legal", vendorPersonName);
         vendorAllocation.clickAllocateFile();
-
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t File is allocated to vendor");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
         driver.navigate().to(driver.getCurrentUrl());
         menus = new Menus(driver);
         allocatorDashboard = menus.clickAllocatorDashboard();
@@ -179,6 +186,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Deliver the files");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
         Delivery delivery = menus.clickDelivery();
         delivery.selectDeliveryFileToCustomer(fileName,
                 vendorPersonName);
@@ -187,9 +197,12 @@ public class CheckCustomerDashboardTicket extends TestBase {
         menus.clickEdit();
         edit.selectStatus("Order Delivered");
         edit.clickUpdateButton();
+        menus.clickSignOut();
+
         checkCustomerDashboardStatus(ticketStatus[1], true);
-        driver.navigate().to(driver.getCurrentUrl());
-        dashBoardPage = new DashBoardPage(driver);
+        driver.get("https://secure-dt.com/crm/user/login");
+        login = new Login(driver);
+        dashBoardPage = login.signIn(username, password);
         menus = dashBoardPage.clickAllProcess();
         readTableData = menus.clickNewMenu();
         editTicketDetails(driver);
@@ -288,6 +301,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
         viewTicketDetails = new ViewTicketDetails(driver);
         viewTicketDetails = readTableData.clickOldTableService(service,
                 (1));
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Edit particular ticket");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
         System.out.println("Channel " + viewTicketDetails
                 .getRunTimeTicketFieldValues("Channel"));
         if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
@@ -302,6 +318,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
 
     private void changePrivateModeStatus() throws IOException {
 
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Private mode status started");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
         menus.clickEdit();
         edit.selectStatus("Private Note Added");
         edit.selectServiceFrequency(serviceFreq);
@@ -309,9 +328,18 @@ public class CheckCustomerDashboardTicket extends TestBase {
         edit.enterETAT(getETAT());
         edit.enterOrderValue("42");
         edit.enterKeyword(comment);
+        if(!service.equals("Voice Over")) {
+            edit.enterPurpose(comment + " Message");
+        } else {
+            edit.selectVoiceOverPurpose(" Broadcast ");
+        }
+
         edit.selectSalesPerson(salesPersonName);
         edit.selectAllocator(allocatorPersonName);
         edit.clickUpdateButton();
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Adding files in Quote Info");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
         quoteInfo = menus.clickQuoteInfo();
         if(service.equals("Voice Over")) {
             int min = Integer.parseInt(minute);
@@ -324,63 +352,46 @@ public class CheckCustomerDashboardTicket extends TestBase {
                     false);
         }
         quoteInfo.clickUpdateQuoteInfo();
+        menus.clickSignOut();
     }
 
     private void changePaymentMadeStatus() {
 
-        WebDriver driver1 = new ChromeDriver();
-        driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
-        fullScreen(driver1);
-        driver1.get("https://secure-dt.com/crm/user/login");
-        login = new Login(driver1);
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Payment made status started");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        driver.get("https://secure-dt.com/crm/user/login");
+        login = new Login(driver);
         dashBoardPage = login.signIn(salesPersonName, salesPersonPwd);
         menus = dashBoardPage.clickProcess();
         menus.clickPrivateNoteAdded();
-        readTableData = new ReadTableData(driver1);
-        List<String> tickets = readTableData.readTableRows();
+        editTicketDetails(driver);
+        PrivateNote privateNote = menus.clickPrivateNote();
+        privateNote.clickPaymentMadePrivateNote();
+        PaymentMadePrivateNoteAlert paymentMadePrivateNoteAlert =
+                new PaymentMadePrivateNoteAlert(driver);
+        paymentMadePrivateNoteAlert.selectApprovedBy(allocatorPersonName);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        paymentMadePrivateNoteAlert.enterPaymentDate(dateFormat.format(date));
+        paymentMadePrivateNoteAlert.enterPaidAmount("42");
+        paymentMadePrivateNoteAlert.selectPaymentMode("PayPal");
+        paymentMadePrivateNoteAlert.clickSubmit();
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Payment made status changed");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
 
-        for (int i = 0; i < tickets.size(); i++) {
-
-            if (tickets.get(i).contains(service)) {
-
-                viewTicketDetails = new ViewTicketDetails(driver1);
-                viewTicketDetails = readTableData.clickService(service,
-                        (i + 1));
-                /*System.out.println("Channel " + viewTicketDetails
-                        .getRunTimeTicketFieldValues("Channel") +" = "+
-                        viewTicketDetails.getOrderNo());*/
-                //viewTicketDetails.getOrderNo().contains(ticketID)
-                //      &&
-                if ( viewTicketDetails.getRunTimeTicketFieldValues("Channel")
-                        .contains(channel)) {
-
-                    PrivateNote privateNote = menus.clickPrivateNote();
-                    privateNote.clickPaymentMadePrivateNote();
-                    PaymentMadePrivateNoteAlert paymentMadePrivateNoteAlert =
-                            new PaymentMadePrivateNoteAlert(driver1);
-                    paymentMadePrivateNoteAlert.selectApprovedBy(allocatorPersonName);
-                    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                    Date date = new Date();
-                    paymentMadePrivateNoteAlert.enterPaymentDate(dateFormat.format(date));
-                    paymentMadePrivateNoteAlert.enterPaidAmount("42");
-                    paymentMadePrivateNoteAlert.selectPaymentMode("PayPal");
-                    paymentMadePrivateNoteAlert.clickSubmit();
-                    break;
-                }
-            }
-        }
         menus.clickSignOut();
-        driver1.quit();
     }
 
     private void checkCustomerDashboardStatus(String status, boolean
             orderDeliver) {
 
-        WebDriver driver1 = new ChromeDriver();
-        driver1.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
-        fullScreen(driver1);
-        driver1.get("https://vananservices.com/customer/index.php");
-        LoginPage loginPage = new LoginPage(driver1);
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t Checking customer dashbard status");
+        System.out.println("\t++++++++++++++++++++++++++++++++++++");
+        driver.get("https://vananservices.com/customer/index.php");
+        LoginPage loginPage = new LoginPage(driver);
         DashBoard dashBoard = loginPage.signIn(mailId, password);
         dashBoard.clickPopUpCloseButton();
         evaluateCondition("Ticket Id", dashBoard.getTicketNumber(),
@@ -436,22 +447,22 @@ public class CheckCustomerDashboardTicket extends TestBase {
         evaluateCondition("File Name", dashBoard
                 .getUploadFileName(), fileName);
         dashBoard.clickclosePopupWindow();
-        //dashBoard.clickLogOut();
-        driver1.quit();
+        waitForProcessCompletion(10);
+        dashBoard.clickLogOut();
     }
 
     private void evaluateCondition(String message, String first,
                                    String second) {
 
-        System.out.println(message + " : " + second);
+        System.out.println("\t\n"+message + " : " + second);
         if (first.contains(second)) {
 
-            System.out.println(message + " is correct");
+            System.out.println("\t\n"+message + " is correct");
         } else {
 
-            System.out.println(message + " is wrong");
-            System.out.print("\t Expected : " + first + "\n");
-            System.out.print("\t Actual : " + second + "\n");
+            System.out.println("\n"+message + " is wrong");
+            System.out.print("\t \nExpected : " + first + "\n");
+            System.out.print("\t \nActual : " + second + "\n");
         }
     }
 }

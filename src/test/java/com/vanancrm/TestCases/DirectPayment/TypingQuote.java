@@ -411,7 +411,8 @@ public class TypingQuote extends TestBase implements TypingPrice {
                 if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
-                        .contains(channel)) {
+                        .contains(channel) && url.contains(viewTicketDetails
+                        .getRunTimeTicketFieldValues("Websites"))) {
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);

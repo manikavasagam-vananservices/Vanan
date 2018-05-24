@@ -11,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.vanancrm.PageObjects.MainPages.AccessingElement;
 
+import java.util.concurrent.TimeUnit;
+
 public class Menus extends AccessingElement {
 
     private WebDriver driver;
@@ -217,6 +219,7 @@ public class Menus extends AccessingElement {
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(newMenu).build();
         mouseOverHome.perform();
+        System.out.println("\t New menu Clicked");
         js.executeScript("$('#auto_New').click();");
         ReadTableData readTableData = new ReadTableData(driver);
         return readTableData;
@@ -271,6 +274,7 @@ public class Menus extends AccessingElement {
 
     public void clickSearchButton() {
 
+        System.out.println("\t Search button Clicked");
         clickElement(searchButtonElement);
     }
 
@@ -291,6 +295,7 @@ public class Menus extends AccessingElement {
     public EmailConversation clickEmailConversation() {
 
         waitForPageLoad(driver);
+        System.out.println("\t Email Conversation menu Clicked");
         clickElement(emailConversation);
         EmailConversation emailCon = new EmailConversation(driver);
         return emailCon;
@@ -304,6 +309,7 @@ public class Menus extends AccessingElement {
     public Edit clickEdit() {
 	
         waitForPageLoad(driver);
+        System.out.println("\t Edit menu Clicked");
         clickElement(editMenu);
         Edit edit = new Edit(driver);
         return edit;
@@ -312,6 +318,7 @@ public class Menus extends AccessingElement {
     public PrivateNote clickPrivateNote() {
 
         waitForPageLoad(driver);
+        System.out.println("\t Private note menu Clicked");
         clickElement(privateNoteMenu);
         PrivateNote privateNote = new PrivateNote(driver);
         return privateNote;
@@ -319,6 +326,7 @@ public class Menus extends AccessingElement {
     public VendorAllocation clickVendorAllocation() {
 
         waitForPageLoad(driver);
+        System.out.println("\t Vendor allocation menu Clicked");
         clickElement(vendorAllocationMenu);
         VendorAllocation vendorAllocation = new VendorAllocation(driver);
         return vendorAllocation;
@@ -326,12 +334,14 @@ public class Menus extends AccessingElement {
     public void clickFileInfo() {
 
         waitForPageLoad(driver);
+        System.out.println("\t File Info menu Clicked");
         clickElement(fileInfoMenu);
     }
 
     public QuoteInfo clickQuoteInfo() {
 
         waitForPageLoad(driver);
+        System.out.println("\t Quote Info menu Clicked");
         clickElement(quoteInfoMenu);
         QuoteInfo quoteInfo = new QuoteInfo(driver);
         return quoteInfo;
@@ -340,6 +350,7 @@ public class Menus extends AccessingElement {
     public Delivery clickDelivery() {
 
         waitForPageLoad(driver);
+        System.out.println("\t Delivery menu Clicked");
         clickElement(deliveryMenu);
         Delivery delivery = new Delivery(driver);
         return delivery;
@@ -387,6 +398,7 @@ public class Menus extends AccessingElement {
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(allocatorDashboard).build();
         mouseOverHome.perform();
+        System.out.println("\t Allocator Dashboard menu Clicked");
         clickElement(allocatorDashboard);
         AllocatorDashboard allocatorDashboard = new AllocatorDashboard(driver);
         return allocatorDashboard;
@@ -418,5 +430,13 @@ public class Menus extends AccessingElement {
         element.click();
         element = driver.findElement(By.linkText("Sign out"));
         element.click();
+        waitForProcessCompletion(15);
+    }
+
+    public void waitForProcessCompletion(int waitTime) {
+        try {
+            TimeUnit.SECONDS.sleep(waitTime);
+        } catch (Exception e) {
+        }
     }
 }

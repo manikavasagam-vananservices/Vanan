@@ -178,7 +178,8 @@ public class CaptioningFreeTrialPage extends TestBase {
                 if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
-                        .contains(channel)) {
+                        .contains(channel) && url.contains(viewTicketDetails
+                        .getRunTimeTicketFieldValues("Websites"))) {
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);
@@ -224,6 +225,16 @@ public class CaptioningFreeTrialPage extends TestBase {
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
         emailConversation.clickReadMore();
+    }
+    
+    private static void getCRMCreadential() throws IOException {
+
+        FileReader fileReader = new FileReader(System.getProperty("user.dir")
+            + "/src/test/resources/CRM.txt");
+        Properties properties = new Properties();
+        properties.load(fileReader);
+        username = properties.getProperty("USERNAME");
+        password = properties.getProperty("PASSWORD");
     }
 
     private void checkCRMEmailConversation(String slanguage, String tlanguage,
