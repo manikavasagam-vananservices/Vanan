@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -130,6 +131,14 @@ public class TypingSentQuote extends TestBase {
         waitForProcessCompletion(20);
         freeTrailPage.enterComment(comments);
         freeTrailPage.clickSubmit();
+        screenshot(driver, url.substring(url.indexOf("//")+2,url.indexOf(".")));
+        if(freeTrailPage.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+            System.out.println("Accept button is pressed => Pass");
+        } else {
+            System.out.println("Accept button is not pressed => Fail");
+        }
+        freeTrailPage.clickPrivacyPolicy();
+        freeTrailPage.clickSubmit();
         waitForProcessCompletion(30);
         String currentUrl = driver.getCurrentUrl();
         if (currentUrl.contains("success.php")) {
@@ -142,6 +151,8 @@ public class TypingSentQuote extends TestBase {
     private void checkCRM(String language, String typeOfService, String formatting) {
 
         driver.get("https://secure-dt.com/crm/user/login");
+        Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
+        driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
         waitForProcessCompletion(10);

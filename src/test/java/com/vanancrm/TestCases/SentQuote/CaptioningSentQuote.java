@@ -9,6 +9,7 @@ import com.vanan.CRM.PageObjects.WholeSitePages.ReadTableData;
 import com.vanan.CRM.PageObjects.WholeSitePages.ViewTicketDetails;
 import com.vanancrm.Common.TestBase;
 import com.vanancrm.PageObjects.MainPages.FreeTrailPage;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -123,6 +124,14 @@ public class CaptioningSentQuote extends TestBase {
         freeTrailPage.selectServiceFrequency(serviceFrequency);
         freeTrailPage.enterComment(comments);
         freeTrailPage.clickSubmit();
+        screenshot(driver, url.substring(url.indexOf("//")+2,url.indexOf(".")));
+        if(freeTrailPage.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+            System.out.println("Accept button is pressed => Pass");
+        } else {
+            System.out.println("Accept button is not pressed => Fail");
+        }
+        freeTrailPage.clickPrivacyPolicy();
+        freeTrailPage.clickSubmit();
         waitForProcessCompletion(30);
         String currentUrl = driver.getCurrentUrl();
         if (currentUrl.contains("success.php")) {
@@ -136,6 +145,8 @@ public class CaptioningSentQuote extends TestBase {
             fileFormat, String transcription) {
 
         driver.get("https://secure-dt.com/crm/user/login");
+        Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
+        driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
         waitForProcessCompletion(10);

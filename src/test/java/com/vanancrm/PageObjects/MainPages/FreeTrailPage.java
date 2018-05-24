@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -113,6 +115,9 @@ public class FreeTrailPage extends AccessingElement {
 
     @FindBy(id="qmailmsgcrm")
     private  WebElement mailAddressElement;
+
+    @FindBy(id = "confirm_agreement")
+    private WebElement privacyPolicy;
 
     public void enterName(String name) {
         try {
@@ -372,6 +377,9 @@ public class FreeTrailPage extends AccessingElement {
         file.createNewFile();
         TimeUnit.SECONDS.sleep(10);
         WebElement fileUploadButton = driver.findElement(By.id("fileuploader"));
+        Actions builder = new Actions(driver);
+        Action mouseOverHome = builder.moveToElement(fileUploadButton).build();
+        mouseOverHome.perform();
         fileUploadButton.click();
         StringSelection selection = new StringSelection(fileName);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -392,4 +400,32 @@ public class FreeTrailPage extends AccessingElement {
         return driver.findElement(By.xpath("//div[@id='info']/div[2]/div[1]"))
             .getText();
     }
+
+
+    public void clickPrivacyPolicy() {
+        try {
+
+            if (isElementDisplayed(privacyPolicy)) {
+                clickElement(privacyPolicy);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public void clickPrivacyPolicyUsingJScript() {
+        try {
+
+            js.executeScript("$('#privacy_policy').click();");
+
+        } catch (Exception e) {
+            System.out.println("Unable to click privacy policy " + e);
+        }
+    }
+
+    public String getToolTipMessage() {
+
+        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
+    }
+
 }
