@@ -123,6 +123,14 @@ public class CaptioningQuoteFromCD extends TestBase {
         freeTrailPage.selectServiceFrequency(serviceFrequency);
         freeTrailPage.enterComment(comments);
         freeTrailPage.clickSubmit();
+       
+        if(freeTrailPage.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
+            System.out.println("Accept button is pressed => Pass");
+        } else {
+            System.out.println("Accept button is not pressed => Fail");
+        }
+        freeTrailPage.clickPrivacyPolicy();
+        freeTrailPage.clickSubmit();
         waitForProcessCompletion(30);
         String currentUrl = driver.getCurrentUrl();
         if (currentUrl.contains("order-success.php")) {
