@@ -132,7 +132,7 @@ public class CaptioningSentQuote extends TestBase {
         }
         freeTrailPage.clickPrivacyPolicy();
         freeTrailPage.clickSubmit();
-        waitForProcessCompletion(30);
+        waitForProcessCompletion(40);
         String currentUrl = driver.getCurrentUrl();
         if (currentUrl.contains("success.php")) {
             System.out.println(currentUrl + " and it pass");
@@ -195,7 +195,7 @@ public class CaptioningSentQuote extends TestBase {
                             " waiting for ticket";
                     System.out.println(ticketID);
                 }
-                waitForProcessCompletion(60);
+                waitForProcessCompletion(20);
             }
         }
     }
