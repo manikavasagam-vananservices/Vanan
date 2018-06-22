@@ -406,7 +406,7 @@ public class FreeTrailPage extends AccessingElement {
         try {
 
             if (isElementDisplayed(privacyPolicy)) {
-                 js.executeScript("$('#privacy_policy').click();");
+                 js.executeScript("$('#confirm_agreement').click();");
             }
         } catch (Exception e) {
             System.out.println("Unable to click privacy policy " + e);
