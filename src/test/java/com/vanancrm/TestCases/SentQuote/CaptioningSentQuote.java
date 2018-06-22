@@ -132,10 +132,7 @@ public class CaptioningSentQuote extends TestBase {
         }
         freeTrailPage.clickPrivacyPolicy();
         freeTrailPage.clickSubmit();
-        try {
-            screenshot(driver, "Typing1");
-        } catch(IOException ex) {
-        }
+        screenshot(driver, "Typing1");
         waitForProcessCompletion(40);
         String currentUrl = driver.getCurrentUrl();
         if (currentUrl.contains("success.php")) {
