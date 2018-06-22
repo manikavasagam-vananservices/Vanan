@@ -69,8 +69,8 @@ public class CaptioningSentQuote extends TestBase {
 
         testScenario(sourceLanguages[0], targetLanguages[0], fileFormats[0],
                 transcriptions[0]);
-        /*testScenario(sourceLanguages[1], targetLanguages[1], fileFormats[1],
-                transcriptions[1]);*/
+        testScenario(sourceLanguages[1], targetLanguages[1], fileFormats[1],
+                transcriptions[1]);
         System.out.println("Test Completed");
         System.out.println("======================================");
     }
@@ -132,7 +132,6 @@ public class CaptioningSentQuote extends TestBase {
         }
         freeTrailPage.clickPrivacyPolicy();
         freeTrailPage.clickSubmit();
-        screenshot(driver, "Typing1");
         waitForProcessCompletion(40);
         String currentUrl = driver.getCurrentUrl();
         if (currentUrl.contains("success.php")) {
