@@ -57,7 +57,7 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
     private String country = "United States";
     private String comment = "Automation Testing";
 
-    private String fileName = "Testing";
+    private String fileName = "AutomationTesting";
     private String fileExtention = ".mp3";
     private String minute = "100";
     private String mailId = "automation.vananservices@gmail.com";
