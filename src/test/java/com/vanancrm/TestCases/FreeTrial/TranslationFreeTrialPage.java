@@ -104,7 +104,7 @@ public class TranslationFreeTrialPage extends TestBase {
         freeTrailPage.selectSourceLanguage(slanguage);
         freeTrailPage.selectLanguageTo(tlanguage);
         freeTrailPage.selectFileType(fileType);
-        fileName = generateName() + "";
+        fileName = "AutomationTesting";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         waitForProcessCompletion(30);
         freeTrailPage.enterComment(comments);
