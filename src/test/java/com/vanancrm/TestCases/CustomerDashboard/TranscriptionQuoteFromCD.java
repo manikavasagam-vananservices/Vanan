@@ -37,7 +37,7 @@ public class TranscriptionQuoteFromCD extends TestBase {
     private String comments = "Automation Testing";
     private String minute = "10";
     private String status = "Yes";
-    private String fileName = service;
+    private String fileName = "AutomationTesting";
     private String fileExtenstion = ".txt";
     private static String username = "";
     private static String password = "";
