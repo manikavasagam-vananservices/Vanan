@@ -131,7 +131,7 @@ public class TypingQuoteFromCD extends TestBase {
             freeTrailPage.clickTimeCode();
         }
 
-        fileName = service;
+        fileName = "AutomationTesting";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         waitForProcessCompletion(20);
         freeTrailPage.enterComment(comments);
