@@ -120,7 +120,7 @@ public class TranslationSentQuote extends TestBase {
         freeTrailPage.selectSourceLanguage(slanguage);
         freeTrailPage.selectLanguageTo(tlanguage);
         freeTrailPage.selectFileType(fileType);
-        fileName = generateName() + "";
+        fileName = "AutomationTesting";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         waitForProcessCompletion(20);
         freeTrailPage.enterComment(comments);
