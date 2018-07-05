@@ -54,7 +54,7 @@ public class TranslationQuoteFromCD extends TestBase {
     private String mailId = "automation.vananservices@gmail.com";
     private String comments = "Automation Testing";
     private String status = "Yes";
-    private String fileName = service;
+    private String fileName = "AutomationTesting";
     private String fileExtenstion = ".txt";
 
     @Test
