@@ -179,7 +179,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         }
 
         translation.selectRequestMailCopy(country, address);
-        fileName = "Testing";
+        fileName = "AutomationTesting";
         if (fileType.equals(fileTypes[0])) {
             fileExtention = ".txt";
             translation.uploadFile(driver, fileName, fileExtention);
