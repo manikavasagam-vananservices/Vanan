@@ -120,7 +120,7 @@ public class CaptioningFreeTrialPage extends TestBase {
         freeTrailPage.selectLanguageTo(tlanguage);
         freeTrailPage.selectFileFormat(fileFormat);
         freeTrailPage.selectTranscription(transcription);
-        fileName = generateName() + "";
+        fileName = "AutomationTesting";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         waitForProcessCompletion(20);
         freeTrailPage.enterComment(comments);
