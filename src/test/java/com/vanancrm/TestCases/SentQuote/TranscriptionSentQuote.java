@@ -101,7 +101,7 @@ public class TranscriptionSentQuote extends TestBase {
         freeTrailPage.selectCountry(country);
         freeTrailPage.enterPhoneNo(phoneNumber);
         freeTrailPage.selectSourceLanguage(language);
-        fileName = generateName() + "";
+        fileName = "AutomationTesting";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         waitForProcessCompletion(20);
         if (language.equals(languages[0])) {
