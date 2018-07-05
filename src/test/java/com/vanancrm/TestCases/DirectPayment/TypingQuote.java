@@ -54,7 +54,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
     private String address = "chennai";
     private String comment = "Automation Testing";
     private String country = "United States";
-    private String fileName = "Testing";
+    private String fileName = "AutomationTesting";
     private String fileExtention = "";
     private String minute = "2";
     private String mailId = "automation.vananservices@gmail.com";
