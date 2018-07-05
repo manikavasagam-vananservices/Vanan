@@ -126,7 +126,7 @@ public class TypingSentQuote extends TestBase {
             freeTrailPage.clickTimeCode();
         }
 
-        fileName = generateName() + "";
+        fileName = "AutomationTesting";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         waitForProcessCompletion(20);
         freeTrailPage.enterComment(comments);
