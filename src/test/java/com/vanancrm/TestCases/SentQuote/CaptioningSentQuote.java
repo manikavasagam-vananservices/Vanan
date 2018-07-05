@@ -118,7 +118,7 @@ public class CaptioningSentQuote extends TestBase {
         freeTrailPage.selectLanguageTo(tlanguage);
         freeTrailPage.selectFileFormat(fileFormat);
         freeTrailPage.selectTranscription(transcription);
-        fileName = generateName() + "";
+        fileName = "AutomationTesting";
         freeTrailPage.uploadFile(driver, fileName, fileExtenstion);
         freeTrailPage.enterVideoLength(minute);
         freeTrailPage.selectServiceFrequency(serviceFrequency);
