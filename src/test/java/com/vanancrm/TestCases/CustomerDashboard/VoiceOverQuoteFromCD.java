@@ -111,7 +111,7 @@ public class VoiceOverQuoteFromCD extends TestBase {
         chromeOptions.addArguments("window-size=1900,1200");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-        fileName = service.replace(" ", "");
+        fileName = "AutomationTesting";
         channel = "Customer Dashboard";
     }
 
