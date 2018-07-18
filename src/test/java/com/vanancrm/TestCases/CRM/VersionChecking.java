@@ -45,8 +45,12 @@ public class VersionChecking extends TestBase {
 		for (int i = 0; i < urls.size(); i++) {
 			driver.get(urls.get(i));
 			System.out.print((i + 1) + "\t");
-			version = driver.findElement(By.id(elements.get(i)))
-					.getAttribute("value");
+			try {
+				version = driver.findElement(By.id(elements.get(i)))
+						.getAttribute("value");
+			} catch (Exception ex) {
+
+			}
 			System.out.print(urls.get(i) + "\t" + version + "\t");
 			cell = sheet.getRow(i + 1).getCell(5);
 			if (version.equals(versions.get(i))) {
