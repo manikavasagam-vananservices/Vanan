@@ -208,6 +208,9 @@ public class TranscriptionQuoteFromCD extends TestBase {
 
         // Edit a ticket and moved the status into Others
         Edit edit = menus.clickEdit();
+        
+        edit.selectPaymentType("Full payment");
+        edit.selectPaymentMode("Square");
         edit.selectStatus("Others");
         edit.clickUpdateButton();
         emailConversation = menus.clickEmailConversation();
