@@ -48,7 +48,10 @@ public class Edit extends AccessingElement {
 
     @FindBy(name = "mode_of_payment")
     private WebElement paymentModeElement;
-
+	
+    @FindBy(name = "payment_type")
+    private WebElement paymentTypeElement;
+	
 	@FindBy(linkText = "Upload")
 	private WebElement fileUploadButtonElement;
 
@@ -167,6 +170,16 @@ public class Edit extends AccessingElement {
         }
     }
 
+  public void selectPaymentType(String option) {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(paymentTypeElement).build();
+            mouseOverHome.perform();
+            selectDropDown(paymentTypeElement, option);
+        } catch (Exception e) {
+            System.out.println("Unable to select payment mode " + e);
+        }
+    }
 	public void clickUpdateButton() {
 		try {
 		    builder = new Actions(driver);
