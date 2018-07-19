@@ -217,6 +217,8 @@ public class TranscriptionSentQuote extends TestBase {
 
         // Edit a ticket and moved the status into Others
         Edit edit = menus.clickEdit();
+        edit.selectPaymentType("Full payment");
+        edit.selectPaymentMode("Square");
         edit.selectStatus("Others");
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
