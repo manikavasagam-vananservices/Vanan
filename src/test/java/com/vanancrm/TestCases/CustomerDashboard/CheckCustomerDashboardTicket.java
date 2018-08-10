@@ -138,9 +138,9 @@ public class CheckCustomerDashboardTicket extends TestBase {
         System.out.println("\t++++++++++++++++++++++++++++++++++++");
         VendorAllocation vendorAllocation = menus
                 .clickVendorAllocation();
-        vendorAllocation.allocateFileIntoVendor
+        /*vendorAllocation.allocateFileIntoVendor
                 (fileName, minute, false, "1",
-                        getETAT(), comment, "Good", "Legal", vendorPersonName);
+                        getETAT(), comment, "Good", "Legal", vendorPersonName);*/
         vendorAllocation.clickAllocateFile();
         System.out.println("\t++++++++++++++++++++++++++++++++++++");
         System.out.println("\t File is allocated to vendor");
