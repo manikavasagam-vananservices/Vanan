@@ -249,8 +249,8 @@ public class TypingQuickQuote extends TestBase {
                 emailConversation.getTicketFieldValues("Minutes"), mp);
         }
 
-        evaluateCondition("Type Of Service",
-            emailConversation.getTicketFieldValues("Type Of Service"), fileType);
+        evaluateCondition("File Format",
+            emailConversation.getTicketFieldValues("File Format"), fileType);
         evaluateCondition("Language",
             emailConversation.getTicketFieldValues("Language"), language);
         evaluateCondition("Category",
