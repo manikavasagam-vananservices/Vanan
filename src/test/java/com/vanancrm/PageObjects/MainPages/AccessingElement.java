@@ -122,4 +122,10 @@ public class AccessingElement {
             }
         }
     }
+	
+    public String getSelectedDropDownValue(WebElement element) {
+
+        Select dropDown = new Select(element);
+        return dropDown.getFirstSelectedOption().getText();
+    }
 }
