@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -475,7 +477,10 @@ public class Transcription extends AccessingElement {
     }
 
     public void enterEmailId(String email) {
-
+	    
+        Actions builder = new Actions(driver);
+        Action mouseOverHome = builder.moveToElement(emailElement).build();
+        mouseOverHome.perform();
         enterTestBoxValues(emailElement, email);
     }
 
@@ -503,7 +508,11 @@ public class Transcription extends AccessingElement {
     }
 
     public String getToolTipMessage() {
-
-        return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
+  
+	WebElement element = driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']"));
+        Actions builder = new Actions(driver);
+        Action mouseOverHome = builder.moveToElement(element).build();
+        mouseOverHome.perform();
+        return element.getText();
     }
 }
