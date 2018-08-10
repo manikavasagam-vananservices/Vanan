@@ -34,12 +34,16 @@ public class FileUploadFromTicket extends AccessingElement {
     @FindBy(id = "filesubject")
     private WebElement fileSubjectElement;
 
+    @FindBy(xpath = "//div[@class='audioLength']")
+    private WebElement fileCompletedMsgElement;
+
     private Actions builder;
     private Action mouseOverHome;
 
     public FileUploadFromTicket(WebDriver driver) {
 
         this.driver = driver;
+        builder = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -68,6 +72,10 @@ public class FileUploadFromTicket extends AccessingElement {
 
     public String getWebsiteDetail() {
         return null;
+    }
+
+    public String getUploadedSuccessMsg() {
+        return fileCompletedMsgElement.getText();
     }
 
     public List<String> fileNames() {

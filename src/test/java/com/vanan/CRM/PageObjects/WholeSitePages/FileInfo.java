@@ -2,8 +2,11 @@ package com.vanan.CRM.PageObjects.WholeSitePages;
 
 import com.vanancrm.PageObjects.MainPages.AccessingElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -21,6 +24,22 @@ public class FileInfo extends AccessingElement {
 
     @FindBy(id = "file_info_btn")
     private WebElement updateFileInfoButtonElement;
+
+    @FindBy(id = "totalSelectedPages")
+    private WebElement totalSelectedPages;
+
+    @FindBy(id = "totalPages")
+    private WebElement totalPages;
+
+    @FindBy(id = "totalSelectedLength")
+    private WebElement totalSelectedLength;
+
+    @FindBy(id = "totalLength")
+    private WebElement totalLength;
+
+    private Actions builder;
+    private Action mouseOverHome;
+    private JavascriptExecutor js;
 
     public FileInfo(WebDriver driver) {
 
@@ -41,9 +60,12 @@ public class FileInfo extends AccessingElement {
             element = driver.findElement(By.xpath
                     ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
                             "]/td[2]/span"));
-
-           // System.out.println("Entering)))))))" + element.getText());
-            if(element.getText().contains(fileName)) {
+            //System.out.println("Entering)))))))" + element.getText());
+            if (element.getText().contains(fileName)) {
+                builder = new Actions(driver);
+                mouseOverHome = builder.moveToElement(driver.findElement(By.xpath("//table[@id='process_list']/tbody/tr[" + (i + 1) +
+                        "]//*//input[@name='file_selected']"))).build();
+                mouseOverHome.perform();
                 clickElement(driver.findElement(By.xpath("//table[@id='process_list']/tbody/tr[" + (i + 1) +
                                 "]//*//input[@name='file_selected']")));
                 selectDropDown(driver.findElement(By.xpath
@@ -103,8 +125,44 @@ public class FileInfo extends AccessingElement {
     }
 
     public void clickUpdateFileInfo() {
-
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(updateFileInfoButtonElement).build();
+        mouseOverHome.perform();
         clickElement(updateFileInfoButtonElement);
     }
+
+
+    public String getTotalNoOfPages() {
+
+        /*builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(totalSelectedPages).build();
+        mouseOverHome.perform();*/
+        return totalSelectedPages.getText();
+    }
+
+    public String getTotalNoOfLength() {
+
+        /*builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(totalSelectedLength).build();
+        mouseOverHome.perform();*/
+        return totalSelectedLength.getText();
+    }
+
+    public String getSelectedTotalNoOfPages() {
+
+       /* builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(totalPages).build();
+        mouseOverHome.perform();*/
+        return totalPages.getText();
+    }
+
+    public String getSelectedTotalNoOfLength() {
+
+        /*builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(totalLength).build();
+        mouseOverHome.perform();*/
+        return totalLength.getText();
+    }
+
 
 }

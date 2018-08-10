@@ -219,7 +219,7 @@ public class TranscriptionFreeTrialPage extends TestBase {
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
-        emailConversation.clickReadMore();
+        emailConversation.clickReadMore("Free Trial");
     }
 
     private void checkCRMEmailConversation(String language) {

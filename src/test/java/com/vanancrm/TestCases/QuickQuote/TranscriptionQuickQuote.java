@@ -211,7 +211,7 @@ public class TranscriptionQuickQuote extends TestBase {
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
-        emailConversation.clickReadMore();
+        emailConversation.clickReadMore("Quick Quote");
     }
 
     private void checkCRMEmailConversation(String language, String typeOfService) {

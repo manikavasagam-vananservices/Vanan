@@ -3,10 +3,8 @@ package com.vanan.CRM.PageObjects.MainPages;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -395,9 +393,30 @@ public class EmailConversation extends AccessingElement {
 
 	public void clickSignOut() {
 
-		WebElement element = driver.findElement(By.className("user-image"));
-		element.click();
-		element = driver.findElement(By.linkText("Sign out"));
-		element.click();
-	}
+        WebElement element = driver.findElement(By.className("user-image"));
+        element.click();
+        element = driver.findElement(By.linkText("Sign out"));
+        element.click();
+    }
+
+    public void openAllEmailContents() {
+
+        builder.keyDown(Keys.SHIFT).sendKeys("e").keyUp(Keys.SHIFT).perform();
+    }
+
+
+    public String readAllEmailContentForFileInfo(String fileName) {
+        List<WebElement> elements = driver
+                .findElements(By.xpath("//li[contains(@id,'mid')]//..//div[@class='timeline-body']/div"));
+        String temp = "";
+        for (int i = 0; i <elements.size(); i++) {
+            if(elements.get(i).getText().contains(fileName)) {
+
+                temp = elements.get(i).getText();
+                System.out.println("++++\n"+temp+"++++\n");
+                break;
+            }
+        }
+        return temp.trim();
+    }
 }

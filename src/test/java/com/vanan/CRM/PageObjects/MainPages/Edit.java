@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -24,15 +25,8 @@ public class Edit extends AccessingElement {
     private Action mouseOverHome;
     private JavascriptExecutor js;
 
-	public Edit(WebDriver driver) {
-
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-        js = (JavascriptExecutor) driver;
-	}
-
-	@FindBy(id = "process_id")
-	private WebElement status;
+    @FindBy(id = "process_id")
+    private WebElement status;
 
     @FindBy(id = "closure_possibility")
     private WebElement posibileClosureElement;
@@ -40,8 +34,8 @@ public class Edit extends AccessingElement {
 	@FindBy(id = "update_btn")
 	private WebElement updateButton;
 
-	@FindBy(id = "service_frequency")
-	private WebElement serviceFrequencyButton;
+    @FindBy(name = "service_frequency")
+    private WebElement serviceFrequencyButton;
 
     @FindBy(name = "assigned_alloc")
     private WebElement allocatorElement;
@@ -68,23 +62,32 @@ public class Edit extends AccessingElement {
     @FindBy(name = "keyword")
     private WebElement keywordElement;
 
+    @FindBy(name = "purpose")
+    private WebElement purposeElement;
+
+    @FindBy(name = "purposevoiceover")
+    private WebElement voiceOverPurposeElement;
+
     @FindBy(name = "assigned_to")
     private WebElement salesElement;
 
-    @FindBy(name = "additionalqc")
+    @FindBy(xpath = "//input[@type='checkbox' and @name='additionalqc']")
     private WebElement qcElement;
 
-    @FindBy(name = "certificate")
+    @FindBy(xpath = "//input[@type='checkbox' and @name='certificate']")
     private WebElement certificateElement;
 
-    @FindBy(name = "timecode")
+    @FindBy(xpath = "//input[@type='checkbox' and @name='timecode']")
     private WebElement timecodeElement;
 
-    @FindBy(name = "notary")
+    @FindBy(xpath = "//input[@type='checkbox' and @name='notary']")
     private WebElement notaryElement;
 
-    @FindBy(name = "mailed")
+    @FindBy(xpath = "//input[@type='checkbox' and @name='mailed']")
     private WebElement mailElement;
+
+    @FindBy(xpath = "//select[@name='priority_id']")
+    private WebElement priorityElement;
 
     @FindBy(name = "mailing_option")
     private WebElement mailOptionElement;
@@ -92,16 +95,19 @@ public class Edit extends AccessingElement {
     @FindBy(name = "mail_address")
     private WebElement mailAddressElement;
 
-    @FindBy(name = "verbatim")
+    @FindBy(xpath = "//input[@type='checkbox' and @name='verbatim']")
     private WebElement verbatimElement;
 
-    @FindBy(name = "purpose")
-    private WebElement purposeElement;
+    @FindBy(xpath = "//input[@type='checkbox' and @name='native_speaker']")
+    private WebElement nativeElement;
 
-    @FindBy(name = "purposevoiceover")
-    private WebElement voiceOverPurposeElement;
+    public Edit(WebDriver driver) {
 
-	
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        js = (JavascriptExecutor) driver;
+    }
+
     public void selectStatus(String option) {
 		try {
 			selectDropDown(status, option);
@@ -110,30 +116,22 @@ public class Edit extends AccessingElement {
 		}
 	}
 
+    public void selectPriority(String option) {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(priorityElement).build();
+            mouseOverHome.perform();
+            selectDropDown(priorityElement, option);
+        } catch (Exception e) {
+            System.out.println("Unable to select Priority " + e);
+        }
+    }
 
     public void selectPossibleClosure(String option) {
         try {
             selectDropDown(posibileClosureElement, option);
         } catch (Exception e) {
             System.out.println("Unable to select Possible Closure " + e);
-        }
-    }
-	
-   public void enterPurpose(String content) {
-        builder = new Actions(driver);
-        mouseOverHome = builder.moveToElement(purposeElement).build();
-        mouseOverHome.perform();
-        enterTestBoxValues(purposeElement, content);
-    }
-
-    public void selectVoiceOverPurpose(String content) {
-        try {
-            builder = new Actions(driver);
-            mouseOverHome = builder.moveToElement(voiceOverPurposeElement).build();
-            mouseOverHome.perform();
-            selectDropDown(voiceOverPurposeElement, content);
-        } catch (Exception e) {
-            System.out.println("Unable to select voice over purpose " + e);
         }
     }
 
@@ -229,7 +227,19 @@ public class Edit extends AccessingElement {
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(etatElement).build();
         mouseOverHome.perform();
-        enterTestBoxValues(etatElement, etatDate);
+        etatElement.click();
+        /* Alternate way to display datepicket tool tip
+        js.executeScript("$('#expected_turnaround').data('DateTimePicker')" +
+                ".show();");
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (Exception ex) {
+
+        }*/
+        WebElement element = driver.findElement(By.xpath
+                ("//div[@class='datepicker-days']//../td[@data-day='" + etatDate +
+                        "']"));
+        element.click();
         driver.findElement(By.tagName("body")).click();
     }
 
@@ -238,6 +248,24 @@ public class Edit extends AccessingElement {
         mouseOverHome = builder.moveToElement(keywordElement).build();
         mouseOverHome.perform();
         enterTestBoxValues(keywordElement, keyword);
+    }
+
+    public void enterPurpose(String content) {
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(purposeElement).build();
+        mouseOverHome.perform();
+        enterTestBoxValues(purposeElement, content);
+    }
+
+    public void selectVoiceOverPurpose(String content) {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(voiceOverPurposeElement).build();
+            mouseOverHome.perform();
+            selectDropDown(voiceOverPurposeElement, content);
+        } catch (Exception e) {
+            System.out.println("Unable to select voice over purpose " + e);
+        }
     }
 
     public void selectSalesPerson(String option) {
@@ -249,5 +277,75 @@ public class Edit extends AccessingElement {
         } catch (Exception e) {
             System.out.println("Unable to select sales person " + e);
         }
+    }
+
+    public void clickAdditionalQC() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(qcElement).build();
+            mouseOverHome.perform();
+            clickElement(qcElement);
+        } catch (Exception e) {
+            System.out.println("Unable to click the additional qc" + e);
+        }
+    }
+
+    public void clickNotarization() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(notaryElement).build();
+            mouseOverHome.perform();
+            clickElement(notaryElement);
+        } catch (Exception e) {
+            System.out.println("Unable to clcik the Notary " + e);
+        }
+    }
+
+    public void clickMailing() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(mailElement).build();
+            mouseOverHome.perform();
+            clickElement(mailElement);
+        } catch (Exception e) {
+            System.out.println("Unable to click the mailing " + e);
+        }
+
+    }
+
+    public void clickVerbatim() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(verbatimElement).build();
+            mouseOverHome.perform();
+            clickElement(verbatimElement);
+        } catch (Exception e) {
+            System.out.println("Unable to click Verbatim " + e);
+            ;
+        }
+    }
+
+    public void clickTimecode() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(timecodeElement).build();
+            mouseOverHome.perform();
+            clickElement(timecodeElement);
+        } catch (Exception e) {
+            System.out.println("Unable to click Timecode " + e);
+        }
+
+    }
+
+    public void clickNative() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(nativeElement).build();
+            mouseOverHome.perform();
+            clickElement(nativeElement);
+        } catch (Exception e) {
+            System.err.println("Unable to click Native " + e);
+        }
+
     }
 }

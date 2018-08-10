@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.vanancrm.PageObjects.MainPages.AccessingElement;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -20,13 +20,25 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class ViewTicketDetails extends AccessingElement {
 
     private WebDriver driver;
+
+    private Actions builder;
+    private Action mouseOverHome;
+    private JavascriptExecutor js;
+
     private String allTicketParentElement = "//div[@id='ajax-dynamic-form']/div[@class='form-group    ']";
     private String allTicketStaticParentElement = "//form[@id='process_form']/div[@class='form-group']";
 
-	public ViewTicketDetails(WebDriver driver) {
+    @FindBy(xpath = "//select[@id='next_order_discount']")
+    private WebElement customerNODDiscount;
+
+    @FindBy(xpath = "//button[@id='save_btn']")
+    private WebElement saveChangesButton;
+
+    public ViewTicketDetails(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        js = (JavascriptExecutor) driver;
     }
 
 	public String getRunTimeTicketFieldValues(String field) {
@@ -260,4 +272,54 @@ public class ViewTicketDetails extends AccessingElement {
         }
     }
 
+    public void clickCustomerInfo() {
+
+        waitForPageLoad(driver);
+        WebElement element = driver.findElement(By.id("custinfoview"));
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(element).build();
+        mouseOverHome.perform();
+        builder.doubleClick(element).perform();
+    }
+
+    public boolean getNODSelectedValues(String option) {
+
+        waitForPageLoad(driver);
+        boolean status = false;
+        Select select = new Select(customerNODDiscount);
+        List<WebElement> options = select.getOptions();
+        for(int i = 0; i< options.size(); i++) {
+           if(options.get(i).getText().contains(option)) {
+                status = true;
+                break;
+            }
+        }
+        return status;
+    }
+
+    public void clickCloseCustomerInfoPopUp() {
+
+        waitForPageLoad(driver);
+        waitForProcessCompletion(10);
+        WebElement element = driver.findElement(By.xpath("//div[contains(@id," +
+                "'cust_info_modal')]//..//button[@class='close']"));
+        element.click();
+    }
+
+    public void selectNOD(String option) {
+        try {
+            selectDropDown(customerNODDiscount, option);
+        } catch (Exception e) {
+            System.out.println("Unable to select NOD " + e);
+        }
+    }
+
+    public void clickSaveChanges() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(saveChangesButton).build();
+        mouseOverHome.perform();
+        clickElement(saveChangesButton);
+    }
 }

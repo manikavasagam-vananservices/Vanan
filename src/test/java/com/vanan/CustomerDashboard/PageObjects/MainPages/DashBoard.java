@@ -1,7 +1,7 @@
 package com.vanan.CustomerDashboard.PageObjects.MainPages;
 
-import java.util.List;
-
+import com.vanan.CRM.PageObjects.WholeSitePages.Menus;
+import com.vanancrm.PageObjects.MainPages.AccessingElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +13,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.vanancrm.PageObjects.MainPages.AccessingElement;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DashBoard extends AccessingElement {
 

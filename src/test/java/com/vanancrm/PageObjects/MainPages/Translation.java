@@ -65,14 +65,20 @@ public class Translation extends AccessingElement {
     @FindBy(id = "trgt_tot")
     private WebElement translationCostElement;
 
-    @FindBy(id = "sourcefiletype")
+    @FindBy(xpath = "//div[@id='first5']//..//select[@id='sourcefiletype']")
     private WebElement selectFileTypeElement;
 
-    @FindBy(id = "pagecount")
+    @FindBy(name = "pagecount")
     private WebElement pageCountElement;
 
     @FindBy(id = "minutes")
     private WebElement minuteElement;
+
+    @FindBy(id = "hours")
+    private WebElement hourElement;
+
+    @FindBy(id = "doctype")
+    private WebElement documentElement;
 
     @FindBy(id = "srclang")
     private WebElement selectSourceLanguageFromElement;
@@ -117,14 +123,25 @@ public class Translation extends AccessingElement {
     public void selectFileType(String fileType) {
         try {
             selectDropDown(selectFileTypeElement, fileType);
+            driver.findElement(By.tagName("body")).click();
         } catch (Exception e) {
             System.out.println("Unable to select file type " + e);
         }
 
     }
 
+    public void enterDocumentType(String dname) {
+        try {
+               enterTestBoxValues(documentElement, dname);
+
+        } catch (Exception e) {
+            System.out.println("Unable to enter a document type value " + e);
+        }
+    }
+
     public void pageCount(String pageCounts) {
         try {
+            //pageCountElement.sendKeys(pageCounts);
             enterTestBoxValues(pageCountElement, pageCounts);
         } catch (Exception e) {
             System.out.println("Unable to enter a page count value " + e);
@@ -137,6 +154,34 @@ public class Translation extends AccessingElement {
         } catch (Exception e) {
             System.out.println("Unable to enter a minute value " + e);
         }
+    }
+
+    public String getMinutes() {
+        String status = "";
+        try {
+            status = driver.findElement(By.xpath("//input[@id='minutes']")).getAttribute("value");
+        } catch (Exception e) {
+            System.out.println("Unable to get a minute value " + e);
+        }
+        return status;
+    }
+
+    public void hours(String hour) {
+        try {
+            enterTestBoxValues(hourElement, hour);
+        } catch (Exception e) {
+            System.out.println("Unable to enter a hour value " + e);
+        }
+    }
+
+    public String getHours() {
+        String status = "";
+        try {
+            status = driver.findElement(By.xpath("//input[@id='hours']")).getAttribute("value");
+        } catch (Exception e) {
+            System.out.println("Unable to get a hour value " + e);
+        }
+        return status;
     }
 
 	public void selectSourceLanguageFrom(String selectLanguage) {
@@ -153,9 +198,19 @@ public class Translation extends AccessingElement {
 		}
 	}
 
-	public void deselectSourceLanguageFrom() {
-		selectDropDown(selectSourceLanguageFromElement, " ");
-	}
+    public String getSourceLanguage() {
+        String status = "";
+        try {
+            status = getSelectedDropDownValue(selectSourceLanguageFromElement);
+        } catch (Exception e) {
+            System.out.println("Unable to get source language " + e);
+        }
+        return status;
+    }
+
+    public void deselectSourceLanguageFrom() {
+        selectDropDown(selectSourceLanguageFromElement, " ");
+    }
 
 	public void deselectFileType() throws TimeoutException {
 
@@ -175,6 +230,16 @@ public class Translation extends AccessingElement {
 			System.out.println("Unable to select target language " + e);
 		}
 	}
+
+    public String getLanguageTo() {
+        String status = "";
+        try {
+            status = getSelectedDropDownValue(selectSourceLanguageToElement);
+        } catch (Exception e) {
+            System.out.println("Unable to get language To" + e);
+        }
+        return status;
+    }
 
     public void deselectSourceLanguageTo() {
     	
@@ -251,6 +316,29 @@ public class Translation extends AccessingElement {
         }
     }
 
+    public void deselectFreeTrail() {
+        if (!driver.findElement(By.id("frtrial0"))
+                .isSelected()) {
+
+            js.executeScript("$('#frtrial0').click();");
+        }
+    }
+
+    public boolean freeTrailStatus(int status) {
+        boolean value = false;
+        switch (status) {
+            case 0:
+                value = driver.findElement(By.xpath("//input[@id='frtrial1']"))
+                        .isSelected();
+                break;
+            case 1:
+                value = driver.findElement(By.xpath("//input[@id='frtrial0']"))
+                        .isSelected();
+                break;
+        }
+        return  value;
+    }
+
 	public void emailId(String emailId) {
 
 		enterTestBoxValues(driver.findElement(By.id("paytc_qemailcrm")), emailId);
@@ -289,11 +377,35 @@ public class Translation extends AccessingElement {
         try {
             selectDropDown(mailCountry, country);
             driver.findElement(By.tagName("body")).click();
-
+            driver.findElement(By.id("paytc_mailaddress")).clear();
             driver.findElement(By.id("paytc_mailaddress")).sendKeys(address);
         } catch (Exception e) {
             System.out.println("Unable to select mail country " + e);
         }
+    }
+
+    public void deselectRequestMailCopy() {
+
+        if (driver.findElement(By.id("mailfilecrmpay1"))
+                .isSelected()) {
+
+            js.executeScript("$('#mailfilecrmpay0').click();");
+        }
+    }
+
+    public boolean requestMailCopyStatus(int status) {
+        boolean value = false;
+        switch (status) {
+            case 0:
+                value = driver.findElement(By.xpath("//input[@id='mailfilecrmpay1']"))
+                        .isSelected();
+                break;
+            case 1:
+                value = driver.findElement(By.xpath("//input[@id='mailfilecrmpay0']"))
+                        .isSelected();
+                break;
+        }
+        return  value;
     }
 
     public double getActualCost() {
@@ -424,6 +536,22 @@ public class Translation extends AccessingElement {
         }
     }
 
+
+    public boolean additionalQtyCheckStatus(int status) {
+        boolean value = false;
+        switch (status) {
+            case 0:
+                value = driver.findElement(By.xpath("//input[@id='qc1']"))
+                        .isSelected();
+                break;
+            case 1:
+                value = driver.findElement(By.xpath("//input[@id='qc0']"))
+                        .isSelected();
+                break;
+        }
+        return  value;
+    }
+
     public void selectNeedTranscript(int status) {
 
         switch (status) {
@@ -445,6 +573,22 @@ public class Translation extends AccessingElement {
 
         }
     }
+
+    public boolean needTranscriptStatus(int status) {
+        boolean value = false;
+        switch (status) {
+            case 0:
+                value = driver.findElement(By.xpath("//input[@id='needtrc1']"))
+                        .isSelected();
+                break;
+            case 1:
+                value = driver.findElement(By.xpath("//input[@id='needtrc0']"))
+                        .isSelected();
+                break;
+        }
+        return  value;
+    }
+
     public void selectTimeCode(int status) {
 
         switch (status) {
@@ -467,7 +611,20 @@ public class Translation extends AccessingElement {
         }
     }
 
-
+    public boolean timeCodeStatus(int status) {
+        boolean value = false;
+        switch (status) {
+            case 0:
+                value = driver.findElement(By.xpath("//input[@id='tcode1']"))
+                        .isSelected();
+                break;
+            case 1:
+                value = driver.findElement(By.xpath("//input[@id='tcode0']"))
+                        .isSelected();
+                break;
+        }
+        return  value;
+    }
 
     public void selectNativeSpeaker() {
 
@@ -487,6 +644,10 @@ public class Translation extends AccessingElement {
         }
     }
 
+    public boolean certificationStatus() {
+        return driver.findElement(By.id("certlang"))
+                .isSelected();
+    }
 
     public void selectNotarization() {
 
@@ -497,6 +658,29 @@ public class Translation extends AccessingElement {
         }
     }
 
+    public boolean notarizationStatus() {
+        return driver.findElement(By.id("notrpay"))
+                .isSelected();
+    }
+
+    public void deselectCertification() {
+
+        if (driver.findElement(By.id("certlang"))
+                .isSelected()) {
+
+            js.executeScript("$('#certlang').click();");
+        }
+    }
+
+
+    public void deselectNotarization() {
+
+        if (driver.findElement(By.id("notrpay"))
+                .isSelected()) {
+
+            js.executeScript("$('#notrpay').click();");
+        }
+    }
     public void enterComments(String comment) {
         try {
             enterTestBoxValues(comments, comment);
@@ -598,7 +782,8 @@ public class Translation extends AccessingElement {
         try {
 
             if (isElementDisplayed(privacyPolicy)) {
-               clickElement(privacyPolicy);
+               //clickElement(privacyPolicy);
+                js.executeScript("$('#privacy_policy').click();");
             }
         } catch (Exception e) {
             System.out.println("Unable to click privacy policy " + e);
@@ -611,9 +796,14 @@ public class Translation extends AccessingElement {
     }
 
     public boolean isCustomMessageDisplayed() {
-
-        return driver.findElement(By.xpath("//div[@class='qt_msg ui-msg']"))
-                .getText().contains("Customized rate apply for");
+        boolean status = false;
+        try {
+          status = driver.findElement(By.xpath("//div[@class='qt_msg ui-msg']"))
+                  .getText().contains("Customized rate apply for");
+        } catch (Exception ex) {
+            status = false;
+        }
+        return status;
     }
 
     public void enterFileLength(String length) {

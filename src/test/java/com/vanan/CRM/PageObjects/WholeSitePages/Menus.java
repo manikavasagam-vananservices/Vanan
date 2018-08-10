@@ -33,7 +33,7 @@ public class Menus extends AccessingElement {
     @FindBy(linkText = "Myqueue")
     private WebElement myQueue;
 
-    @FindBy(linkText = "Trial Flow")
+    @FindBy(id = "auto_TrialFlow")
     private WebElement trialFlow;
 
     @FindBy(linkText = "Quality Issue")
@@ -60,7 +60,7 @@ public class Menus extends AccessingElement {
     @FindBy(linkText = "Order Approved")
     private WebElement orderApproved;
 
-    @FindBy(linkText = "Payment made")
+    @FindBy(id = "auto_Paymentmade")
     private WebElement paymentmade;
 
     @FindBy(linkText = "Pending Payment")
@@ -80,9 +80,6 @@ public class Menus extends AccessingElement {
 
     @FindBy(linkText = "Job Delivered")
     private WebElement jobDelivered;
-
-    @FindBy(linkText = "Order Delivered")
-    private WebElement orderDelivered;
 
     @FindBy(linkText = "Waiting For Files")
     private WebElement waitingForFiles;
@@ -171,6 +168,9 @@ public class Menus extends AccessingElement {
     @FindBy(linkText = "Quote Info")
     private WebElement quoteInfo;
 
+    @FindBy(id = "auto_OrderDelivered")
+    private WebElement orderDelivered;
+
     @FindBy(xpath = "//*[@title='Email Conversation']")
     private WebElement emailConversation;
 
@@ -185,6 +185,9 @@ public class Menus extends AccessingElement {
 
     @FindBy(xpath = "//*[@title='View']")
     private WebElement viewMenu;
+
+    @FindBy(xpath = "//div[@class='box-header-box']//..//a[contains(text(),'Quick Edit')]")
+    private WebElement quickEditElement;
 
     @FindBy(xpath = "//*[@title='File Info']")
     private WebElement fileInfoMenu;
@@ -213,13 +216,59 @@ public class Menus extends AccessingElement {
     @FindBy(xpath = "//button[@title='Search']")
     private WebElement searchButtonElement;
 
+    @FindBy(name = "quick_service_id")
+    private WebElement status;
+
+    @FindBy(id="quick-edit-btn")
+    private WebElement submitButton;
+
+    public ReadTableData clickVendorAll() {
+
+        waitForPageLoad(driver);
+        js.executeScript("$('#auto_ALL').click();");
+        ReadTableData readTableData = new ReadTableData(driver);
+        return readTableData;
+    }
+
+    public ReadTableData clickVendorNewFiles() {
+
+        waitForPageLoad(driver);
+        js.executeScript("$('#auto_Allocator_NewFiles').click();");
+        ReadTableData readTableData = new ReadTableData(driver);
+        return readTableData;
+    }
+
+    public ReadTableData clickVendorAccepted() {
+
+        waitForPageLoad(driver);
+        js.executeScript("$('#auto_Allocator_Accepted').click();");
+        ReadTableData readTableData = new ReadTableData(driver);
+        return readTableData;
+    }
+
+    public ReadTableData clickVendorInprogress() {
+
+        waitForPageLoad(driver);
+        js.executeScript("$('#auto_Allocator_Inprocess').click();");
+        ReadTableData readTableData = new ReadTableData(driver);
+        return readTableData;
+    }
+
+    public ReadTableData clickVendorCompleted() {
+
+        waitForPageLoad(driver);
+        js.executeScript("$('#auto_Allocator_Completed').click();");
+        ReadTableData readTableData = new ReadTableData(driver);
+        return readTableData;
+    }
+
     public ReadTableData clickNewMenu() {
 
         waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(newMenu).build();
         mouseOverHome.perform();
-        System.out.println("\t New menu Clicked");
+        //System.out.println("\t New menu Clicked");
         js.executeScript("$('#auto_New').click();");
         ReadTableData readTableData = new ReadTableData(driver);
         return readTableData;
@@ -247,8 +296,12 @@ public class Menus extends AccessingElement {
     }
 
     public void clickTrialFlow() {
-
-        clickElement(trialFlow);
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(trialFlow).build();
+        mouseOverHome.perform();
+        //System.out.println("\t New menu Clicked");
+        js.executeScript("$('#auto_TrialFlow').click();");
     }
 
     public void clickPrivateNoteAdded() {
@@ -260,8 +313,19 @@ public class Menus extends AccessingElement {
     }
 
     public void clickPaymentMade() {
-
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(paymentmade).build();
+        mouseOverHome.perform();
         clickElement(paymentmade);
+    }
+
+    public void clickOrderDelivered() {
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(orderDelivered).build();
+        mouseOverHome.perform();
+        clickElement(orderDelivered);
     }
 
     public void enterCustomerDetails(String customerDetails) {
@@ -274,7 +338,7 @@ public class Menus extends AccessingElement {
 
     public void clickSearchButton() {
 
-        System.out.println("\t Search button Clicked");
+        //System.out.println("\t Search button Clicked");
         clickElement(searchButtonElement);
     }
 
@@ -295,7 +359,7 @@ public class Menus extends AccessingElement {
     public EmailConversation clickEmailConversation() {
 
         waitForPageLoad(driver);
-        System.out.println("\t Email Conversation menu Clicked");
+        //System.out.println("\t Email Conversation menu Clicked");
         clickElement(emailConversation);
         EmailConversation emailCon = new EmailConversation(driver);
         return emailCon;
@@ -303,22 +367,56 @@ public class Menus extends AccessingElement {
 
     public void clickView() {
 
+        waitForPageLoad(driver);
+        //System.out.println("\t View menu Clicked");
         clickElement(viewMenu);
+        Edit edit = new Edit(driver);
+        waitForPageLoad(driver);
+    }
+
+    public void clickQuickEditButton() {
+
+        waitForPageLoad(driver);
+        //System.out.println("\t Quick Edit button clicked");
+        clickElement(quickEditElement);
+        Edit edit = new Edit(driver);
+        waitForPageLoad(driver);
     }
 
     public Edit clickEdit() {
 	
         waitForPageLoad(driver);
-        System.out.println("\t Edit menu Clicked");
+        //System.out.println("\t Edit menu Clicked");
         clickElement(editMenu);
         Edit edit = new Edit(driver);
+        waitForPageLoad(driver);
         return edit;
+    }
+
+    public void selectPopupStatus(String option) {
+        try {
+            selectDropDown(status, option);
+        } catch (Exception e) {
+            System.out.println("Unable to select status " + e);
+        }
+    }
+
+    public void clickSubmitButtonFromPopup() {
+        try {
+            builder = new Actions(driver);
+            mouseOverHome = builder.moveToElement(submitButton).build();
+            mouseOverHome.perform();
+            clickElement(submitButton);
+            waitForPageLoad(driver);
+        } catch (Exception e) {
+            System.out.println("Unable to click submit button " + e);
+        }
     }
 
     public PrivateNote clickPrivateNote() {
 
         waitForPageLoad(driver);
-        System.out.println("\t Private note menu Clicked");
+        //System.out.println("\t Private note menu Clicked");
         clickElement(privateNoteMenu);
         PrivateNote privateNote = new PrivateNote(driver);
         return privateNote;
@@ -326,22 +424,23 @@ public class Menus extends AccessingElement {
     public VendorAllocation clickVendorAllocation() {
 
         waitForPageLoad(driver);
-        System.out.println("\t Vendor allocation menu Clicked");
+        //System.out.println("\t Vendor allocation menu Clicked");
         clickElement(vendorAllocationMenu);
         VendorAllocation vendorAllocation = new VendorAllocation(driver);
+        waitForPageLoad(driver);
         return vendorAllocation;
     }
     public void clickFileInfo() {
 
         waitForPageLoad(driver);
-        System.out.println("\t File Info menu Clicked");
+       // System.out.println("\t File Info menu Clicked");
         clickElement(fileInfoMenu);
     }
 
     public QuoteInfo clickQuoteInfo() {
 
         waitForPageLoad(driver);
-        System.out.println("\t Quote Info menu Clicked");
+        //System.out.println("\t Quote Info menu Clicked");
         clickElement(quoteInfoMenu);
         QuoteInfo quoteInfo = new QuoteInfo(driver);
         return quoteInfo;
@@ -350,7 +449,7 @@ public class Menus extends AccessingElement {
     public Delivery clickDelivery() {
 
         waitForPageLoad(driver);
-        System.out.println("\t Delivery menu Clicked");
+        //System.out.println("\t Delivery menu Clicked");
         clickElement(deliveryMenu);
         Delivery delivery = new Delivery(driver);
         return delivery;
@@ -398,7 +497,7 @@ public class Menus extends AccessingElement {
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(allocatorDashboard).build();
         mouseOverHome.perform();
-        System.out.println("\t Allocator Dashboard menu Clicked");
+        //System.out.println("\t Allocator Dashboard menu Clicked");
         clickElement(allocatorDashboard);
         AllocatorDashboard allocatorDashboard = new AllocatorDashboard(driver);
         return allocatorDashboard;

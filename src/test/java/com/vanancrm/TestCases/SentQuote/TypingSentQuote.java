@@ -233,7 +233,7 @@ public class TypingSentQuote extends TestBase {
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
-        emailConversation.clickReadMore();
+        emailConversation.clickReadMore(channel);
     }
 
     private void checkCRMEmailConversation(String language, String

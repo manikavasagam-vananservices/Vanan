@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 
+import com.vanancrm.PageObjects.MainPages.AccessingElement;
 import org.openqa.selenium.*;
 
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +18,7 @@ import org.openqa.selenium.support.ui.Wait;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class ReadTableData {
+public class ReadTableData extends AccessingElement {
 
 	private WebDriver driver;
 
@@ -146,6 +147,43 @@ public class ReadTableData {
         } else {
             return 0;
         }
+    }
+
+    public List<String> getAllocatedFileDetails(String fileName, String srcLan,
+            String tarLang) {
+
+        waitForPageLoad(driver);
+        String elementPath = "//div[@id='order_lists_wrapper']/table/tbody/tr";
+        List<WebElement> elements = driver.findElements(By.xpath
+                (elementPath));
+        List<String> datas = new ArrayList<>();
+        String language = (srcLan + " - " + tarLang).toLowerCase();
+        for(int i=0; i<elements.size(); i++) {
+            if(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[3]"))
+                    .getText().contains(fileName) && (driver.findElement(By.xpath(
+                    elementPath +"[" + (i+1) +"]/td[4]")).getText().toLowerCase()).contains(
+                    language)) {
+
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[2]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(
+                        elementPath +"[" + (i+1) +"]/td[3]")).getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[4]"))
+                        .getText());
+                datas.add( driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[5]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[7]/span"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[8]/span"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[9]"))
+                        .getText());
+                break;
+            }
+        }
+        return datas;
     }
 
     public int getLastTicketNumberForRefundRequest() throws IOException {

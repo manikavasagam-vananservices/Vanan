@@ -226,7 +226,7 @@ public class CaptioningFreeTrialPage extends TestBase {
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
-        emailConversation.clickReadMore();
+        emailConversation.clickReadMore("Free Trial");
     }
 
     private void checkCRMEmailConversation(String slanguage, String tlanguage,
