@@ -20,7 +20,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -265,6 +266,9 @@ public class Translation extends AccessingElement {
     	File file = new File(filePath);
     	file.createNewFile();
     	WebElement fileUploadButton = driver.findElement(By.id("fileuploader"));
+	Actions builder = new Actions(driver);
+        Action mouseOverHome = builder.moveToElement(fileUploadButton).build();
+        mouseOverHome.perform();
     	fileUploadButton.click();
     	Robot robot = new Robot();
     	robot.setAutoDelay(1000);
