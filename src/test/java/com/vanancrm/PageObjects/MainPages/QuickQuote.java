@@ -51,7 +51,7 @@ public class QuickQuote extends AccessingElement {
     @FindBy(id = "format")
     private WebElement format;
 
-    @FindBy(id = "need_transcript")
+    @FindBy(xpath = "//input[@id='need_transcript']")
     private WebElement needTranscript;
 
     @FindBy(id = "need_translate")
