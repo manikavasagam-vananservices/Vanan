@@ -424,7 +424,9 @@ public class FreeTrailPage extends AccessingElement {
     }
 
     public String getToolTipMessage() {
-
+        Actions builder = new Actions(driver);
+        Action mouseOverHome = builder.moveToElement(driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']"))).build();
+        mouseOverHome.perform();
         return driver.findElement(By.xpath("//div[contains(@role,'tooltip')]/div[@class='tooltip-inner']")).getText();
     }
 
