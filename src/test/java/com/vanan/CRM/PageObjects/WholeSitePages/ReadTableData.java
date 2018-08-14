@@ -424,4 +424,41 @@ public class ReadTableData extends AccessingElement {
         }
         return datas;
     }
+	
+    public List<String> getAllocatedCompletedFileDetails(String fileName, String srcLan,
+            String tarLang) {
+
+        waitForPageLoad(driver);
+        String elementPath = "//div[@id='order_lists_wrapper']/table/tbody/tr";
+        List<WebElement> elements = driver.findElements(By.xpath
+                (elementPath));
+        List<String> datas = new ArrayList<>();
+        String language = (srcLan + " - " + tarLang).toLowerCase();
+        for(int i=0; i<elements.size(); i++) {
+            if(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[3]"))
+                    .getText().contains(fileName) && (driver.findElement(By.xpath(
+                    elementPath +"[" + (i+1) +"]/td[4]")).getText().toLowerCase()).contains(
+                    language)) {
+
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[2]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(
+                        elementPath +"[" + (i+1) +"]/td[3]")).getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[4]"))
+                        .getText());
+                datas.add( driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[5]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[7]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[8]/span"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[9]"))
+                        .getText());
+                break;
+            }
+        }
+        return datas;
+    }
 }
