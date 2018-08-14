@@ -23,7 +23,9 @@ public class DashBoardPage extends AccessingElement {
     private Actions builder;
     private Action mouseOverHome;
 
-    @FindBy(xpath = "//span[contains(text(),'ALL PROCESS')]")
+    //@FindBy(xpath = "//ul[@class='sidebar-menu']/li[@class='treeview
+    // scroll']/a")
+    @FindBy(xpath = "//a/span[contains(text(),'PROCESS')]")
     private WebElement allprocess;
 
     @FindBy(id = "allocator_queue")
