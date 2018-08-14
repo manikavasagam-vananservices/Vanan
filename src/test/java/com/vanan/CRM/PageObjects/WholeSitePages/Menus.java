@@ -221,7 +221,16 @@ public class Menus extends AccessingElement {
 
     @FindBy(id="quick-edit-btn")
     private WebElement submitButton;
+	
+    @FindBy(id = "auto_Allocator_Allocated")
+    private WebElement alloctedElement;
 
+    @FindBy(id = "auto_Allocator_Rejected")
+    private WebElement rejectElement;
+
+    @FindBy(id = "auto_Allocator_Cancelled")
+    private WebElement cancelElement;
+	
     public ReadTableData clickVendorAll() {
 
         waitForPageLoad(driver);
@@ -538,4 +547,34 @@ public class Menus extends AccessingElement {
         } catch (Exception e) {
         }
     }
+	
+    public void clickAllocated() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(alloctedElement).build();
+        js.executeScript("$('#auto_Allocator_Allocated').click();");
+        mouseOverHome.perform();
+    }
+
+
+    public void clickReject() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(rejectElement).build();
+        js.executeScript("$('#auto_Allocator_Rejected').click();");
+        mouseOverHome.perform();
+    }
+
+    public void clickCancelled() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(cancelElement).build();
+        js.executeScript("$('#auto_Allocator_Cancelled').click();");
+        mouseOverHome.perform();
+    }
+
+
 }
