@@ -42,6 +42,9 @@ public class VendorDashBoard extends AccessingElement {
     @FindBy(id = "fileAcceptBtn")
     private WebElement fileAcceptBtnElement;
 
+    @FindBy(xpath = "//button[contains(text(),'Reject')]")
+    private WebElement fileRejectBtnElement;
+
     @FindBy(id = "startWorkBtn")
     private WebElement startworkBtnElement;
 
@@ -51,36 +54,53 @@ public class VendorDashBoard extends AccessingElement {
     @FindBy(xpath = "//table[@id='order_lists']/tbody/tr")
     private List<WebElement> tableRows;
 
+    @FindBy(id = "reject_category")
+    private WebElement rejectReason;
+
+    @FindBy(id = "reject_reason")
+    private WebElement rejectMessage;
+
+    @FindBy(id="reject_submit")
+    private WebElement rejectSubmitBtn;
+
     public void clickNewFiles() {
         waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(newfilesElement).build();
-        mouseOverHome.perform();
         clickElement(newfilesElement);
+        mouseOverHome.perform();
     }
 
     public void clickAccepted() {
         waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(acceptedElement).build();
-        mouseOverHome.perform();
         clickElement(acceptedElement);
+        mouseOverHome.perform();
+    }
+
+    public void clickReject() {
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(fileRejectBtnElement).build();
+        clickElement(fileRejectBtnElement);
+        mouseOverHome.perform();
     }
 
     public void clickCompleted() {
         waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(completedElement).build();
-        mouseOverHome.perform();
         clickElement(completedElement);
+        mouseOverHome.perform();
     }
 
     public void clickInprogress() {
         waitForPageLoad(driver);
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(inprogressElement).build();
-        mouseOverHome.perform();
         clickElement(inprogressElement);
+        mouseOverHome.perform();
     }
 
     public void clickAcceptButton() {
@@ -113,6 +133,24 @@ public class VendorDashBoard extends AccessingElement {
         return tableRows.size();
     }
 
+    public void selectRejectReason(String reason) {
+
+        waitForPageLoad(driver);
+        selectDropDown(rejectReason, reason);
+    }
+
+    public void enterRejectReason(String reason) {
+
+        waitForPageLoad(driver);
+        enterTestBoxValues(rejectMessage, reason);
+    }
+
+    public void clickRejectSubmitButton() {
+
+       waitForPageLoad(driver);
+       clickElement(rejectSubmitBtn);
+    }
+
     public String clickParticularFile(String fileName, String service) {
 
         WebElement element;
@@ -129,7 +167,7 @@ public class VendorDashBoard extends AccessingElement {
                 if (element.getText().contains(service)) {
                     clickElement(driver.findElement(By.xpath
                             ("//table[@id='order_lists']/tbody/tr[" + i +
-                                    "]/td[1]")));
+                                    "]/td[2]")));
                     allocationId = driver.findElement(By.xpath
                             ("//table[@id='order_lists']/tbody/tr[" + i +
                                     "]/td[2]")).getText();

@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -46,6 +47,18 @@ public class AllocatorDashboard extends AccessingElement {
 
     @FindBy(id = "bulk_status")
     private WebElement bulkStatusElement;
+
+    @FindBy(id = "cancel_order")
+    private WebElement cancelFileAllocationBtnElement;
+
+    @FindBy(id = "cancel_category")
+    private WebElement cancelReason;
+
+    @FindBy(id = "cancel_comments")
+    private WebElement cancelMessage;
+
+    @FindBy(id="cancel_submit")
+    private WebElement cancelSubmitBtn;
 
     public AllocatorDashboard(WebDriver driver) {
 
@@ -198,4 +211,56 @@ public class AllocatorDashboard extends AccessingElement {
         clickElement(noActionButton);
         waitForPageLoad(driver);
     }
+
+    public void clickParticularFile(String fileName, String allocationId,
+            String srcLan, String tarLang) {
+
+        waitForPageLoad(driver);
+        String elementPath = "//div[@id='order_lists_wrapper']/table/tbody/tr";
+        List<WebElement> elements = driver.findElements(By.xpath
+                (elementPath));
+        List<String> datas = new ArrayList<>();
+        String language = (srcLan + " - " + tarLang).toLowerCase();
+        for(int i=0; i<elements.size(); i++) {
+
+            if(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
+                    .getText().contains(fileName) && (driver.findElement(By.xpath(
+                    elementPath +"[" + (i+1) +"]/td[7]")).getText().toLowerCase()).contains(
+                    language) && driver.findElement(By.xpath(elementPath +"[" + (i+1)
+                    +"]/td[5]")).getText().toLowerCase().contains(allocationId)) {
+
+                clickElement(driver.findElement(By.xpath(elementPath +"[" + (i+1)
+                        +"]/td[5]")));
+                break;
+            }
+        }
+    }
+
+    public void clickCancelFileAllocationBtn() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(cancelFileAllocationBtnElement).build();
+        mouseOverHome.perform();
+        clickElement(cancelFileAllocationBtnElement);
+    }
+
+    public void selectCancelReason(String reason) {
+
+        waitForPageLoad(driver);
+        selectDropDown(cancelReason, reason);
+    }
+
+    public void enterCancelReason(String reason) {
+
+        waitForPageLoad(driver);
+        enterTestBoxValues(cancelMessage, reason);
+    }
+
+    public void clickCancelSubmitButton() {
+
+        waitForPageLoad(driver);
+        clickElement(cancelSubmitBtn);
+    }
+
 }
