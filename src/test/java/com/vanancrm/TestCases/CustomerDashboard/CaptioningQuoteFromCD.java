@@ -171,7 +171,7 @@ public class CaptioningQuoteFromCD extends TestBase {
                         (i + 1));
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
-                if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
+                if (viewTicketDetails.getEmailId()
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel)) {
@@ -270,9 +270,9 @@ public class CaptioningQuoteFromCD extends TestBase {
         System.out.println("===========================================\n");
 
         evaluateCondition("Email", viewTicketDetails
-                .getRunTimeTicketFieldValues("Email"), mailId);
+                .getEmailId(), mailId);
         evaluateCondition("Websites", url,
-                viewTicketDetails.getRunTimeTicketFieldValues("Websites"));
+                viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
                 .getRunTimeTicketFieldValues("Channel"), channel);
         evaluateCondition("Video Source Language", viewTicketDetails
