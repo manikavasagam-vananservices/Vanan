@@ -276,7 +276,7 @@ public class TranscriptionSentQuote extends TestBase {
         evaluateCondition("Email", viewTicketDetails
                 .getEmailId(), mailId);
         evaluateCondition("Websites", url,
-                viewTicketDetails..getWebsite());
+                viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
                 .getRunTimeTicketFieldValues("Channel"), channel);
         evaluateCondition("Language", viewTicketDetails
