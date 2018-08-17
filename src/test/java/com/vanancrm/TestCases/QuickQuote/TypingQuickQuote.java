@@ -269,7 +269,7 @@ public class TypingQuickQuote extends TestBase {
         evaluateCondition("Email", viewTicketDetails
             .getEmailId(), mailId);
         evaluateCondition("Websites", url,
-            .getWebsite());
+            viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
             .getRunTimeTicketFieldValues("Channel"), channel);
 
