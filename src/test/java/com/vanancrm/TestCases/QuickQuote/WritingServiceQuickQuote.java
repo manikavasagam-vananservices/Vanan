@@ -62,7 +62,7 @@ public class WritingServiceQuickQuote extends TestBase {
         System.out.println("Scenario Started");
         System.out.println("===========================================");
         testScenario(academicLevel[0], paperTypes[1]);
-        testScenario(academicLevel[1], paperTypes[0]);.getRunTimeTicketFieldValues("Websites")
+        testScenario(academicLevel[1], paperTypes[0]);
         System.out.println("Test Completed");
         System.out.println("===========================================");
     }
