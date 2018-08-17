@@ -209,7 +209,7 @@ public class VoiceOverQuoteFromCD extends TestBase {
                         (i + 1));
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
-                if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
+                if (viewTicketDetails.getEmailId()
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel)) {
@@ -312,9 +312,9 @@ public class VoiceOverQuoteFromCD extends TestBase {
         evaluateCondition("Channel", viewTicketDetails
                 .getRunTimeTicketFieldValues("Channel"), channel);
         evaluateCondition("Email", viewTicketDetails
-                .getRunTimeTicketFieldValues("Email"), mailId);
+                .getEmailId(), mailId);
         evaluateCondition("Websites", url,
-                viewTicketDetails.getRunTimeTicketFieldValues("Websites"));
+                viewTicketDetails.getWebsite());
 
         evaluateCondition("Language", viewTicketDetails
                 .getRunTimeTicketFieldValues("Language"), srcLang);
