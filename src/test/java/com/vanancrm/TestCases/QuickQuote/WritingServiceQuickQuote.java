@@ -62,7 +62,7 @@ public class WritingServiceQuickQuote extends TestBase {
         System.out.println("Scenario Started");
         System.out.println("===========================================");
         testScenario(academicLevel[0], paperTypes[1]);
-        testScenario(academicLevel[1], paperTypes[0]);
+        testScenario(academicLevel[1], paperTypes[0]);.getRunTimeTicketFieldValues("Websites")
         System.out.println("Test Completed");
         System.out.println("===========================================");
     }
@@ -121,7 +121,7 @@ public class WritingServiceQuickQuote extends TestBase {
         driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
-        menus = dashBoardPage.clickAllProcess();
+        menus = dashBoardPage.clickAllProcess();.getRunTimeTicketFieldValues("Websites")
         checkTickets(menus, academicLevel, paperType);
         waitForProcessCompletion(10);
         menus.clickSignOut();
@@ -237,7 +237,7 @@ public class WritingServiceQuickQuote extends TestBase {
         evaluateCondition("Email", viewTicketDetails
             .getEmailId(), mailId);
         evaluateCondition("Websites", url,
-            viewTicketDetails.getRunTimeTicketFieldValues("Websites"));
+            viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
             .getRunTimeTicketFieldValues("Channel"), channel);
 
