@@ -155,11 +155,11 @@ public class WritingService extends TestBase {
                 waitForProcessCompletion(20);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
-                if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
+                if (viewTicketDetails.getEmailId()
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel) && url.contains(viewTicketDetails
-                        .getRunTimeTicketFieldValues("Websites"))) {
+                        .getWebsite())) {
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);
@@ -269,14 +269,14 @@ public class WritingService extends TestBase {
         evaluateCondition("Name", viewTicketDetails
                 .getRunTimeTicketFieldValues("Name"), name);
         evaluateCondition("Email", viewTicketDetails
-            .getRunTimeTicketFieldValues("Email"), mailId);
+            .getEmailId(), mailId);
 
         evaluateCondition("Country", viewTicketDetails
                 .getRunTimeTicketFieldValues("Country"), country);
         evaluateCondition("PhoneNo", viewTicketDetails
                 .getRunTimeTicketFieldValues("PhoneNo"), phoneNumber);
         evaluateCondition("Websites", url,
-            viewTicketDetails.getRunTimeTicketFieldValues("Websites"));
+            viewTicketDetails.getWebsite());
 
         evaluateCondition("Type Of Paper", viewTicketDetails
             .getRunTimeTicketFieldValues("Type Of Paper"), paperType);
