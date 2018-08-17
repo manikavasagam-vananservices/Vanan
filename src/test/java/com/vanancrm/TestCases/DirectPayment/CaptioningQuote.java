@@ -382,11 +382,11 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
                         (i + 1));
                 waitForProcessCompletion(20);
 
-                if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
+                if (viewTicketDetails.getEmailId()
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel) && url.contains(viewTicketDetails
-                        .getRunTimeTicketFieldValues("Websites"))) {
+                        .getWebsite())) {
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);
@@ -582,9 +582,9 @@ public class CaptioningQuote extends TestBase implements CaptioningPrice {
         System.out.println("Checking View Ticket Details");
         System.out.println("===========================================\n");
         evaluateCondition("Email", viewTicketDetails
-                .getRunTimeTicketFieldValues("Email"), mailId);
+                .getEmailId(), mailId);
         evaluateCondition("Websites", url,
-                viewTicketDetails.getRunTimeTicketFieldValues("Websites"));
+                viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
                 .getRunTimeTicketFieldValues("Channel"), channel);
         evaluateCondition("Service", viewTicketDetails
