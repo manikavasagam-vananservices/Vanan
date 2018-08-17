@@ -121,7 +121,7 @@ public class WritingServiceQuickQuote extends TestBase {
         driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
-        menus = dashBoardPage.clickAllProcess();.getRunTimeTicketFieldValues("Websites")
+        menus = dashBoardPage.clickAllProcess();
         checkTickets(menus, academicLevel, paperType);
         waitForProcessCompletion(10);
         menus.clickSignOut();
