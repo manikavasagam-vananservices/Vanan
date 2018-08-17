@@ -162,7 +162,7 @@ public class TranscriptionSentQuote extends TestBase {
                 waitForProcessCompletion(20);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
-                if (viewTicketDetails..getEmailId()
+                if (viewTicketDetails.getEmailId()
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel) && url.contains(viewTicketDetails
