@@ -147,11 +147,11 @@ public class CaptioningQuickQuote extends TestBase {
                 waitForProcessCompletion(20);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
-                if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
+                if (viewTicketDetails.getEmailId()
                         .contains(mailId) && viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel) && url.contains(viewTicketDetails
-                        .getRunTimeTicketFieldValues("Websites"))) {
+                        .getWebsite())) {
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);
@@ -245,9 +245,9 @@ public class CaptioningQuickQuote extends TestBase {
         System.out.println("===========================================\n");
 
         evaluateCondition("Email", viewTicketDetails
-            .getRunTimeTicketFieldValues("Email"), mailId);
+            .getEmailId(), mailId);
         evaluateCondition("Websites", url,
-            viewTicketDetails.getRunTimeTicketFieldValues("Websites"));
+            viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
             .getRunTimeTicketFieldValues("Channel"), channel);
 
