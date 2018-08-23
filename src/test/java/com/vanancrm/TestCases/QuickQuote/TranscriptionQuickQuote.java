@@ -39,7 +39,7 @@ public class TranscriptionQuickQuote extends TestBase {
 
     private String minute = "180";
 
-    private String[] languages = {"English", "Apache"};
+    private String[] languages = {"English (US)", "Apache"};
     private String[] categorys = {"General", "Legal"};
     private String mailId = "automation.vananservices@gmail.com";
     private String service = "Transcription";
