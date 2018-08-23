@@ -38,7 +38,7 @@ public class TypingQuickQuote extends TestBase {
 
     private String mp = "20";
 
-    private String[] languages = {"English", "Apache"};
+    private String[] languages = {"English (US)", "Apache"};
     private String[] categorys = {"General", "Legal"};
     private String[] fileTypes = {"Document", "Audio/Video"};
     private String mailId = "automation.vananservices@gmail.com";
