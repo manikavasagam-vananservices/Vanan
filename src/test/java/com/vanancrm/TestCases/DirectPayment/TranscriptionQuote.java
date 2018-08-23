@@ -140,7 +140,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
 
     private void raiseTicket(String language, String category, String timeCode,
             boolean additionalQty, boolean tat, boolean basicPrice, boolean
-            offer) throws AWTException, InterruptedException, IOException {
+            offer, String channel) throws AWTException, InterruptedException, IOException {
 
         driver.get(url);
         Transcription transcription = new Transcription(driver);
@@ -229,13 +229,12 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     transcription.getAddtionalQtyCheck(),
                     transcription.getTranscationFee(), transcription.getGrandTotal(), language);
         }
-        if (language.equals(languages[2])) {
-
+       
+        if (channel.equals(channels[2])) {
+            
             if (transcription.isCustomMessageDisplayed()) {
                 System.out.println("Quote info message is displayed");
             }
-        }
-        if (language.equals(languages[2])) {
             /*transcription.clickGetQuote();
             if(transcription.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
@@ -244,7 +243,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }*/
             transcription.clickPrivacyPolicy();
             transcription.clickGetQuote();
-        } else if (language.equals(languages[1])) {
+        } else if (channel.equals(channels[1])) {
             /*transcription.clickProceedPayment();
             if(transcription.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
@@ -253,7 +252,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }*/
             transcription.clickPrivacyPolicy();
             transcription.clickProceedPayment();
-        } else if (language.equals(languages[0])) {
+        } else if (channel.equals(channels[0])) {
             /*transcription.clickEmailMeGetQuote();
             if(transcription.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
                 System.out.println("Accept button checked = > Pass");
@@ -753,7 +752,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             InterruptedException, IOException {
 
         raiseTicket(language, category, timeCode, addtionalQty, tat,
-                basicPrice, offer);
+                basicPrice, offer, channel);
         getCRMCreadential();
         checkCRM(language, category, channel, timeCode, addtionalQty, tat,
                 basicPrice, offer);
