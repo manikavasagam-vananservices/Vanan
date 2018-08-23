@@ -38,7 +38,7 @@ public class CaptioningFreeTrialPage extends TestBase {
 
     private WebDriver driver;
 
-    private String[] sourceLanguages = {"English", "Apache"};
+    private String[] sourceLanguages = {"English (US)", "Apache"};
     private String[] targetLanguages = {"Spanish", "Afar"};
     private String[] fileFormats = {"Standalone", "Embedded"};
     private String[] transcriptions = {"Yes", "No"};
