@@ -38,7 +38,7 @@ public class VoiceOverQuickQuote extends TestBase {
 
     private String phoneNumber = "1-888-535-5668";
 
-    private String[] languages = {"English", "Apache"};
+    private String[] languages = {"English (US)", "Apache"};
     private String[] ageGroups = {"Under 14", "26-35"};
     private String[] genders = {"Male", "Female"};
     private String mailId = "automation.vananservices@gmail.com";
