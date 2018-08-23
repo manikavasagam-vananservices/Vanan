@@ -265,7 +265,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
 
         waitForProcessCompletion(15);
         String currentUrl = driver.getCurrentUrl();
-        if (!language.equals(languages[1])) {
+        if (!channel.equals(channels[1])) {
 
             checkCondition(currentUrl, "additional-information.php");
             AdditionalInformation additionalInformation = new AdditionalInformation
