@@ -69,7 +69,7 @@ public class VoiceOverQuoteFromCD extends TestBase {
     private String[] purposes = {"Audio Books",
             "Movie Promos"};
     private String[] serviceFreqs = {"Monthly", "Not sure"};
-    private String[] sourceLang = {"English", "Spanish"};
+    private String[] sourceLang = {"English (US)", "Spanish"};
     private String[] targetLang = {"Tamil", "Arabic"};
 
     public String ticketID = "";
