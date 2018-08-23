@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class TranscriptionQuoteFromCD extends TestBase {
 
-    private String[] languages = {"English", "Apache"};
+    private String[] languages = {"English (US)", "Apache"};
     private String service = "Transcription";
     private String mailId = "automation.vananservices@gmail.com";
     private String comments = "Automation Testing";
