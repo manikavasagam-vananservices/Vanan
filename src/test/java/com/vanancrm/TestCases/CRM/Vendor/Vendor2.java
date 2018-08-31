@@ -37,7 +37,7 @@ public class Vendor2 extends TestBase {
     private static String password = "";
 
     private String comments = "Automation Testing";
-    private String ticketID = "344186";
+    private String ticketID = "";
     private Sheet sheet1, sheet2;
 
     private static List<String> fileNames = new ArrayList<String>();
@@ -52,6 +52,7 @@ public class Vendor2 extends TestBase {
     @Test
     public void testStep() throws IOException, InterruptedException, AWTException {
 
+        ticketID = System.getProperty("ticketid");
         driver.get("https://secure-dt.com/crm/user/login");
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
         driver.manage().addCookie(name);

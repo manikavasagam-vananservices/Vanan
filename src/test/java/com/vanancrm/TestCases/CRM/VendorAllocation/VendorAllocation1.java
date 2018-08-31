@@ -271,7 +271,7 @@ public class VendorAllocation1 extends TestBase {
     @AfterClass
     public void afterClass() {
 
-        //driver.quit();
+        driver.quit();
     }
 
     public void readFileInfoData() throws IOException, ParseException {
