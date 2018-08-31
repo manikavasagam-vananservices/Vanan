@@ -85,7 +85,7 @@ public class QuickQuote extends AccessingElement {
     private WebElement needTranslation;
 
     @FindBy(
-        xpath = "//div[@class='col-lg-12']/div[@class='row']/input[@type='submit']")
+        xpath = "//input[@type='submit' and @value='Get Instant Quote']")
     private WebElement getQuote;
 
     @FindBy(id = "confirm_agreement")
