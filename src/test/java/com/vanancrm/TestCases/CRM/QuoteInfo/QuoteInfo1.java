@@ -245,7 +245,7 @@ public class QuoteInfo1 extends TestBase {
     @AfterClass
     public void afterClass() {
 
-        //driver.quit();
+        driver.quit();
     }
 
     public static void readFileInfoData() throws IOException {
