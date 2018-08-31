@@ -630,7 +630,7 @@ public class VendorAllocation extends AccessingElement {
 		    System.out.println(lang[0]+" and "+lang[1] + " = " +(lang[0].contains(srcLang) && lang[1].contains(tarLang)));
                 if (element.getText().contains(fileName) && driver.findElement(By.xpath("//table[@id='process_list']/tbody/tr[" + (i + 1) +
                         "]/td[2]/span[@class='text-green']")).getText().contains(service) &&
-                        lang[0].contains(srcLang) && lang[1].contains(tarLang)) {
+                        lang[0].toLowerCase().contains(srcLang.toLowerCase()) && lang[1].toLowerCase().contains(tarLang.toLowerCase())) {
                     DecimalFormat decimalFormat = new DecimalFormat(".##");
                     waitForPageLoad(driver);
                     element = driver.findElement(By.xpath(
