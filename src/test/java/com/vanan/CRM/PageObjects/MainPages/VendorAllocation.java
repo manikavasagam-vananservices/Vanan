@@ -622,6 +622,7 @@ public class VendorAllocation extends AccessingElement {
             element = driver.findElement(By.xpath
                     ("//table[@id='process_list']/tbody/tr[" + (i + 1) +
                             "]/td[2]/span/a"));
+		System.out.println("######### : "+element.getText() + " ^^^^^ " + fileName);
             if (element.getText().contains(fileName)) {
                 //System.out.println("Entering)))))))" + element.getText());
                 String lang[] = driver.findElement(By.xpath("//table[@id='process_list']/tbody/tr[" + (i + 1) +
