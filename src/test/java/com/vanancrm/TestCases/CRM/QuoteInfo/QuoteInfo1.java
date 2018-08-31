@@ -30,12 +30,11 @@ public class QuoteInfo1 extends TestBase {
     private static String username = "";
     private static String password = "";
 
-    private String ticketID = "VS00344186";
+    private String ticketID = "";
 
-    private String channel = "Quote";
+    private String channel = "Quick Quote";
     private String comment = "Automation Testing";
-    private String mailId = "naveen@vananservices.com";
-    private String service = "Voice Over";
+    private String service = "";
 
     private static List<String> fileNames = new ArrayList<String>();
     private static List<String> sourceLangs = new ArrayList<String>();
@@ -53,21 +52,22 @@ public class QuoteInfo1 extends TestBase {
 
     @Test
     public void testStep() throws IOException {
-
+        
+        ticketID = System.getProperty("ticketid");
+        service = System.getProperty("service");
         driver.get("https://secure-dt.com/crm/user/login");
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
         driver.manage().addCookie(name);
         Login login = new Login(driver);
         DashBoardPage dashBoardPage = login.signIn(username, password);
-        menus = dashBoardPage.clickAllProcess();
-        readTableData = menus.clickNewMenu();
+        menus = new Menus(driver);
+        readTableData = new ReadTableData(driver);
         menus.searchCustomerDetails(ticketID);
         viewTicketDetails = new ViewTicketDetails(driver);
         viewTicketDetails = readTableData.clickOldTableService(service,
                 (1));
         int min = 0;
-        if (viewTicketDetails.getRunTimeTicketFieldValues("Email")
-                .contains(mailId) && viewTicketDetails
+        if (viewTicketDetails
                 .getRunTimeTicketFieldValues("Channel")
                 .contains(channel)) {
 
@@ -280,7 +280,7 @@ public class QuoteInfo1 extends TestBase {
                 + "/src/test/resources/CRM.txt");
         Properties properties = new Properties();
         properties.load(fileReader);
-        username = properties.getProperty("USERNAME");
-        password = properties.getProperty("PASSWORD");
+        username = properties.getProperty("SALESNAME");
+        password = properties.getProperty("SALESPASSWORD");
     }
 }
