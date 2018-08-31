@@ -148,7 +148,7 @@ public class ReadTableData extends AccessingElement {
             return 0;
         }
     }
-
+	
     public List<String> getAllocatedFileDetails(String fileName, String srcLan,
             String tarLang) {
 
@@ -170,15 +170,13 @@ public class ReadTableData extends AccessingElement {
                     elementPath +"[" + (i+1) +"]/td[5]")).getText().toLowerCase()).contains(
                     language)) {
 
-                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[2]"))
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[3]"))
                         .getText());
                 datas.add(driver.findElement(By.xpath(
-                        elementPath +"[" + (i+1) +"]/td[3]")).getText());
-                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[4]"))
+                        elementPath +"[" + (i+1) +"]/td[4]")).getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[5]"))
                         .getText());
-                datas.add( driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[5]"))
-                        .getText());
-                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
+                datas.add( driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
                         .getText());
                 datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[7]"))
                         .getText());
@@ -186,13 +184,14 @@ public class ReadTableData extends AccessingElement {
                         .getText());
                 datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[9]"))
                         .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[10]"))
+                        .getText());
                 break;
             }
         }
         return datas;
     }
-
-
+	
     public int getLastTicketNumberForRefundRequest() throws IOException {
 
         List<WebElement> elements = driver.findElements(By.xpath
