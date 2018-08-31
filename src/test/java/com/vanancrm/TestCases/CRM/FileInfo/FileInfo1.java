@@ -72,7 +72,7 @@ public class FileInfo1 extends TestBase {
 
             System.out.println("Ticket ID: " + ticketID);
             edit = menus.clickEdit();
-            waitForProcessCompletion(15);
+            //waitForProcessCompletion(15);
             edit.clickFileUploadButton();
             FileUploadFromTicket fileUploadFromTicket = new FileUploadFromTicket
                     (driver);
@@ -83,21 +83,21 @@ public class FileInfo1 extends TestBase {
                     driver.switchTo().window(windowHandle);
                     waitForProcessCompletion(5);
                     for (int i = 0; i < fileNames.size(); i++) {
+                        
                         fileUploadFromTicket.uploadFile(driver, fileNames.get(i), "");
+                        System.out.println("File : " + fileNames.get(i) + " uploaded successfully")
                     }
 
-                    waitForProcessCompletion(15);
+                    waitForProcessCompletion(10);
                     fileUploadFromTicket.enterComments(comment);
                     fileUploadFromTicket.clickSubmitButton();
-                    waitForProcessCompletion(15);
+                    waitForProcessCompletion(10);
                     driver.close();
                     driver.switchTo().window(parentWindow);
                     break;
                 }
             }
             waitForProcessCompletion(10);
-            edit.selectPaymentType("Full payment");
-            edit.selectPaymentMode("Square");
             edit.clickUpdateButton();
             menus.clickFileInfo();
             FileInfo fileInfo = new FileInfo(driver);
