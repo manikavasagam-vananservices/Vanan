@@ -248,6 +248,7 @@ public class VendorAllocation1 extends TestBase {
                     cell = sheet.getRow(i + 2).getCell(26);
                     cell.setCellValue(checkStatus(vendorCost, vendorCosts, "Vendor Cost"));
                 }
+                System.out.println("File : " + fileNames.get(i) + " processed successfully");
             }
         }
         workbook.write(fileOutput);
