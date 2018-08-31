@@ -171,7 +171,7 @@ public class Transcription extends AccessingElement {
         if (!driver.findElement(By.id("ft1"))
                 .isSelected()) {
 
-            js.executeScript("$('#ft1').click();");
+            js.executeScript("jc('#ft1').click();");
         }
     }
 
@@ -180,7 +180,7 @@ public class Transcription extends AccessingElement {
 				"//input[@type='checkbox' and @id='nativespkr']"))
 				.isSelected()) {
 
-			js.executeScript("$('#nativespkr').click();");
+			js.executeScript("jc('#nativespkr').click();");
 		}
 	}
 
@@ -192,14 +192,14 @@ public class Transcription extends AccessingElement {
 						"//input[@type='checkbox' and @id='needtranslation']"))
 				.isSelected()) {
 
-			js.executeScript("$('#needtranslation').click();");
+			js.executeScript("jc('#needtranslation').click();");
 		}
 		break;
 		case 1:
 			if (!driver.findElement(By.xpath("//input[@id='needtranslation']"))
 					.isSelected()) {
 
-				js.executeScript("$('#needtranslation').click();");
+				js.executeScript("jc('#needtranslation').click();");
 			}
 			break;
 		}
@@ -211,14 +211,14 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='cleanverba']"))
 					.isSelected()) {
 
-				js.executeScript("$('#cleanverba').click();");
+				js.executeScript("jc('#cleanverba').click();");
 			}
 			break;
 		case 1:
 			if (!driver.findElement(By.xpath("//input[@id='fullverba']"))
 					.isSelected()) {
 
-				js.executeScript("$('#fullverba').click();");
+				js.executeScript("jc('#fullverba').click();");
 			}
 			break;
 		}
@@ -232,7 +232,7 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='rushopts0']"))
 					.isSelected()) {
 
-				js.executeScript("$('#rushopts0').click();");
+				js.executeScript("jc('#rushopts0').click();");
 			}
 			break;
 		case 1:
@@ -240,7 +240,7 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='rushopts1']"))
 					.isSelected()) {
 
-				js.executeScript("$('#rushopts1').click();");
+				js.executeScript("jc('#rushopts1').click();");
 			}
 			break;
 		case 2:
@@ -248,7 +248,7 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='rushopts2']"))
 					.isSelected()) {
 
-				js.executeScript("$('#rushopts2').click();");
+				js.executeScript("jc('#rushopts2').click();");
 			}
 			break;
 		case 3:
@@ -256,7 +256,7 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='rushopts3']"))
 					.isSelected()) {
 
-				js.executeScript("$('#rushopts3').click();");
+				js.executeScript("jc('#rushopts3').click();");
 			}
 			break;
 		case 4:
@@ -264,7 +264,7 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='deliveryReq']"))
 					.isSelected()) {
 
-				js.executeScript("$('#deliveryReq').click();");
+				js.executeScript("jc('#deliveryReq').click();");
 			}
 			break;
 		case 5:
@@ -272,7 +272,7 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='expedited']"))
 					.isSelected()) {
 
-				js.executeScript("$('#expedited').click();");
+				js.executeScript("jc('#expedited').click();");
 			}
 			break;
 		}
@@ -287,7 +287,7 @@ public class Transcription extends AccessingElement {
 							By.xpath("//input[@type='radio' and @id='general']"))
 					.isSelected()) {
 
-				js.executeScript("$('#general').click();");
+				js.executeScript("jc('#general').click();");
 			}
 			break;
 		case 1:
@@ -296,7 +296,7 @@ public class Transcription extends AccessingElement {
 							By.xpath("//input[@type='radio' and @id='legal']"))
 					.isSelected()) {
 
-				js.executeScript("$('#legal').click();");
+				js.executeScript("jc('#legal').click();");
 			}
 			break;
 		}
@@ -310,14 +310,14 @@ public class Transcription extends AccessingElement {
 			if (!driver.findElement(By.xpath("//input[@id='qc0']"))
 					.isSelected()) {
 
-				js.executeScript("$('#qc0').click();");
+				js.executeScript("jc('#qc0').click();");
 			}
 			break;
 		case 1:
 			if (!driver.findElement(By.xpath("//input[@id='qc1']"))
 					.isSelected()) {
 
-				js.executeScript("$('#qc1').click();");
+				js.executeScript("jc('#qc1').click();");
 			}
 			break;
 
@@ -446,7 +446,7 @@ public class Transcription extends AccessingElement {
         try {
 
             if (isElementDisplayed(emailMeQuote)) {
-                js.executeScript("$('#emailquote').click();");
+                js.executeScript("jc('#emailquote').click();");
             }
         } catch (Exception e) {
             System.out.println("Unable to click Get Email Me Quote button " + e);
@@ -458,7 +458,7 @@ public class Transcription extends AccessingElement {
         try {
 
             if (isElementDisplayed(proceedPayment)) {
-                js.executeScript("$('#proceedpayment').click();");
+                js.executeScript("jc('#proceedpayment').click();");
             }
         } catch (Exception e) {
             System.out.println("Unable to click Proceed payment button " + e);
@@ -469,7 +469,7 @@ public class Transcription extends AccessingElement {
         try {
 
             if (isElementDisplayed(getQuote)) {
-                js.executeScript("$('#getquote').click();");
+                js.executeScript("jc('#getquote').click();");
             }
         } catch (Exception e) {
             System.out.println("Unable to click Get Quote button " + e);
