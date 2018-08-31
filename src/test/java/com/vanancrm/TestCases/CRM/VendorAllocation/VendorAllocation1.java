@@ -32,11 +32,10 @@ public class VendorAllocation1 extends TestBase {
     private static String username = "";
     private static String password = "";
 
-    private String ticketID = "VS00344186";
+    private String ticketID = "";
 
-    private String channel = "Quote";
-    private String mailId = "naveen@vananservices.com";
-    private String service = "Voice Over";
+    private String channel = "Quick Quote";
+    private String service = "";
     private String cetatTime = "";
 
     private int totalPages = 0;
@@ -63,7 +62,9 @@ public class VendorAllocation1 extends TestBase {
 
     @Test
     public void testStep() throws IOException, ParseException {
-
+        
+        ticketID = System.getProperty("ticketid");
+        service = System.getProperty("service");
         driver.get("https://secure-dt.com/crm/user/login");
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
         driver.manage().addCookie(name);
@@ -71,7 +72,6 @@ public class VendorAllocation1 extends TestBase {
         DashBoardPage dashBoardPage = login.signIn(username, password);
         menus = new Menus(driver);
         readTableData = new ReadTableData(driver);
-        menus.clickTrialFlow();
         menus.searchCustomerDetails(ticketID);
         viewTicketDetails = new ViewTicketDetails(driver);
         viewTicketDetails = readTableData.clickOldTableService(service,
