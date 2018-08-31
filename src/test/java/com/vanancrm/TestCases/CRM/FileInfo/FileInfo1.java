@@ -85,7 +85,7 @@ public class FileInfo1 extends TestBase {
                     for (int i = 0; i < fileNames.size(); i++) {
                         
                         fileUploadFromTicket.uploadFile(driver, fileNames.get(i), "");
-                        System.out.println("File : " + fileNames.get(i) + " uploaded successfully")
+                        System.out.println("File : " + fileNames.get(i) + " uploaded successfully");
                     }
 
                     waitForProcessCompletion(10);
