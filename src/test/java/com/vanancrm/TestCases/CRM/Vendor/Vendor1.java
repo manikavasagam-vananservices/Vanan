@@ -32,7 +32,7 @@ public class Vendor1 extends TestBase {
     private static String username = "";
     private static String password = "";
 
-    private String ticketID = "344186";
+    private String ticketID = "";
 
     private static List<String> fileNames = new ArrayList<String>();
     private static List<String> sourceLangs = new ArrayList<String>();
@@ -45,6 +45,7 @@ public class Vendor1 extends TestBase {
     @Test
     public void testStep() throws IOException {
 
+        ticketID = System.getProperty("ticketid");
         driver.get("https://secure-dt.com/crm/user/login");
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
         driver.manage().addCookie(name);
@@ -111,7 +112,7 @@ public class Vendor1 extends TestBase {
     @AfterClass
     public void afterClass() {
 
-        //driver.quit();
+        driver.quit();
     }
 
     public void readFileInfoData() throws IOException, ParseException {
