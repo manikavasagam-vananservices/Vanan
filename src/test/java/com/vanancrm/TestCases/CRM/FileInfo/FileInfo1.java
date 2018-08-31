@@ -32,7 +32,7 @@ public class FileInfo1 extends TestBase {
 
     private String ticketID = "";
 
-    private String channel = "";
+    private String channel = "Quick Quote";
     private String comment = "Automation Testing";
     private String service = "";
 
@@ -54,7 +54,6 @@ public class FileInfo1 extends TestBase {
     public void testStep() throws IOException, InterruptedException, AWTException, ParseException {
         
         ticketID = System.getProperty("ticketid");
-        channel =  System.getProperty("channel");
         service = System.getProperty("service");
         driver.get("https://secure-dt.com/crm/user/login");
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
