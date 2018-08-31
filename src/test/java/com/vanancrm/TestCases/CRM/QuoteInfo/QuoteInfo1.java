@@ -77,6 +77,7 @@ public class QuoteInfo1 extends TestBase {
             double temp = 0.00f;
             System.out.println("Ticket ID: " + ticketID);
             QuoteInfo quoteInfo = menus.clickQuoteInfo();
+            quoteInfo.clickPopUpCloseButton();
             for (int i = 0; i < fileNames.size(); i++) {
                 boolean status = false;
                 if (pageMinutes.get(i).contains("-")) {
