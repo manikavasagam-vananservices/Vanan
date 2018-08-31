@@ -153,15 +153,21 @@ public class ReadTableData extends AccessingElement {
             String tarLang) {
 
         waitForPageLoad(driver);
-        String elementPath = "//div[@id='order_lists_wrapper']/table/tbody/tr";
+        String elementPath = "//table[@id='order_lists_allocator']/tbody/tr";
         List<WebElement> elements = driver.findElements(By.xpath
                 (elementPath));
         List<String> datas = new ArrayList<>();
         String language = (srcLan + " - " + tarLang).toLowerCase();
         for(int i=0; i<elements.size(); i++) {
-            if(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[3]"))
+            System.out.println(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[4]"))
+                    .getText()+" ===" + driver.findElement(By.xpath(
+                    elementPath +"[" + (i+1) +"]/td[5]")).getText() + "####" + (driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[4]"))
                     .getText().contains(fileName) && (driver.findElement(By.xpath(
-                    elementPath +"[" + (i+1) +"]/td[4]")).getText().toLowerCase()).contains(
+                    elementPath +"[" + (i+1) +"]/td[5]")).getText().toLowerCase()).contains(
+                    language)));
+            if(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[4]"))
+                    .getText().contains(fileName) && (driver.findElement(By.xpath(
+                    elementPath +"[" + (i+1) +"]/td[5]")).getText().toLowerCase()).contains(
                     language)) {
 
                 datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[2]"))
@@ -174,7 +180,7 @@ public class ReadTableData extends AccessingElement {
                         .getText());
                 datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
                         .getText());
-                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[7]/span"))
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[7]"))
                         .getText());
                 datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[8]/span"))
                         .getText());
@@ -185,6 +191,7 @@ public class ReadTableData extends AccessingElement {
         }
         return datas;
     }
+
 
     public int getLastTicketNumberForRefundRequest() throws IOException {
 
