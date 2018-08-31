@@ -287,7 +287,7 @@ public class QuickQuote extends AccessingElement {
 
     public void clickPopupSubmit() {
         clickElement(driver.findElement(By.xpath(
-            "//div[@class='modal-footer']/..//button[contains(text(),'Submit')]")));
+            "//div[@id='submit_part']/div/button")));
     }
 
     public void clickPrivacyPolicy() {
