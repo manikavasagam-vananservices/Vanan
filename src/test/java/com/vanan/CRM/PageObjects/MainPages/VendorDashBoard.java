@@ -160,16 +160,16 @@ public class VendorDashBoard extends AccessingElement {
 
 
             element = driver.findElement(By.xpath
-                    ("//table[@id='order_lists']/tbody/tr[" + i + "]/td[3]"));
+                    ("//table[@id='order_lists_allocator']/tbody/tr[" + i + "]/td[3]"));
             if (element.getText().contains(fileName)) {
                 element = driver.findElement(By.xpath
-                        ("//table[@id='order_lists']/tbody/tr[" + i + "]/td[9]"));
+                        ("//table[@id='order_lists_allocator']/tbody/tr[" + i + "]/td[9]"));
                 if (element.getText().contains(service)) {
                     clickElement(driver.findElement(By.xpath
-                            ("//table[@id='order_lists']/tbody/tr[" + i +
+                            ("//table[@id='order_lists_allocator']/tbody/tr[" + i +
                                     "]/td[2]")));
                     allocationId = driver.findElement(By.xpath
-                            ("//table[@id='order_lists']/tbody/tr[" + i +
+                            ("//table[@id='order_lists_allocator']/tbody/tr[" + i +
                                     "]/td[2]")).getText();
                     break;
                 }
@@ -184,7 +184,7 @@ public class VendorDashBoard extends AccessingElement {
 
         for (int i = 1; i <= getTableRowSize(); i++) {
             allocationIds.add(driver.findElement(By.xpath
-                    ("//table[@id='order_lists']/tbody/tr[" + i +
+                    ("//table[@id='order_lists_allocator']/tbody/tr[" + i +
                             "]/td[2]")).getText());
         }
         return allocationIds;
