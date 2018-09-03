@@ -155,7 +155,7 @@ public class Vendor2 extends TestBase {
                     }
                 }
                 vendorDashBoard.clickCompleted();
-                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
+                temp = readTableData.getAllocatedCompletedDetails(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i,  temp, decimalFormat, false,"");
                 menus.clickSignOut();
