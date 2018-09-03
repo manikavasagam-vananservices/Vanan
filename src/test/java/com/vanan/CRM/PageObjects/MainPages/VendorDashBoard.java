@@ -51,7 +51,7 @@ public class VendorDashBoard extends AccessingElement {
     @FindBy(xpath = "//a[contains(text(),'Upload')]")
     private WebElement uploadElement;
 
-    @FindBy(xpath = "//table[@id='order_lists']/tbody/tr")
+    @FindBy(xpath = "//table[@id='order_lists_allocator']/tbody/tr")
     private List<WebElement> tableRows;
 
     @FindBy(id = "reject_category")
