@@ -505,7 +505,46 @@ public class ReadTableData extends AccessingElement {
             }
         }
     }
+	
+    public List<String> getAllocatedCompletedDetails(String fileName, String srcLan,
+           String tarLang) {
 
+        waitForPageLoad(driver);
+        String elementPath = "//table[@id='order_lists_allocator']/tbody/tr";
+        List<WebElement> elements = driver.findElements(By.xpath
+                (elementPath));
+        List<String> datas = new ArrayList<>();
+        String language = (srcLan + " - " + tarLang).toLowerCase();
+        for(int i=0; i<elements.size(); i++) {
+
+            if(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
+                    .getText().contains(fileName) && (driver.findElement(By.xpath(
+                    elementPath +"[" + (i+1) +"]/td[7]")).getText().toLowerCase()).contains(
+                    language)) {
+
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[3]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[4]"))
+                        .getText());
+                datas.add( driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[5]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[6]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[7]"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[8]"))
+                        .getText());
+
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[9]/span"))
+                        .getText());
+                datas.add(driver.findElement(By.xpath(elementPath +"[" + (i+1) +"]/td[10]"))
+                        .getText());
+                break;
+            }
+        }
+        return datas;
+    }
+	
     private void waitTime() {
         waitForProcessCompletion(5);
     }
