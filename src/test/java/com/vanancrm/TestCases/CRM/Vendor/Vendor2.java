@@ -93,7 +93,7 @@ public class Vendor2 extends TestBase {
                 menus = new Menus(driver);
                 menus.clickAllocatorDashboard();
                 menus.clickVendorAccepted();
-                temp = readTableData.getAllocatedDetails(fileNames.get(i),
+                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i,  temp, decimalFormat, true,"Accepted");
                 menus.clickSignOut();
@@ -116,7 +116,7 @@ public class Vendor2 extends TestBase {
                 menus = new Menus(driver);
                 menus.clickAllocatorDashboard();
                 vendorDashBoard.clickInprogress();
-                temp = readTableData.getAllocatedDetails(fileNames.get(i),
+                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i,  temp, decimalFormat, true,"In process");
                 menus.clickSignOut();
@@ -155,7 +155,7 @@ public class Vendor2 extends TestBase {
                     }
                 }
                 vendorDashBoard.clickCompleted();
-                temp = readTableData.getAllocatedCompletedFileDetails(fileNames.get(i),
+                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i,  temp, decimalFormat, false,"");
                 menus.clickSignOut();
@@ -165,7 +165,7 @@ public class Vendor2 extends TestBase {
                 menus = new Menus(driver);
                 menus.clickAllocatorDashboard();
                 menus.clickCompleted();
-                temp = readTableData.getAllocatedDetails(fileNames.get(i),
+                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i,  temp, decimalFormat, true,"Completed");
             } else if (actions.get(i).equalsIgnoreCase("Reject")) {
@@ -182,7 +182,7 @@ public class Vendor2 extends TestBase {
                 menus = new Menus(driver);
                 menus.clickAllocatorDashboard();
                 menus.clickReject();
-                temp = readTableData.getAllocatedDetails(fileNames.get(i),
+                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i, temp, decimalFormat, true, "Rejected");
             } else if (actions.get(i).equalsIgnoreCase("Cancel")) {
@@ -195,7 +195,7 @@ public class Vendor2 extends TestBase {
                 menus.clickAllocatorDashboard();
                 menus.clickAllocated();
 
-                temp = readTableData.getAllocatedDetails(fileNames.get(i),
+                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i, temp, decimalFormat, true, "Allocated");
                 allocatorDashboard = new AllocatorDashboard(driver);
@@ -206,7 +206,7 @@ public class Vendor2 extends TestBase {
                 allocatorDashboard.enterCancelReason("Automation TEsting -  Cancel");
                 allocatorDashboard.clickCancelSubmitButton();
                 menus.clickCancelled();
-                temp = readTableData.getAllocatedDetails(fileNames.get(i),
+                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i, temp, decimalFormat, true, "Cancelled");
             }
@@ -416,14 +416,5 @@ public class Vendor2 extends TestBase {
             status = "Fail\n" + "Expected : " + data1 + "\nActual : " + data2;
         }
         return status;
-    }
-
-
-    private void loginVendorDashboard() throws IOException {
-        getVendorEmailCreadential();
-        Login login = new Login(driver);
-        login.signIn(username, password);
-        Menus menus = new Menus(driver);
-        ReadTableData readTableData = menus.clickVendorNewFiles();
     }
 }
