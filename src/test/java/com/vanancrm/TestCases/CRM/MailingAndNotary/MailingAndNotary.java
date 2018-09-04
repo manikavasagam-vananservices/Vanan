@@ -162,7 +162,6 @@ public class MailingAndNotary extends TestBase {
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         readMailingNotaryData();
         getEmailCreadential();
-        fileOutput = new FileOutputStream(file);
     }
 
     @AfterClass
