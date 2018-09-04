@@ -216,7 +216,7 @@ public class AllocatorDashboard extends AccessingElement {
             String srcLan, String tarLang) {
 
         waitForPageLoad(driver);
-        String elementPath = "//div[@id='order_lists_wrapper']/table/tbody/tr";
+        String elementPath = "//table[@id='order_lists_allocator']/tbody/tr";
         List<WebElement> elements = driver.findElements(By.xpath
                 (elementPath));
         List<String> datas = new ArrayList<>();

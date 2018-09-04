@@ -155,7 +155,7 @@ public class Vendor2 extends TestBase {
                     }
                 }
                 vendorDashBoard.clickCompleted();
-                temp = readTableData.getAllocatedCompletedDetails(fileNames.get(i),
+                temp = readTableData.getCompletedDetailsFromAllocator(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i,  temp, decimalFormat, false,"");
                 menus.clickSignOut();
@@ -165,7 +165,7 @@ public class Vendor2 extends TestBase {
                 menus = new Menus(driver);
                 menus.clickAllocatorDashboard();
                 menus.clickCompleted();
-                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
+                temp = readTableData.getAllocatorCompletedDetails(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i,  temp, decimalFormat, true,"Completed");
             } else if (actions.get(i).equalsIgnoreCase("Reject")) {
@@ -182,7 +182,7 @@ public class Vendor2 extends TestBase {
                 menus = new Menus(driver);
                 menus.clickAllocatorDashboard();
                 menus.clickReject();
-                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
+                temp = readTableData.getAllocatorCompletedDetails(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i, temp, decimalFormat, true, "Rejected");
             } else if (actions.get(i).equalsIgnoreCase("Cancel")) {
@@ -206,7 +206,7 @@ public class Vendor2 extends TestBase {
                 allocatorDashboard.enterCancelReason("Automation TEsting -  Cancel");
                 allocatorDashboard.clickCancelSubmitButton();
                 menus.clickCancelled();
-                temp = readTableData.getAllocatedDetailsFromAllocator(fileNames.get(i),
+                temp = readTableData.getAllocatorCompletedDetails(fileNames.get(i),
                         sourceLangs.get(i), targetLangs.get(i));
                 checkConditions(i, temp, decimalFormat, true, "Cancelled");
             }
@@ -231,7 +231,7 @@ public class Vendor2 extends TestBase {
 
     @AfterClass
     public void afterClass() {
-
+        screenshot(driver, "Vendor2.png");
         driver.quit();
     }
 
