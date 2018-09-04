@@ -174,6 +174,9 @@ public class Menus extends AccessingElement {
     @FindBy(xpath = "//*[@title='Email Conversation']")
     private WebElement emailConversation;
 
+    @FindBy(xpath = "//*[@title='Review']")
+    private WebElement reviewMenu;
+
     @FindBy(xpath = "//*[@title='Edit']")
     private WebElement editMenu;
 
@@ -204,11 +207,32 @@ public class Menus extends AccessingElement {
     @FindBy(xpath = "//button[@title='Add Ticket']")
     private WebElement addNewTicket;
 
+    @FindBy(id = "auto_MailNotary")
+    private WebElement mailingNotaryElement;
+
+    @FindBy(id = "auto_Pending")
+    private WebElement mailingNotaryPendingElement;
+
+    @FindBy(id = "auto_InProgress")
+    private WebElement mailingNotaryInprogressElement;
+
+    @FindBy(id = "auto_Delivered")
+    private WebElement mailingNotaryDeliveredElement;
+
     @FindBy(xpath = "//span[contains(text(), 'ALLOCATOR DASHBOARD')]")
     private WebElement allocatorDashboard;
 
     @FindBy(id = "auto_Allocator_Completed")
     private WebElement completedElement;
+
+    @FindBy(id = "auto_Allocator_Allocated")
+    private WebElement alloctedElement;
+
+    @FindBy(id = "auto_Allocator_Rejected")
+    private WebElement rejectElement;
+
+    @FindBy(id = "auto_Allocator_Cancelled")
+    private WebElement cancelElement;
 
     @FindBy(name = "search_mail")
     private WebElement searchTicketId;
@@ -221,16 +245,7 @@ public class Menus extends AccessingElement {
 
     @FindBy(id="quick-edit-btn")
     private WebElement submitButton;
-	
-    @FindBy(id = "auto_Allocator_Allocated")
-    private WebElement alloctedElement;
 
-    @FindBy(id = "auto_Allocator_Rejected")
-    private WebElement rejectElement;
-
-    @FindBy(id = "auto_Allocator_Cancelled")
-    private WebElement cancelElement;
-	
     public ReadTableData clickVendorAll() {
 
         waitForPageLoad(driver);
@@ -250,6 +265,10 @@ public class Menus extends AccessingElement {
     public ReadTableData clickVendorAccepted() {
 
         waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(driver.findElement(
+                By.id("auto_Allocator_Accepted"))).build();
+        mouseOverHome.perform();
         js.executeScript("$('#auto_Allocator_Accepted').click();");
         ReadTableData readTableData = new ReadTableData(driver);
         return readTableData;
@@ -372,6 +391,14 @@ public class Menus extends AccessingElement {
         clickElement(emailConversation);
         EmailConversation emailCon = new EmailConversation(driver);
         return emailCon;
+    }
+
+    public Review clickReview() {
+
+        waitForPageLoad(driver);
+        clickElement(reviewMenu);
+        Review review = new Review(driver);
+        return review;
     }
 
     public void clickView() {
@@ -521,33 +548,6 @@ public class Menus extends AccessingElement {
         js.executeScript("$('#auto_Allocator_Completed').click();");
     }
 
-    public void clickUnknownMail() {
-
-        clickElement(unknownMail);
-    }
-
-    public void clickAllProcess() {
-
-        clickElement(allprocess);
-    }
-
-    public void clickSignOut() {
-
-        waitForPageLoad(driver);
-        WebElement element = driver.findElement(By.className("user-image"));
-        element.click();
-        element = driver.findElement(By.linkText("Sign out"));
-        element.click();
-        waitForProcessCompletion(15);
-    }
-
-    public void waitForProcessCompletion(int waitTime) {
-        try {
-            TimeUnit.SECONDS.sleep(waitTime);
-        } catch (Exception e) {
-        }
-    }
-	
     public void clickAllocated() {
 
         waitForPageLoad(driver);
@@ -577,4 +577,75 @@ public class Menus extends AccessingElement {
     }
 
 
+    public void clickUnknownMail() {
+
+        clickElement(unknownMail);
+    }
+
+    public void clickAllProcess() {
+
+        clickElement(allprocess);
+    }
+
+    public void clickSignOut() {
+
+        waitForPageLoad(driver);
+        WebElement element = driver.findElement(By.className("user-image"));
+        element.click();
+        element = driver.findElement(By.linkText("Sign out"));
+        element.click();
+        waitForProcessCompletion(15);
+    }
+
+
+    public void clickMailingNotary() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(mailingNotaryElement).build();
+        clickElement(mailingNotaryElement);
+        //js.executeScript("$('#auto_MailNotary').click();");
+        mouseOverHome.perform();
+        waitForPageLoad(driver);
+    }
+
+    public void clickMailingNotaryPending() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(mailingNotaryPendingElement).build();
+        clickElement(mailingNotaryPendingElement);
+        //js.executeScript("$('#auto_Pending').click();");
+        mouseOverHome.perform();
+        waitForPageLoad(driver);
+    }
+
+    public void clickMailingNotaryInprogress() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(mailingNotaryInprogressElement).build();
+        clickElement(mailingNotaryInprogressElement);
+        //js.executeScript("$('#auto_InProgress').click();");
+        mouseOverHome.perform();
+        waitForPageLoad(driver);
+    }
+
+    public void clickMailingNotaryDelivered() {
+
+        waitForPageLoad(driver);
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(mailingNotaryDeliveredElement).build();
+        clickElement(mailingNotaryDeliveredElement);
+        //js.executeScript("$('#auto_Delivered').click();");
+        mouseOverHome.perform();
+        waitForPageLoad(driver);
+    }
+
+    public void waitForProcessCompletion(int waitTime) {
+        try {
+            TimeUnit.SECONDS.sleep(waitTime);
+        } catch (Exception e) {
+        }
+    }
 }

@@ -64,27 +64,49 @@ public class ViewTicketDetails extends AccessingElement {
 		return value;
 	}
 
-	public String getStaticTicketFieldValues(String field) {
-		List<WebElement> elements = driver
-				.findElements(By.xpath(allTicketStaticParentElement));
-		String value = "";
-		WebElement eachElement;
-		for (int i = 1; i <= elements.size(); i++) {
-			try {
-				eachElement = driver.findElement(By.xpath(
-						allTicketStaticParentElement + "[" + i + "]/label"));
-				// System.out.println(
-				// eachElement.getText() + "}}}}}}}}}}}}}}}}}}}}}}}}");
-				if (eachElement.getText().contains(field)) {
-					value = driver.findElement(By.xpath(
-							allTicketStaticParentElement + "[" + i + "]/div/p"))
-							.getText();
-					break;
-				}
-			} catch (Exception e) {
-				continue;
-				// TODO: handle exception
-			}
+
+    public String getEmailId() {
+        waitForPageLoad(driver);
+        WebElement element = driver.findElement(
+                By.xpath("//div[@class='form-group    email_div']/div[@class='col-sm-7 email_div']/p[@class='no-mouseflow']"));
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(element).build();
+        mouseOverHome.perform();
+        return element.getText();
+    }
+
+    public String getWebsite() {
+        waitForPageLoad(driver);
+
+        WebElement element= driver.findElement(
+                By.xpath("//div[@id='ajax-dynamic-form']/div[@class='form-group    '][7]/div/p"));
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(element).build();
+        mouseOverHome.perform();
+        return element.getText();
+    }
+
+    public String getStaticTicketFieldValues(String field) {
+        List<WebElement> elements = driver
+                .findElements(By.xpath(allTicketStaticParentElement));
+        String value = "";
+        WebElement eachElement;
+        for (int i = 1; i <= elements.size(); i++) {
+            try {
+                eachElement = driver.findElement(By.xpath(
+                        allTicketStaticParentElement + "[" + i + "]/label"));
+                // System.out.println(
+                // eachElement.getText() + "}}}}}}}}}}}}}}}}}}}}}}}}");
+                if (eachElement.getText().contains(field)) {
+                    value = driver.findElement(By.xpath(
+                            allTicketStaticParentElement + "[" + i + "]/div/p"))
+                            .getText();
+                    break;
+                }
+            } catch (Exception e) {
+                continue;
+                // TODO: handle exception
+            }
 
 		}
 		return value;
@@ -236,29 +258,7 @@ public class ViewTicketDetails extends AccessingElement {
 				By.xpath("//div[@class='form-group   comments ']/div/p"));
 
         return eachElement.getText();
-    	}
-	
-	public String getEmailId() {
-        waitForPageLoad(driver);
-        WebElement element = driver.findElement(
-                By.xpath("//div[@class='form-group    email_div']/div[@class='col-sm-7 email_div']/p[@class='no-mouseflow']"));
-        builder = new Actions(driver);
-        mouseOverHome = builder.moveToElement(element).build();
-        mouseOverHome.perform();
-        return element.getText();
-    	}
-	
-
-        public String getWebsite() {
-        waitForPageLoad(driver);
-
-        WebElement element= driver.findElement(
-                By.xpath("//div[@id='ajax-dynamic-form']/div[@class='form-group    '][7]/div/p"));
-        builder = new Actions(driver);
-        mouseOverHome = builder.moveToElement(element).build();
-        mouseOverHome.perform();
-        return element.getText();
-    	}
+    }
 
     public void waitForPageLoad() {
         waitTime();

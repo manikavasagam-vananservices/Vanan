@@ -34,6 +34,9 @@ public class FileUploadFromTicket extends AccessingElement {
     @FindBy(id = "filesubject")
     private WebElement fileSubjectElement;
 
+    @FindBy(name = "purpose_id")
+    private WebElement purposeElement;
+
     @FindBy(xpath = "//div[@class='audioLength']")
     private WebElement fileCompletedMsgElement;
 
@@ -105,6 +108,16 @@ public class FileUploadFromTicket extends AccessingElement {
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
         TimeUnit.SECONDS.sleep(10);
+    }
+
+
+    public void selectPurpose(String type) {
+
+        builder = new Actions(driver);
+        mouseOverHome = builder.moveToElement(purposeElement).build();
+        selectDropDown(purposeElement, type);
+        mouseOverHome.perform();
+
     }
 
     public void selectSuject(String option) {
