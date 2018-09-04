@@ -27,12 +27,11 @@ public class MailingAndNotary extends TestBase {
     private static String username = "";
     private static String password = "";
 
-    private String ticketID = "VS00345842";
+    private String ticketID = "";
 
     private String channel = "Quick Quote";
     private String comment = "Automation Testing";
-    private String mailId = "naveen@vananservices.com";
-    private String service = "Captioning";
+    private String service = "";
     private String status = "Mailing with Notary";
 
     private static List<String> fileNames = new ArrayList<String>();
@@ -40,9 +39,6 @@ public class MailingAndNotary extends TestBase {
     private static List<String> targetLangs = new ArrayList<String>();
     private static List<String> deliveryStatus = new ArrayList<String>();
 
-
-    private Edit edit;
-    private EmailConversation emailConversation;
     private Menus menus;
     private ReadTableData readTableData;
     private ViewTicketDetails viewTicketDetails;
@@ -50,7 +46,7 @@ public class MailingAndNotary extends TestBase {
     @Test
     public void testStep() throws IOException, InterruptedException, AWTException {
         ticketID = System.getProperty("ticketid");
-        channel =  System.getProperty("channel");
+        service = System.getProperty("service");
         driver.get("https://secure-dt.com/crm/user/login");
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
         driver.manage().addCookie(name);
@@ -64,15 +60,11 @@ public class MailingAndNotary extends TestBase {
         viewTicketDetails = readTableData.clickOldTableService(service,
                 (1));
 
-        if (
-            //viewTicketDetails.getRunTimeTicketFieldValues("Email")
-            //.contains(mailId) &&
-                viewTicketDetails
-                        .getRunTimeTicketFieldValues("Channel")
-                        .contains(channel)) {
+        if (viewTicketDetails.getRunTimeTicketFieldValues("Channel")
+            .contains(channel)) {
             System.out.println("Ticket ID: " + ticketID);
             delivery = menus.clickDelivery();
-            /*for(int i=0; i< fileNames.size(); i++) {
+            for(int i=0; i< fileNames.size(); i++) {
 
                 if(deliveryStatus.get(i).equals("Delivered")) {
 
@@ -89,7 +81,7 @@ public class MailingAndNotary extends TestBase {
             delivery.selectNotaryType(status);
             delivery.enterCustomerComments(comment);
             delivery.enterCustomerAddress("Vanan-"+comment);
-            delivery.clickPopupSubmitButton();*/
+            delivery.clickPopupSubmitButton();
             menus.clickMailingNotary();
             menus.clickMailingNotaryPending();
             MailingNotary mailingNotary = new MailingNotary(driver);
@@ -170,13 +162,13 @@ public class MailingAndNotary extends TestBase {
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         readMailingNotaryData();
         getEmailCreadential();
-        //fileOutput = new FileOutputStream(file);
+        fileOutput = new FileOutputStream(file);
     }
 
     @AfterClass
     public void afterClass() {
-
-        //driver.quit();
+        screenshot(driver, "Mailing and Notary");
+        driver.quit();
     }
 
     private static void getEmailCreadential() throws IOException {
@@ -207,21 +199,6 @@ public class MailingAndNotary extends TestBase {
             cell = sheet.getRow(i).getCell(3);
             deliveryStatus.add(cell.getStringCellValue());
         }
-    }
-
-    private String checkStatus(String data1, String data2, String message) {
-        String status;
-        System.out.println(message);
-        if (data1.toLowerCase().contains(data2.toLowerCase())) {
-            System.out.print(": Pass\n");
-            status = "Pass";
-        } else {
-            System.out.print(": Fail\n");
-            System.out.println("Expected : " + data1);
-            System.out.println("Actual : " + data2);
-            status = "Fail\n" + "Expected : " + data1 + "\nActual : " + data2;
-        }
-        return status;
     }
 
     private String getETAT() {

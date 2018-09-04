@@ -32,12 +32,10 @@ public class Review1 extends TestBase {
     private static String username = "";
     private static String password = "";
 
-    private String ticketID = "VS00345842";
-    private String allocationID = "345842";
+    private String ticketID = "";
+    private String allocationID = "";
     private String channel = "Quick Quote";
-    private String comment = "Automation Testing";
-    private String mailId = "naveen@vananservices.com";
-    private String service = "Captioning";
+    private String service = "";
 
     private static List<String> fileNames = new ArrayList<String>();
     private static List<String> fileTypes = new ArrayList<String>();
@@ -50,14 +48,16 @@ public class Review1 extends TestBase {
     private static List<String> vendorNames = new ArrayList<String>();
     private static List<String> allocationStatus = new ArrayList<String>();
 
-    private Edit edit;
-    private EmailConversation emailConversation;
     private Menus menus;
     private ReadTableData readTableData;
     private ViewTicketDetails viewTicketDetails;
 
     @Test
     public void testStep() throws IOException {
+	
+        ticketID = System.getProperty("ticketid");
+        service = System.getProperty("service");
+        allocationID = System.getProperty("allocationid");
 
         driver.get("https://secure-dt.com/crm/user/login");
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
@@ -76,13 +76,7 @@ public class Review1 extends TestBase {
         Sheet sheet1;
 
         double len = 0.00f;
-        //int min = 0;
-        String fileLength="";
-        if (
-            //viewTicketDetails.getRunTimeTicketFieldValues("Email")
-            //.contains(mailId) &&
-                viewTicketDetails
-                        .getRunTimeTicketFieldValues("Channel")
+        if (viewTicketDetails.getRunTimeTicketFieldValues("Channel")
                         .contains(channel)) {
             System.out.println("Ticket ID: " + ticketID);
             review = menus.clickReview();
@@ -205,7 +199,8 @@ public class Review1 extends TestBase {
     @AfterClass
     public void afterClass() {
 
-        //driver.quit();
+        screenshot(driver, "Review");
+        driver.quit();
     }
 
     private static void getEmailCreadential() throws IOException {
