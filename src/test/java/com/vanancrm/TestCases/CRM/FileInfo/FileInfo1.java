@@ -32,7 +32,7 @@ public class FileInfo1 extends TestBase {
 
     private String ticketID = "";
 
-    private String channel = "Quick Quote";
+    private String channel = "";
     private String comment = "Automation Testing";
     private String service = "";
 
@@ -54,8 +54,13 @@ public class FileInfo1 extends TestBase {
     public void testStep() throws IOException, InterruptedException, AWTException, ParseException {
         
         ticketID = System.getProperty("ticketid");
+        channel = System.getProperty("channel");
         service = System.getProperty("service");
-        driver.get("https://secure-dt.com/crm/user/login");
+        if (System.getProperty("live").toUpperCase().contains("YES")) {
+            driver.get(liveUrl);
+        } else {
+            driver.get(stagingUrl);
+        }
         Cookie name = new Cookie("TEST_MODE", "TEST_MODE");
         driver.manage().addCookie(name);
         Login login = new Login(driver);
@@ -275,7 +280,7 @@ public class FileInfo1 extends TestBase {
     @BeforeClass
     public void beforeClass() throws IOException {
 
-        System.setProperty("webdriver.chrome.driver", "/tmp/chromedriver");
+        System.setProperty("webdriver.chrome.driver", driverLocation);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("window-size=1900,1200");
         driver = new ChromeDriver(chromeOptions);
@@ -318,8 +323,12 @@ public class FileInfo1 extends TestBase {
 
     private static void getEmailCreadential() throws IOException {
 
-        FileReader fileReader = new FileReader(System.getProperty("user.dir")
-                + "/src/test/resources/CRM.txt");
+        FileReader fileReader;
+        if (System.getProperty("live").toUpperCase().contains("YES")) {
+            fileReader = new FileReader(liveAccess);
+        } else {
+            fileReader = new FileReader(stagingAccess);
+        }
         Properties properties = new Properties();
         properties.load(fileReader);
         username = properties.getProperty("MISNAME");
