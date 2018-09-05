@@ -42,19 +42,4 @@
             <version>2.20.1</version>
         </dependency>
     </dependencies>
-         <executions>  
-      <execution>  
-       <phase>test</phase>  
-       <goals>  
-        <goal>java</goal>  
-       </goals>  
-                <configuration>  
-        <mainClass>com.vanancrm.Task.sim</mainClass>  
-        <arguments>  
-         <argument>arg0</argument>  
-         <argument>arg1</argument>  
-        </arguments>  
-       </configuration>  
-      </execution>  
-     </executions>  
 </project>
