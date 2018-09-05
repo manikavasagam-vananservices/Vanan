@@ -321,7 +321,7 @@ public class FileInfo1 extends TestBase {
         }
     }
 
-    private static void getEmailCreadential() throws IOException {
+    private void getEmailCreadential() throws IOException {
 
         FileReader fileReader;
         if (System.getProperty("live").toUpperCase().contains("YES")) {
