@@ -26,6 +26,14 @@ import org.openqa.selenium.WebDriver;
 
 public class TestBase {
 	
+	public String liveUrl = "https://secure-dt.com/crm/user/login";
+	public String stagingUrl = "http://texasmutliservices.com/crm/user/login";
+	
+	public String liveAccess = System.getProperty("user.dir") + "/src/test/resources/CRM.txt";
+	public String stagingAccess = System.getProperty("user.dir") + "/src/test/resources/Staging.txt";
+	
+	public String driverLocation = "/tmp/chromedriver";
+	
 	public static File file;
 	public static FileInputStream fileInput;
 	public FileOutputStream fileOutput;
