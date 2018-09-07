@@ -69,8 +69,15 @@ public class FileInfo1 extends TestBase {
         readTableData = new ReadTableData(driver);
         menus.searchCustomerDetails(ticketID);
         viewTicketDetails = new ViewTicketDetails(driver);
-        viewTicketDetails = readTableData.clickOldTableService(service,
-                (1));
+        if(System.getProperty("old").toUpperCase().contains("YES")) {
+
+            viewTicketDetails = readTableData.clickOldTableService(service,
+                    (1));
+        } else {
+
+            viewTicketDetails = readTableData.clickNewTableService(service,
+                    (1));
+        }
         if (viewTicketDetails
                 .getRunTimeTicketFieldValues("Channel")
                 .contains(channel)) {

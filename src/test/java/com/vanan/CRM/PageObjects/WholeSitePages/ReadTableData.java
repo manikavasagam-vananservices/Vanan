@@ -588,6 +588,30 @@ public class ReadTableData extends AccessingElement {
 		return viewTicketDetails;
 	}
 
+    public ViewTicketDetails clickNewTableService(String serviceName, int row) {
+        WebElement service;
+
+        try {
+            waitForPageLoad();
+            service = driver.findElement(
+                    By.xpath("//div[@id='process_lists_wrapper']/table/tbody/tr["
+                            + row + "]/td[5]"));
+            if (service.getText().equals(serviceName)) {
+                if (isAlertPresent()) {
+                    Alert alert = driver.switchTo().alert();
+                    System.out.println(alert.getText());
+                    alert.accept();
+                }
+                service.click();
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        ViewTicketDetails viewTicketDetails = new ViewTicketDetails(driver);
+        return viewTicketDetails;
+    }
+
 	public void handleAlert() {
 
 		if (isAlertPresent()) {
