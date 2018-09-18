@@ -27,7 +27,7 @@ public class Transcription extends AccessingElement {
 	@FindBy(id = "minutes")
 	private WebElement minutes;
 
-	@FindBy(id = "srclang")
+	@FindBy(id = "srclangcombobox")
 	private WebElement sourceLang;
 
     @FindBy(id = "qttcode")
