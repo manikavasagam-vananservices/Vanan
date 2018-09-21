@@ -37,7 +37,7 @@ public class TranscriptionFreeTrialPage extends TestBase {
 
     private WebDriver driver;
 
-    private String[] languages = {"English (US)", "Apache"};
+    private String[] languages = {"English", "Apache"};
     private String service = "Transcription";
     private String channel = "Free Trial";
 
