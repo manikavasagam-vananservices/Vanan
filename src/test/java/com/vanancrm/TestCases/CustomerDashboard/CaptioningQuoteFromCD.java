@@ -45,7 +45,7 @@ public class CaptioningQuoteFromCD extends TestBase {
     private DashBoard dashBoard;
     private WebDriver driver;
 
-    private String[] sourceLanguages = {"English (US)", "Apache"};
+    private String[] sourceLanguages = {"English", "Apache"};
     private String[] targetLanguages = {"Spanish", "Afar"};
     private String[] fileTypes = {"Document", "Audio/Video"};
     private String service = "Captioning";
