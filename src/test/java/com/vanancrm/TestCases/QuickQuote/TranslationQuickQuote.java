@@ -40,7 +40,7 @@ public class TranslationQuickQuote extends TestBase {
 
     private String mp = "10";
 
-    private String[] sourcelanguages = {"English (US)", "Apache"};
+    private String[] sourcelanguages = {"English", "Apache"};
     private String[] targetlanguages = {"Spanish", "Afar"};
     private String[] fileTypes = {"Document", "Audio/Video"};
     private String mailId = "automation.vananservices@gmail.com";
