@@ -43,7 +43,7 @@ public class TypingQuoteFromCD extends TestBase {
 
     private WebDriver driver;
 
-    private String[] languages = {"English (US)", "Apache"};
+    private String[] languages = {"English", "Apache"};
     private String[] typeOfServices = {"Document", "Audio/Video"};
     private String[] formattings = {"Yes", "No", "Handwritten"};
     private String service = "Typing";
