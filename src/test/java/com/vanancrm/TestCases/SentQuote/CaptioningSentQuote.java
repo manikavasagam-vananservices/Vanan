@@ -41,7 +41,7 @@ public class CaptioningSentQuote extends TestBase {
     private ViewTicketDetails viewTicketDetails;
     private WebDriver driver;
 
-    private String[] sourceLanguages = {"English (US)", "Apache"};
+    private String[] sourceLanguages = {"English", "Apache"};
     private String[] targetLanguages = {"Spanish", "Afar"};
     private String service = "Captioning";
 
