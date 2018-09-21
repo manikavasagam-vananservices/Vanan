@@ -37,7 +37,7 @@ public class TranscriptionSentQuote extends TestBase {
 
     private WebDriver driver;
 
-    private String[] languages = {"English (US)", "Apache"};
+    private String[] languages = {"English", "Apache"};
     private String service = "Transcription";
     private String channel = "Upload";
 
