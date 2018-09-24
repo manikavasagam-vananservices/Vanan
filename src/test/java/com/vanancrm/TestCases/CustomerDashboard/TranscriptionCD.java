@@ -24,7 +24,7 @@ public class TranscriptionCD extends TestBase {
 
 
     public String ticketID = "";
-    private String language = "English (US)";
+    private String language = "English";
     private String service = "Transcription";
     private String mailId = "automation.vananservices@gmail.com";
     private String comments = "Automation Testing";
