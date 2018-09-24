@@ -151,8 +151,10 @@ public class Transcription extends AccessingElement {
 
 	public void selectLanguageFrom(String sourceLanguage) {
 		try {
-			selectDropDown(sourceLang, sourceLanguage);
-			driver.findElement(By.tagName("body")).click();
+			 WebElement element1 = driver.findElement(By.id("srclangcombobox"));
+                         element1.sendKeys(Keys.TAB);
+			//selectDropDown(sourceLang, sourceLanguage);
+			//driver.findElement(By.tagName("body")).click();
 		} catch (Exception e) {
 			System.out.println("Unable to select source language " + e);
 		}
