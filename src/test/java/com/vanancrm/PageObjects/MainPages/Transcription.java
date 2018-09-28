@@ -1,6 +1,8 @@
 package com.vanancrm.PageObjects.MainPages;
 
 import org.openqa.selenium.By;
+// as u missed to import the lib
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
