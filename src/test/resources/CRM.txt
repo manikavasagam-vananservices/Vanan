@@ -1,5 +1,5 @@
 USERNAME=Developer
-PASSWORD=devcrm2@rvr
+PASSWORD=devadmin@new
 SALESNAME=Sales-Test
 SALESPASSWORD=AhjkB(r#@1234
 ALLOCATORNAME=Allocator-Test
