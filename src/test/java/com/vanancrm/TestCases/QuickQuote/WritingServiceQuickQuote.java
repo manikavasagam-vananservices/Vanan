@@ -40,7 +40,7 @@ public class WritingServiceQuickQuote extends TestBase {
 
     private String[] academicLevel = {"Undergraduate", "PhD"};
     private String[] paperTypes = {"Dissertation abstract", "Problem solving"};
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Writing";
     private String channel = "Quick Quote";
     private String pages = "180";
