@@ -43,7 +43,7 @@ public class TranslationQuickQuote extends TestBase {
     private String[] sourcelanguages = {"English", "Apache"};
     private String[] targetlanguages = {"Spanish", "Afar"};
     private String[] fileTypes = {"Document", "Audio/Video"};
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Translation";
     private String channel = "Quick Quote";
 
