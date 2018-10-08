@@ -41,7 +41,7 @@ public class TranscriptionQuickQuote extends TestBase {
 
     private String[] languages = {"English", "Apache"};
     private String[] categorys = {"General", "Legal"};
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Transcription";
     private String channel = "Quick Quote";
 
