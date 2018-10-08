@@ -41,7 +41,7 @@ public class CDCRMflowChecking extends TestBase {
     private String channel = "Customer Dashboard";
     private String status = "Yes";
     private WebDriver driver;
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
 
     private String[] ticketStatus = {"In Progress", "Delivered"};
     private String comments = "Automation Testing";
