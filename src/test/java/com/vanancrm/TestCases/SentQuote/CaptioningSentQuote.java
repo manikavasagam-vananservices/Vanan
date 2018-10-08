@@ -45,7 +45,7 @@ public class CaptioningSentQuote extends TestBase {
     private String[] targetLanguages = {"Spanish", "Afar"};
     private String service = "Captioning";
 
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String lastName = "Auto";
     private String country = "India";
