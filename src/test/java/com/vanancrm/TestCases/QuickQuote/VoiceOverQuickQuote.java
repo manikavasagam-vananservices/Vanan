@@ -36,7 +36,7 @@ public class VoiceOverQuickQuote extends TestBase {
 
     private WebDriver driver;
 
-    private String phoneNumber = "1-88-535-5668";
+    private String phoneNumber = "1-888-535-5668";
 
     private String[] languages = {"English", "Apache"};
     private String[] ageGroups = {"Under 14", "26-35"};
