@@ -41,7 +41,7 @@ public class VoiceOverQuickQuote extends TestBase {
     private String[] languages = {"English", "Apache"};
     private String[] ageGroups = {"Under 14", "26-35"};
     private String[] genders = {"Male", "Female"};
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Voice Over";
     private String channel = "Quick Quote";
     private String wordCount = "180";
