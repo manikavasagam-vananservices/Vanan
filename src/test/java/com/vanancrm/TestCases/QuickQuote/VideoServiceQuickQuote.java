@@ -36,7 +36,7 @@ public class VideoServiceQuickQuote extends TestBase {
 
     private String service = "Video Services";
     private String customerName = "Automation";
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String country = "India";
     private String areaCode = "600058";
     private String phoneNumber = "1-888-535-5668";
