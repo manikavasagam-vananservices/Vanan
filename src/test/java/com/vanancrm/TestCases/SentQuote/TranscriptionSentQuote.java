@@ -41,7 +41,7 @@ public class TranscriptionSentQuote extends TestBase {
     private String service = "Transcription";
     private String channel = "Upload";
 
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String lastName = "Auto";
     private String country = "India";
