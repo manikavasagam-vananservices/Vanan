@@ -41,7 +41,7 @@ public class TypingQuickQuote extends TestBase {
     private String[] languages = {"English", "Apache"};
     private String[] categorys = {"General", "Legal"};
     private String[] fileTypes = {"Document", "Audio/Video"};
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Typing";
     private String channel = "Quick Quote";
     private String formatting = "Yes";
