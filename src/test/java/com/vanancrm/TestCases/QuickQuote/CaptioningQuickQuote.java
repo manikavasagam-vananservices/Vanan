@@ -42,7 +42,7 @@ public class CaptioningQuickQuote extends TestBase {
 
     private String[] languages = {"Spanish", "Apache"};
     private String[] formats = {"Standalone", "Embedded"};
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Captioning";
     private String channel = "Quick Quote";
     private String minutes = "180";
