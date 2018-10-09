@@ -51,7 +51,7 @@ public class CaptioningQuoteFromCD extends TestBase {
     private String service = "Captioning";
     private String serviceFrequency = "Monthly";
 
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String comments = "Automation Testing";
     private String status = "Yes";
     private String fileName = "AutomationTesting";
