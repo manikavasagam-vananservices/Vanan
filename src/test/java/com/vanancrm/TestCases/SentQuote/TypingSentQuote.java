@@ -44,7 +44,7 @@ public class TypingSentQuote extends TestBase {
 
     private String service = "Typing";
     private String channel = "Upload";
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String country = "India";
     private String phoneNumber = "1-888-535-5668";
