@@ -28,7 +28,7 @@ public class AllQuickQuote extends TestBase {
 	@Test
 	public void transcriptionServices() {
 
-		String mailId = "automation.vananservices@gmail.com";
+		String mailId = "automation@vananservices.com";
 		QuickQuote quickQuote = new QuickQuote(driver);
 		quickQuote.enterEmail(mailId);
 		quickQuote.enterMinutes("2");
