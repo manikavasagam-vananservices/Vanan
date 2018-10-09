@@ -43,7 +43,7 @@ public class TranslationFreeTrialPage extends TestBase {
     private String service = "Translation";
     private String channel = "Free Trial";
 
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String country = "India";
     private String phoneNumber = "1-888-535-5668";
