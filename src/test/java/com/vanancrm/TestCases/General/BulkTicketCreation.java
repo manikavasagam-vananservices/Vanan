@@ -29,9 +29,9 @@ public class BulkTicketCreation extends TestBase {
     private Transcription transcription;
     private String[] email = {"suganya@vananservices.com", "naveen@vananservices.com",
             "soundarganesh@vananservices.com", "vijayakumar@vananservices.com",
-            "rajkumar@vananservices.com", "rohini.r@vananservices.com",
-            "vinothkumar@vananservices.com", "veeravel@vananservices.com",
-            "kaviyarasu@vananservices.com", "muthulakshmi@vananservices.com"};
+            "rajkumar@vananservices.com",
+           "veeravel@vananservices.com",
+            "kaviyarasu@vananservices.com"};
     private String[] language = {"English", "Spanish", "Tamil"};
     private String service = "Transcription";
     private String[] channel = {"Request for Quote", "Direct Payment", "Email Quote"};
