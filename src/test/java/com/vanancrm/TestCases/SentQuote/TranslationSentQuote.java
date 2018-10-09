@@ -55,7 +55,7 @@ public class TranslationSentQuote extends TestBase {
     private String[] fileTypes = {"Document", "Audio/Video"};
     private String service = "Translation";
 
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String lastName = "Auto";
     private String country = "India";
