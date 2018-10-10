@@ -42,7 +42,7 @@ public class WritingService extends TestBase {
 
     private String[] academicLevel = {"Undergraduate", "PhD"};
     private String[] paperTypes = {"Dissertation abstract", "Problem solving"};
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Writing";
     private String channel = "";
     private String pages = "180";
