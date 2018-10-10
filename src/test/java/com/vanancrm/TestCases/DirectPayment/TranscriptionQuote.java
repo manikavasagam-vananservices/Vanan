@@ -49,7 +49,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     private String fileName = "AutomationTesting";
     private String fileExtention = ".mp3";
     private String minute = "180";
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String phoneNumber = "1-888-535-5668";
     private String service = "Transcription";
