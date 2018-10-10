@@ -55,7 +55,7 @@ public class VoiceoverQuote extends TestBase {
 
     private String comments = "Automation Testing";
     private String phoneNumber = "1-888-535-5668";
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String service = "Voice Over";
     private String name = "Automation";
     private String country = "India";
