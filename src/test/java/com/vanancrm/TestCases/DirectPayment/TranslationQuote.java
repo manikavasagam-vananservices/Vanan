@@ -63,7 +63,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     private String fileName = "";
     private String fileExtention = "";
     private String minute = "10";
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String phoneNumber = "1-888-535-5668";
     private String service = "Translation";
