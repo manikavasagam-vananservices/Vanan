@@ -33,7 +33,7 @@ public class TranscriptionQuoteFromCD extends TestBase {
 
     private String[] languages = {"English", "Apache"};
     private String service = "Transcription";
-    private String mailId = "automation.vananservices@gmail.com";
+    private String mailId = "automation@vananservices.com";
     private String comments = "Automation Testing";
     private String minute = "10";
     private String status = "Yes";
