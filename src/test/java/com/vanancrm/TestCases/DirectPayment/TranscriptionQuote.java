@@ -164,14 +164,6 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }
         }
         transcription.selectTimeCode(timeCode);
-         waitForProcessCompletion(10);
-
-       driver.findElement(By.id("dp_exit_email")).click();
-        driver.findElement(By.id("dp_exit_email")).sendKeys("automation@vananservices.com");
-        driver.findElement(By.id("privacy_policy_p_v")).click();
-        driver.findElement(By.xpath("//button[contains(@onclick,'capture_sc()')]")).click();
-        waitForProcessCompletion(15);
-        transcription.uploadFile(driver, fileName, fileExtention);
         waitForProcessCompletion(60);
         transcription.enterFileLength(minute);
         if (additionalQty) {
