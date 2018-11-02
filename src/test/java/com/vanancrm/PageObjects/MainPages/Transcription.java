@@ -509,7 +509,6 @@ public class Transcription extends AccessingElement {
 
     public void clickPrivacyPolicy() {
         try {
-            driver.findElement(By.id("minimize")).click();
             if (isElementDisplayed(privacyPolicy)) {
                 clickElement(privacyPolicy);
             }
