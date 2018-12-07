@@ -495,10 +495,11 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             if (tickets.get(i).contains(service)) {
 
                 waitForProcessCompletion(20);
-                 driver.findElement(By.id("view_btn")).click();
+                 
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
+                driver.findElement(By.id("view_btn")).click();
                 waitForProcessCompletion(20);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
