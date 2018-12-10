@@ -157,6 +157,8 @@ public class TypingQuickQuote extends TestBase {
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
                 waitForProcessCompletion(20);
+                driver.findElement(By.id("view_btn")).click();
+                waitForProcessCompletion(10);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
                 if (viewTicketDetails.getEmailId()
