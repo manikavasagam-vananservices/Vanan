@@ -150,13 +150,12 @@ public class WritingService extends TestBase {
             if (tickets.get(i).contains(service)) {
 
                 viewTicketDetails = new ViewTicketDetails(driver);
-                waitForProcessCompletion(20);
-                driver.findElement(By.id("view_btn")).click();
-                waitForProcessCompletion(10);
-                
+                waitForProcessCompletion(20);               
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
                 waitForProcessCompletion(20);
+                driver.findElement(By.id("view_btn")).click();
+                waitForProcessCompletion(10);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
                 if (viewTicketDetails.getEmailId()
