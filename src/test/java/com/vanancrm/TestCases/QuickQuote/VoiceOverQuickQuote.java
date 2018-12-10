@@ -9,6 +9,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -147,6 +148,8 @@ public class VoiceOverQuickQuote extends TestBase {
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
                 waitForProcessCompletion(20);
+                driver.findElement(By.id("view_btn")).click();
+                waitForProcessCompletion(10);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
                 if (viewTicketDetails.getEmailId()
