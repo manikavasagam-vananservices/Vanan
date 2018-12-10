@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import com.vanancrm.PageObjects.MainPages.WritingServices;
 
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -150,6 +151,9 @@ public class WritingService extends TestBase {
 
                 viewTicketDetails = new ViewTicketDetails(driver);
                 waitForProcessCompletion(20);
+                driver.findElement(By.id("view_btn")).click();
+                waitForProcessCompletion(10);
+                
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
                 waitForProcessCompletion(20);
