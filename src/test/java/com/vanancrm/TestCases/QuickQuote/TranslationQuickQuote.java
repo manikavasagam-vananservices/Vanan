@@ -90,6 +90,8 @@ public class TranslationQuickQuote extends TestBase {
 
         url = System.getProperty("website");
         driver.get(url);
+        driver.findElement(By.linkText("Services")).click();
+        driver.findElement(By.linkText("Translation Services")).click();
         QuickQuote quickQuote = new QuickQuote(driver);
         System.out.print("Mail id : " + mailId + ",\t");
         quickQuote.enterEmail(mailId);
