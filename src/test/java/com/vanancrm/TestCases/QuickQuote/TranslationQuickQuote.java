@@ -90,8 +90,14 @@ public class TranslationQuickQuote extends TestBase {
 
         url = System.getProperty("website");
         driver.get(url);
-        driver.findElement(By.linkText("Services")).click();
-        driver.findElement(By.linkText("Translation Services")).click();
+        
+        String currentUrls = driver.getCurrentUrl();
+        if (currentUrls.contains("clickfortranslation.com")) {
+            driver.findElement(By.linkText("Services")).click();
+            driver.findElement(By.linkText("Document Translation")).click();
+        } else {
+            System.out.println("vananservice url passed");
+
         QuickQuote quickQuote = new QuickQuote(driver);
         System.out.print("Mail id : " + mailId + ",\t");
         quickQuote.enterEmail(mailId);
@@ -101,7 +107,7 @@ public class TranslationQuickQuote extends TestBase {
         quickQuote.selectSourceLanguage(slanguage);
         System.out.print("Target Language : " + tlanguage);
         quickQuote.selectLanguageTo(tlanguage);
-
+        
         if(fileType.equals(fileTypes[0])) {
 
             quickQuote.enterPages(mp);
@@ -129,6 +135,7 @@ public class TranslationQuickQuote extends TestBase {
             System.out.println("\nAfter Quick quote form submit page is " +
                     "navigate into " + currentUrl + " and it fail");
         }
+    }
     }
 
     private void checkCRM(String slanguage, String tlanguage, String
