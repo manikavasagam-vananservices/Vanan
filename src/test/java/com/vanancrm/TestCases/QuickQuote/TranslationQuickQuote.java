@@ -95,6 +95,8 @@ public class TranslationQuickQuote extends TestBase {
         if (currentUrls.contains("clickfortranslation.com")) {
             driver.findElement(By.linkText("Services")).click();
             driver.findElement(By.linkText("Document Translation")).click();
+            waitForProcessCompletion(20);
+            clickGetquote(slanguage,tlanguage,fileType);
         } else {
             url = System.getProperty("website");
             driver.get(url);
