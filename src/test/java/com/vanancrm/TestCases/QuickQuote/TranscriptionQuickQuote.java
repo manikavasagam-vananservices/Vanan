@@ -106,8 +106,9 @@ public class TranscriptionQuickQuote extends TestBase {
             System.out.println("Accept button is pressed => Pass");
         } else {
             System.out.println("Accept button is not pressed => Fail");
-        }
+        }waitForProcessCompletion(5);
         quickQuote.clickPrivacyPolicy();
+        waitForProcessCompletion(5);
         quickQuote.clickGetQuote();
         waitForProcessCompletion(15);
         String currentUrl = driver.getCurrentUrl();
