@@ -90,6 +90,7 @@ public class TypingQuickQuote extends TestBase {
         url = System.getProperty("website");
         driver.get(url);
         QuickQuote quickQuote = new QuickQuote(driver);
+        waitForProcessCompletion(10);
         System.out.print("Mail id : " + mailId + ",\t");
         quickQuote.enterEmail(mailId);
         System.out.print("Language : " + language + ",\t");
