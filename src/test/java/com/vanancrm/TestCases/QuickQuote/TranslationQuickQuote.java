@@ -96,8 +96,16 @@ public class TranslationQuickQuote extends TestBase {
             driver.findElement(By.linkText("Services")).click();
             driver.findElement(By.linkText("Document Translation")).click();
         } else {
+            url = System.getProperty("website");
+            driver.get(url);
+            waitForProcessCompletion(10);
             System.out.println("vananservice url passed");
-
+            clickGetquote(slanguage,tlanguage,fileType);
+        }
+    }
+    
+     private void clickGetquote (String slanguage, String tlanguage, String
+        fileType){
         QuickQuote quickQuote = new QuickQuote(driver);
         System.out.print("Mail id : " + mailId + ",\t");
         quickQuote.enterEmail(mailId);
@@ -136,7 +144,7 @@ public class TranslationQuickQuote extends TestBase {
                     "navigate into " + currentUrl + " and it fail");
         }
     }
-    }
+    
 
     private void checkCRM(String slanguage, String tlanguage, String
         fileType) {
