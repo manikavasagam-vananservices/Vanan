@@ -159,7 +159,7 @@ public class Captioning extends AccessingElement {
                 }
             }
 			//selectDropDown(sourceLanguageElement, sourceLanguage);
-			driver.findElement(By.tagName("body")).click();
+			//driver.findElement(By.tagName("body")).click();
 		} catch (Exception e) {
 			System.out.println("Unable to select source language " + e);
 		}
