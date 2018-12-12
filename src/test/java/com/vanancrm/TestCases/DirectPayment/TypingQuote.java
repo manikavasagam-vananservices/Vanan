@@ -469,7 +469,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
                                    String second) {
 
         System.out.print(message + " : " + second);
-        if ((first.replace("$", "")).contains(second)) {
+        if ((first.replace("", "")).contains(second)) {
 
             System.out.print("\t Status : Pass\n");
         } else {
