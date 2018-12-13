@@ -190,7 +190,7 @@ public class Typing extends AccessingElement {
 
         try {
             selectDropDown(mailCountryElement, country);
-            driver.findElement(By.tagName("body")).click();
+         //   driver.findElement(By.tagName("body")).click();
 
             driver.findElement(By.id("paytc_mailaddress")).sendKeys(address);
         } catch (Exception e) {
