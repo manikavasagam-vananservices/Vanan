@@ -189,7 +189,7 @@ public class FreeTrailPage extends AccessingElement {
     public void selectLanguageTo(String targetLanguage) {
         try {
             selectDropDown(tlanguage, targetLanguage);
-            driver.findElement(By.tagName("body")).click();
+            //driver.findElement(By.tagName("body")).click();
         } catch (Exception e) {
             System.out.println("Unable to select target language " + e);
         }
