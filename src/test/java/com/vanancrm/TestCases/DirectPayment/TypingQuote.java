@@ -430,8 +430,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
                 waitForProcessCompletion(20);
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
-                        (i + 1));   
-                waitForProcessCompletion(20);
+                        (i + 1));  
                 driver.findElement(By.id("view_btn")).click();
                 waitForProcessCompletion(10);
                 System.out.println("Channel " + viewTicketDetails
