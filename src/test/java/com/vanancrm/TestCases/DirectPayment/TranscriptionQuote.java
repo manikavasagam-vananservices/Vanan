@@ -166,6 +166,9 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
         }
         transcription.selectTimeCode(timeCode);
         waitForProcessCompletion(2);
+         driver.findElement(By.id("dp_exit_email")).sendKeys(mailId);
+        driver.findElement(By.id("privacy_policy_p_v")).click();
+        driver.findElement(By.xpath("//button[contains(@onclick,'capture_sc()')]")).click();
         if (additionalQty) {
             transcription.selectAdditionalQtyCheck(1);
         }
