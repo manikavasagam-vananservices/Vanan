@@ -165,6 +165,8 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }
         }
         transcription.selectTimeCode(timeCode);
+        waitForProcessCompletion(10);
+        transcription.uploadFile(driver, fileName, fileExtention);
         waitForProcessCompletion(90);
         transcription.enterFileLength(minute);
         if (additionalQty) {
