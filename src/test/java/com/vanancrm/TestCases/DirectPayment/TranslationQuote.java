@@ -176,7 +176,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             translation.selectAdditionalQtyCheck(1);
         }
                  
-       /* if (fileType.equals(fileTypes[0])) {
+         if (fileType.equals(fileTypes[0])) {
             translation.selectFreeTrail();
         }
          translation.selectRequestMailCopy(country, address);
@@ -190,11 +190,11 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             translation.uploadFile(driver, fileName, fileExtention);
         }
 
-        waitForProcessCompletion(20);
+        waitForProcessCompletion(50);
         if(fileType.equals(fileTypes[1])) {
             translation.enterFileLength(minute);
         }
-         */
+         
         translation.enterComments(comment);
         translation.emailId(mailId);
 
