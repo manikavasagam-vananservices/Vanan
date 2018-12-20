@@ -179,11 +179,14 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         if (fileType.equals(fileTypes[0])) {
             translation.selectFreeTrail();
         }
+         translation.selectRequestMailCopy(country, address);
+                
+        waitForProcessCompletion(20);
         driver.findElement(By.id("dp_exit_email")).sendKeys("automation@vananservices.com");
         driver.findElement(By.id("privacy_policy_p_v")).click();
         driver.findElement(By.xpath("//button[contains(@onclick,'capture_sc()')]")).click();
 
-        translation.selectRequestMailCopy(country, address);
+        
         fileName = "AutomationTesting";
         if (fileType.equals(fileTypes[0])) {
             fileExtention = ".txt";
