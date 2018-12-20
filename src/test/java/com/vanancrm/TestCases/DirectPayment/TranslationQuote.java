@@ -190,10 +190,11 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             translation.uploadFile(driver, fileName, fileExtention);
         }
 
-        waitForProcessCompletion(50);
+        waitForProcessCompletion(20);
         if(fileType.equals(fileTypes[1])) {
             translation.enterFileLength(minute);
         }
+                
         translation.enterComments(comment);
         translation.emailId(mailId);
 
