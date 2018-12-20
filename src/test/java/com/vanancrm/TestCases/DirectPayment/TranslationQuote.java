@@ -172,7 +172,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             translation.selectNotarization();
         }
 
-        if (additionalQty) {
+        /*if (additionalQty) {
             translation.selectAdditionalQtyCheck(1);
         }
                  
@@ -195,7 +195,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             translation.enterFileLength(minute);
         }
          
-        translation.enterComments(comment);
+        translation.enterComments(comment);*/
         translation.emailId(mailId);
 
         if (tat) {
