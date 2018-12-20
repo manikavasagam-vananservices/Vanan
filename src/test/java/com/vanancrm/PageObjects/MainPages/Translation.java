@@ -380,7 +380,8 @@ public class Translation extends AccessingElement {
 
         try {
             selectDropDown(mailCountry, country);
-            driver.findElement(By.tagName("body")).click();
+            //driver.findElement(By.tagName("body")).click();
+		driver.findElement(By.id("quote_summary")).click();
             driver.findElement(By.id("paytc_mailaddress")).clear();
             driver.findElement(By.id("paytc_mailaddress")).sendKeys(address);
         } catch (Exception e) {
