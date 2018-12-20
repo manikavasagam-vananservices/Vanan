@@ -14,6 +14,7 @@ import com.vanancrm.Common.TranslationPrice;
 import com.vanancrm.PageObjects.MainPages.Translation;
 
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -178,6 +179,9 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         if (fileType.equals(fileTypes[0])) {
             translation.selectFreeTrail();
         }
+        driver.findElement(By.id("dp_exit_email")).sendKeys("automation@vananservices.com");
+        driver.findElement(By.id("privacy_policy_p_v")).click();
+        driver.findElement(By.xpath("//button[contains(@onclick,'capture_sc()')]")).click();
 
         translation.selectRequestMailCopy(country, address);
         fileName = "AutomationTesting";
