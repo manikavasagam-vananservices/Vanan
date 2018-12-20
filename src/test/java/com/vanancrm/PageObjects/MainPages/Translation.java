@@ -124,7 +124,7 @@ public class Translation extends AccessingElement {
     public void selectFileType(String fileType) {
         try {
             selectDropDown(selectFileTypeElement, fileType);
-            driver.findElement(By.tagName("body")).click();
+           // driver.findElement(By.tagName("body")).click();
         } catch (Exception e) {
             System.out.println("Unable to select file type " + e);
         }
