@@ -418,6 +418,8 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
                 waitForProcessCompletion(20);
+                 driver.findElement(By.id("view_btn")).click();
+                waitForProcessCompletion(10);
 
                 if (viewTicketDetails.getEmailId()
                         .contains(mailId) && viewTicketDetails
