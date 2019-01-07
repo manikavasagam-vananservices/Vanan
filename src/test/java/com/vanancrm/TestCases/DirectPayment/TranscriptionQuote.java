@@ -755,11 +755,11 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     }
 
     private void testScenario(String language, String category, String
-            timeCode, boolean addtionalQty, boolean tat, boolean basicPrice,
+            timeCode,String speaker,boolean addtionalQty, boolean tat, boolean basicPrice,
             String channel, boolean offer) throws AWTException,
             InterruptedException, IOException {
 
-        raiseTicket(language, category, timeCode, addtionalQty, tat,
+        raiseTicket(language, category, timeCode,speaker, addtionalQty, tat,
                 basicPrice, offer, channel);
         getCRMCreadential();
         checkCRM(language, category, channel, timeCode, addtionalQty, tat,
