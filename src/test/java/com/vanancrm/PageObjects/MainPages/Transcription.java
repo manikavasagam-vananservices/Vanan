@@ -94,6 +94,9 @@ public class Transcription extends AccessingElement {
 
 	@FindBy(xpath = "//i[@class='fa fa-check-circle']")
 	private WebElement additionalQtyIcon;
+	
+	  @FindBy(id = "speakercnt")
+	private  WebElement Speakercount;
 
     @FindBy(xpath = "//i[@class='fa fa-tags']")
     private WebElement freeTrailIcon;
@@ -177,6 +180,16 @@ public class Transcription extends AccessingElement {
             System.out.println("Unable to select time code " + e);
         }
     }
+	
+	 public  void selectSpeakercount(String speaker){
+    	try{
+    		selectDropDown(Speakercount,speaker);
+			driver.findElement(By.tagName("body")).click();
+		}catch (Exception e){
+    		System.out.println("unable to select speaker count");
+		}
+	}
+
 
     public void selectFreeTrail() {
         if (!driver.findElement(By.id("ft1"))
