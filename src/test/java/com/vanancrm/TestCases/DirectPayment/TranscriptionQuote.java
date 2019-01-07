@@ -139,7 +139,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
         driver.quit();
     }
 
-    private void raiseTicket(String language, String category, String timeCode,
+    private void raiseTicket(String language, String category, String timeCode,String speaker,
             boolean additionalQty, boolean tat, boolean basicPrice, boolean
             offer, String channel) throws AWTException, InterruptedException, IOException {
 
@@ -165,6 +165,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }
         }
         transcription.selectTimeCode(timeCode);
+        transcription.selectSpeakercount(speaker);  
         waitForProcessCompletion(2);
         // driver.findElement(By.id("dp_exit_email")).sendKeys(mailId);
     //    driver.findElement(By.id("privacy_policy_p_v")).click();
