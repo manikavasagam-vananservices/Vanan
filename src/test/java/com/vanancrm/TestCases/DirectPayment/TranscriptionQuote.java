@@ -139,7 +139,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
         driver.quit();
     }
 
-    private void raiseTicket(String language, String category, String timeCode,String speaker,
+    private void raiseTicket(String language, String category, String timeCode,
             boolean additionalQty, boolean tat, boolean basicPrice, boolean
             offer, String channel) throws AWTException, InterruptedException, IOException {
 
@@ -165,7 +165,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }
         }
         transcription.selectTimeCode(timeCode);
-        transcription.selectSpeakercount(speaker);  
+       // transcription.selectSpeakercount(speaker);  
         waitForProcessCompletion(2);
         // driver.findElement(By.id("dp_exit_email")).sendKeys(mailId);
     //    driver.findElement(By.id("privacy_policy_p_v")).click();
@@ -755,11 +755,11 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     }
 
     private void testScenario(String language, String category, String
-            timeCode,String speaker,boolean addtionalQty, boolean tat, boolean basicPrice,
+            timeCode,boolean addtionalQty, boolean tat, boolean basicPrice,
             String channel, boolean offer) throws AWTException,
             InterruptedException, IOException {
 
-        raiseTicket(language, category, timeCode,speaker, addtionalQty, tat,
+        raiseTicket(language, category, timeCode, addtionalQty, tat,
                 basicPrice, offer, channel);
         getCRMCreadential();
         checkCRM(language, category, channel, timeCode, addtionalQty, tat,
