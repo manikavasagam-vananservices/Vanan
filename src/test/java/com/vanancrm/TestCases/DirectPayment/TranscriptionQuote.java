@@ -145,6 +145,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
 
         driver.get(url);
         Transcription transcription = new Transcription(driver);
+        transcription.clickPersonal();
         transcription.enterMinutes(minute);
         transcription.selectLanguageFrom(language);
         if (language.equals(languages[0]) || language.equals(languages[2])) {
