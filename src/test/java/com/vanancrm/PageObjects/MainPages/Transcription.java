@@ -126,6 +126,20 @@ public class Transcription extends AccessingElement {
             System.out.println("Unable to enter a hour value " + e);
         }
     }
+	
+	 public void clickPersonal(){
+        try {
+
+            if (driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Personal']")).isEnabled())
+                driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Personal']")).click();
+            {
+                System.out.println("Business is  clicked");
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click Personal" + e);
+        }
+    }
+
 
     public void enterFileLength(String length) {
         try {
