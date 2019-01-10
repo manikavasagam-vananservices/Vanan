@@ -114,7 +114,7 @@ public class Translation extends AccessingElement {
     @FindBy(id = "durationnewpay-0")
     private WebElement fileLength;
 	
-    public void clickPersonal(){
+    public void clickBusiness(){
         try {
 
             if (driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Business']")).isEnabled())
