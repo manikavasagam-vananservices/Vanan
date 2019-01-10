@@ -158,6 +158,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
 
         driver.get(url);
         Translation translation = new Translation(driver);
+        translation.clickBusiness();
         translation.selectFileType(fileType);
         if (fileType.equals(fileTypes[1])) {
             translation.minutes(minute);
