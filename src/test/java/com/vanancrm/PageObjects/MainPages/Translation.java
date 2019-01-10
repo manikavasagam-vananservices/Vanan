@@ -113,6 +113,19 @@ public class Translation extends AccessingElement {
 
     @FindBy(id = "durationnewpay-0")
     private WebElement fileLength;
+	
+    public void clickPersonal(){
+        try {
+
+            if (driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Business']")).isEnabled())
+                driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Business']")).click();
+            {
+                System.out.println("Business Purpose");
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to click Business" + e);
+        }
+    }
 
     public Translation(WebDriver driver) {
 
