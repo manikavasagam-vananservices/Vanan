@@ -127,19 +127,18 @@ public class Transcription extends AccessingElement {
         }
     }
 	
-	 public void clickPersonal(){
+	   public void clickPersonal(){
         try {
 
             if (driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Personal']")).isEnabled())
                 driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Personal']")).click();
             {
-                System.out.println("Business is  clicked");
+                System.out.println("Personal is  clicked");
             }
         } catch (Exception e) {
-            System.out.println("Unable to click Personal" + e);
+            System.out.println("Unable to click Business" + e);
         }
     }
-
 
     public void enterFileLength(String length) {
         try {
