@@ -58,7 +58,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     // 3 represents Tier 5
     private int[] tiers = {0, 1, 3};
     private String address = "Vanan";
-    private String country = "United States";
+    private String country = "Alaska";
     private String comment = "Automation Testing";
 
     private String fileName = "";
