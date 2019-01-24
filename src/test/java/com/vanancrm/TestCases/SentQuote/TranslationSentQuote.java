@@ -58,7 +58,7 @@ public class TranslationSentQuote extends TestBase {
     private String mailId = "automation@vananservices.com";
     private String name = "Automation";
     private String lastName = "Auto";
-    private String country = "India";
+    private String country = "Alabama";
     private String phoneNumber = "1-888-535-5668";
     private String comments = "Automation Testing";
     private String status = "Yes";
