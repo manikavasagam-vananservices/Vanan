@@ -90,7 +90,7 @@ public class Translation extends AccessingElement {
     @FindBy(id = "catetype")
     private WebElement categoryElement;
 
-    @FindBy(id = "mailcountry")
+    @FindBy(id = "mailstate")
     private WebElement mailCountry;
 
     @FindBy(id = "filecomments")
