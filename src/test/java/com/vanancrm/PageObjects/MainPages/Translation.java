@@ -91,7 +91,7 @@ public class Translation extends AccessingElement {
     private WebElement categoryElement;
 
     @FindBy(id = "mailstate")
-    private WebElement mailCountry;
+    private WebElement mailState;
 
     @FindBy(id = "filecomments")
     private WebElement fileCommentElement;
@@ -378,7 +378,7 @@ public class Translation extends AccessingElement {
 		clickElement(driver.findElement(By.id("certlang")));
 	}
 
-    public void selectRequestMailCopy(String country, String address) {
+    public void selectRequestMailCopy(String state, String address) {
 
         if (!driver.findElement(By.id("mailfilecrmpay1"))
                 .isSelected()) {
@@ -392,13 +392,13 @@ public class Translation extends AccessingElement {
         }
 
         try {
-            selectDropDown(mailCountry, country);
+            selectDropDown(mailState, state);
             //driver.findElement(By.tagName("body")).click();
 		driver.findElement(By.id("quote_summary")).click();
             driver.findElement(By.id("paytc_mailaddress")).clear();
             driver.findElement(By.id("paytc_mailaddress")).sendKeys(address);
         } catch (Exception e) {
-            System.out.println("Unable to select mail country " + e);
+            System.out.println("Unable to select mail state " + e);
         }
     }
 
