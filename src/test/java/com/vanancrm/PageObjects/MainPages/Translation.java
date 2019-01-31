@@ -144,7 +144,7 @@ public class Translation extends AccessingElement {
 
     }
 
-    public void enterDocumentType(String dname) {
+    public void enterDocumentType(String fileType) {
         try {
               // enterTestBoxValues(documentElement, dname);
 	    WebElement element = driver.findElement(By.id("sourcefiletype-selectized"));
@@ -200,7 +200,7 @@ public class Translation extends AccessingElement {
         return status;
     }
 
-	public void selectSourceLanguageFrom(String selectLanguage) {
+	public void selectSourceLanguageFrom(String sourceLanguage) {
 	    WebElement element = driver.findElement(By.id("srclang-selectized"));
             element.sendKeys(sourceLanguage);
             element.sendKeys(Keys.RETURN);
