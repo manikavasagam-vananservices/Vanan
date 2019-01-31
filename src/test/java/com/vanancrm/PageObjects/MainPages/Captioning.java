@@ -15,10 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -146,7 +143,10 @@ public class Captioning extends AccessingElement {
 
 	public void selectSourceLanguage(String sourceLanguage) {
 		try {
-            builder = new Actions(driver);
+	    WebElement element = driver.findElement(By.id("srclang-selectized"));
+            element.sendKeys(sourceLanguage);
+            element.sendKeys(Keys.RETURN);
+            /*builder = new Actions(driver);
             mouseOverHome = builder.moveToElement(sourceLanguageElement).build();
             mouseOverHome.perform();
             clickElement(sourceLanguageElement);
@@ -157,7 +157,7 @@ public class Captioning extends AccessingElement {
                     element.click();
                     break;
                 }
-            }
+            }*/
 			//selectDropDown(sourceLanguageElement, sourceLanguage);
 			//driver.findElement(By.tagName("body")).click();
 		} catch (Exception e) {
@@ -167,7 +167,10 @@ public class Captioning extends AccessingElement {
 
 	public void selectTargetLanguage(String targetLanguage) {
 		try {
-            builder = new Actions(driver);
+	    WebElement element = driver.findElement(By.id("trglang-selectized"));
+            element.sendKeys(targetLanguage);
+            element.sendKeys(Keys.RETURN);
+            /*builder = new Actions(driver);
             mouseOverHome = builder.moveToElement(sourceLanguageElement).build();
             mouseOverHome.perform();
             clickElement(targetLanguageElement);
@@ -179,7 +182,7 @@ public class Captioning extends AccessingElement {
                     element.click();
                     break;
                 }
-            }
+            }*/
 			/*selectDropDown(targetLanguageElement, targetLanguage);
 			driver.findElement(By.tagName("body")).click();*/
 		} catch (Exception e) {
