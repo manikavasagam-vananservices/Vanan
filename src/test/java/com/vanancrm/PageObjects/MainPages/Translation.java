@@ -15,7 +15,7 @@ import java.util.Random;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -146,8 +146,10 @@ public class Translation extends AccessingElement {
 
     public void enterDocumentType(String dname) {
         try {
-               enterTestBoxValues(documentElement, dname);
-
+              // enterTestBoxValues(documentElement, dname);
+	    WebElement element = driver.findElement(By.id("sourcefiletype-selectized"));
+            element.sendKeys(fileType);
+            element.sendKeys(Keys.RETURN);
         } catch (Exception e) {
             System.out.println("Unable to enter a document type value " + e);
         }
@@ -199,14 +201,19 @@ public class Translation extends AccessingElement {
     }
 
 	public void selectSourceLanguageFrom(String selectLanguage) {
-
-		selectDropDown(selectSourceLanguageFromElement, selectLanguage);
+	    WebElement element = driver.findElement(By.id("srclang-selectized"));
+            element.sendKeys(sourceLanguage);
+            element.sendKeys(Keys.RETURN);
+		//selectDropDown(selectSourceLanguageFromElement, selectLanguage);
 	}
 
 	public void selectLanguageFrom(String sourceLanguage) {
 		try {
-			selectDropDown(selectSourceLanguageFromElement, sourceLanguage);
-			driver.findElement(By.tagName("body")).click();
+			/*selectDropDown(selectSourceLanguageFromElement, sourceLanguage);
+			driver.findElement(By.tagName("body")).click();*/
+	    WebElement element = driver.findElement(By.id("srclang-selectized"));
+            element.sendKeys(sourceLanguage);
+            element.sendKeys(Keys.RETURN);
 		} catch (Exception e) {
 			System.out.println("Unable to select source language " + e);
 		}
@@ -238,8 +245,11 @@ public class Translation extends AccessingElement {
 
 	public void selectLanguageTo(String targetLanguage) {
 		try {
-			selectDropDown(selectSourceLanguageToElement, targetLanguage);
-			driver.findElement(By.tagName("body")).click();
+	    WebElement element = driver.findElement(By.id("trglang-selectized"));
+            element.sendKeys(targetLanguage);
+            element.sendKeys(Keys.RETURN);
+			/*selectDropDown(selectSourceLanguageToElement, targetLanguage);
+			driver.findElement(By.tagName("body")).click();*/
 		} catch (Exception e) {
 			System.out.println("Unable to select target language " + e);
 		}
