@@ -280,7 +280,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             AdditionalInformation additionalInformation = new AdditionalInformation
                     (driver);
             additionalInformation.enterCustomerName(name);
-            additionalInformation.selectState(country);
+            additionalInformation.selectCountry(country);
             additionalInformation.enterPhoneNumber(phoneNumber);
             additionalInformation.selectServiceType(serviceType);
             //additionalInformation.selectAdditionalServices(additionalService);
