@@ -58,7 +58,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     // 3 represents Tier 5
     private int[] tiers = {0, 1, 3};
     private String address = "Vanan";
-    private String state = "Alaska";
+    private String country = "Alaska";
     private String comment = "Automation Testing";
 
     private String fileName = "";
@@ -180,7 +180,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
          if (fileType.equals(fileTypes[0])) {
             translation.selectFreeTrail();
         }
-         translation.selectRequestMailCopy(state, address);
+         translation.selectRequestMailCopy(country, address);
                 
         fileName = "AutomationTesting";
         if (fileType.equals(fileTypes[0])) {
@@ -280,7 +280,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             AdditionalInformation additionalInformation = new AdditionalInformation
                     (driver);
             additionalInformation.enterCustomerName(name);
-            additionalInformation.selectState(state);
+            additionalInformation.selectState(country);
             additionalInformation.enterPhoneNumber(phoneNumber);
             additionalInformation.selectServiceType(serviceType);
             //additionalInformation.selectAdditionalServices(additionalService);
@@ -631,10 +631,10 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                             ("Additional quality check", false),
                     "Yes");
 
-            evaluateCondition("Mailing state",
+            evaluateCondition("Mailing country",
                     emailConversation.getTicketValuesFromPayment
-                            ("Mailing state", false),
-                    state);
+                            ("Mailing country", false),
+                    country);
             evaluateCondition("Physical address",
                     emailConversation.getTicketValuesFromPayment
                             ("Physical address", false),
