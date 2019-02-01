@@ -399,8 +399,12 @@ public class Translation extends AccessingElement {
         }
 
         try {
-            selectDropDown(mailState, country);
+         //   selectDropDown(mailState, country);
             //driver.findElement(By.tagName("body")).click();
+		 WebElement element = driver.findElement(By.id("mailstate-selectized"));
+            element.sendKeys(country);
+            element.sendKeys(Keys.RETURN);
+		
 		driver.findElement(By.id("quote_summary")).click();
             driver.findElement(By.id("paytc_mailaddress")).clear();
             driver.findElement(By.id("paytc_mailaddress")).sendKeys(address);
