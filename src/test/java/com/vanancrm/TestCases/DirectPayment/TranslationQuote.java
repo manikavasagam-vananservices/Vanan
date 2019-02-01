@@ -59,6 +59,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     private int[] tiers = {0, 1, 3};
     private String address = "Vanan";
     private String country = "Alaska";
+  //  private String UScountry = "United States";
     private String comment = "Automation Testing";
 
     private String fileName = "";
@@ -280,7 +281,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             AdditionalInformation additionalInformation = new AdditionalInformation
                     (driver);
             additionalInformation.enterCustomerName(name);
-            additionalInformation.selectCountry(country);
+          //  additionalInformation.selectCountry(UScountry);
             additionalInformation.enterPhoneNumber(phoneNumber);
             additionalInformation.selectServiceType(serviceType);
             //additionalInformation.selectAdditionalServices(additionalService);
