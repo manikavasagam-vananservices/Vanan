@@ -180,7 +180,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
          if (fileType.equals(fileTypes[0])) {
             translation.selectFreeTrail();
         }
-       //  translation.selectRequestMailCopy(country, address);
+         translation.selectRequestMailCopy(country, address);
                 
         fileName = "AutomationTesting";
         if (fileType.equals(fileTypes[0])) {
