@@ -134,14 +134,11 @@ public class Translation extends AccessingElement {
         js = (JavascriptExecutor) driver;
     }
 
-    public void selectFileType(String fileType) {
-        try {
-            selectDropDown(selectFileTypeElement, fileType);
-           // driver.findElement(By.tagName("body")).click();
-        } catch (Exception e) {
-            System.out.println("Unable to select file type " + e);
-        }
+     public void selectFileType(String fileType) {
 
+        WebElement element = driver.findElement(By.id("sourcefiletype-selectized"));
+        element.sendKeys(fileType);
+        element.sendKeys(Keys.RETURN);
     }
 
     public void enterDocumentType(String fileType) {
