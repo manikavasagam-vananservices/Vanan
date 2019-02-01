@@ -270,13 +270,14 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             transcription.clickEmailMeGetQuote();
         }
 
-        waitForProcessCompletion(15);
+        waitForProcessCompletion(30);
         String currentUrl = driver.getCurrentUrl();
         if (!channel.equals(channels[1])) {
 
             checkCondition(currentUrl, "additional-information.php");
             AdditionalInformation additionalInformation = new AdditionalInformation
                     (driver);
+            waitForProcessCompletion(5);
             additionalInformation.enterCustomerName(name);
             additionalInformation.selectCountry(country);
             additionalInformation.enterPhoneNumber(phoneNumber);
