@@ -266,7 +266,9 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             } else {
                 System.out.println("Fail");
             }*/
+            waitForProcessCompletion(10);
             transcription.clickPrivacyPolicy();
+            waitForProcessCompletion(10);
             transcription.clickEmailMeGetQuote();
         }
 
