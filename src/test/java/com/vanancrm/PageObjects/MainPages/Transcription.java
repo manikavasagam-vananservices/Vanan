@@ -95,8 +95,8 @@ public class Transcription extends AccessingElement {
 	@FindBy(xpath = "//i[@class='fa fa-check-circle']")
 	private WebElement additionalQtyIcon;
 	
-	  //@FindBy(id = "speakercnt")
-	//private  WebElement Speakercount;
+	  @FindBy(id = "speakercnt")
+	private  WebElement Speakercount;
 
     @FindBy(xpath = "//i[@class='fa fa-tags']")
     private WebElement freeTrailIcon;
