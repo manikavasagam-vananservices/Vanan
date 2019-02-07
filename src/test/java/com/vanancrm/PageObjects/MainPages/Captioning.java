@@ -213,8 +213,8 @@ public class Captioning extends AccessingElement {
 
     public void selectSpecificationPay(String specificPay) {
         try {
-            builder = new Actions(driver);
-            mouseOverHome = builder.moveToElement(sourceLanguageElement).build();
+         /* builder = new Actions(driver);
+          mouseOverHome = builder.moveToElement(sourceLanguageElement).build();
             mouseOverHome.perform();
             clickElement(specificationPayElement);
 
@@ -225,9 +225,12 @@ public class Captioning extends AccessingElement {
                     element.click();
                     break;
                 }
-            }
+            }*/
             /*selectDropDown(specificationPayElement, specificPay);
             driver.findElement(By.tagName("body")).click();*/
+		 WebElement element = driver.findElement(By.id("specification_pay-selectized"));
+            element.sendKeys(specificPay);
+            element.sendKeys(Keys.RETURN);
         } catch (Exception e) {
             System.out.println("Unable to select specification pay " + e);
         }
