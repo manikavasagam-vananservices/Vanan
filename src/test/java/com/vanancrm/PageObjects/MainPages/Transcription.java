@@ -119,15 +119,8 @@ public class Transcription extends AccessingElement {
     @FindBy(id = "privacy_policy")
     private WebElement privacyPolicy;
 
-    public void enterHours(String hour) {
-        try {
-            enterTestBoxValues(hours, hour);
-        } catch (Exception e) {
-            System.out.println("Unable to enter a hour value " + e);
-        }
-    }
-	
-	   public void clickPersonal(){
+
+    public void clickPersonal(){
         try {
 
             if (driver.findElement(By.xpath("//span[@class='lbl ui_lbl_radio custom-control-description' and text()='Personal']")).isEnabled())
@@ -136,7 +129,16 @@ public class Transcription extends AccessingElement {
                 System.out.println("Personal is  clicked");
             }
         } catch (Exception e) {
-            System.out.println("Unable to click Business" + e);
+            System.out.println("Unable to click Personal" + e);
+        }
+    }
+
+
+    public void enterHours(String hour) {
+        try {
+            enterTestBoxValues(hours, hour);
+        } catch (Exception e) {
+            System.out.println("Unable to enter a hour value " + e);
         }
     }
 
@@ -169,14 +171,18 @@ public class Transcription extends AccessingElement {
 
 	public void selectLanguageFrom(String sourceLanguage) {
 		try {
-			WebElement element = driver.findElement(By.id("srclang-selectized"));
-                        element.sendKeys(sourceLanguage);
-                        element.sendKeys(Keys.RETURN);
 		//	enterTestBoxValues(sourceLang, sourceLanguage);
-			/*WebElement element1 = driver.findElement(By.id("srclangcombobox"));
-			element1.click();
+			/*WebElement element1 = driver.findElement(By.id("srclang-selectized"));
+			//element1.click();
 			enterTestBoxValues(sourceLang, sourceLanguage);
-			element1.sendKeys(Keys.TAB);*/
+			element1.sendKeys(Keys.RETURN);*/
+			WebElement element = driver.findElement(By.id("srclang-selectized"));
+			element.sendKeys(sourceLanguage);
+			element.sendKeys(Keys.RETURN);
+
+			//  WebElement element = driver.findElement(By.id("trglang-selectized"));
+			//        element.sendKeys(targetLanguage);
+			//        element.sendKeys(Keys.RETURN);
 
 			//driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 		//selectDropDown(sourceLang, sourceLanguage);
@@ -197,14 +203,14 @@ public class Transcription extends AccessingElement {
         }
     }
 	
-	/* public  void selectSpeakercount(String speaker){
+	 public  void selectSpeakercount(String speaker){
     	try{
     		selectDropDown(Speakercount,speaker);
 			driver.findElement(By.tagName("body")).click();
 		}catch (Exception e){
     		System.out.println("unable to select speaker count");
 		}
-	}*/
+	}
 
 
     public void selectFreeTrail() {
