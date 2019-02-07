@@ -506,7 +506,9 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
-                waitForProcessCompletion(20);
+                waitForProcessCompletion(10);
+                  driver.findElement(By.id("view_btn")).click();
+                 waitForProcessCompletion(10);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
                 if (viewTicketDetails.getEmailId()
