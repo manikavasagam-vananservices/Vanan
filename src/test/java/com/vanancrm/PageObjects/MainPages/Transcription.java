@@ -169,9 +169,9 @@ public class Transcription extends AccessingElement {
 
 	public void selectLanguageFrom(String sourceLanguage) {
 		try {
-			WebElement element = driver.findElement(By.id("srclangcombobox"));
-			element.sendKeys(sourceLanguage);
-			element.sendKeys(Keys.RETURN);
+			WebElement element = driver.findElement(By.id("srclang-selectized"));
+                        element.sendKeys(sourceLanguage);
+                        element.sendKeys(Keys.RETURN)
 		//	enterTestBoxValues(sourceLang, sourceLanguage);
 			/*WebElement element1 = driver.findElement(By.id("srclangcombobox"));
 			element1.click();
