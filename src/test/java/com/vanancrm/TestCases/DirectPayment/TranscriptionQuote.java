@@ -103,18 +103,18 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     false, channels[0]);
             System.out.println("\n======================================");
             System.out.println("\nScenario #4");*/
-            testScenario(languages[0], categorys[0], timecodes[0],speaker[0] false, false,
+            testScenario(languages[0], categorys[0], timecodes[0],speaker[0], false, false,
                     true, channels[1], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #3");
-            testScenario(languages[2], categorys[1], timecodes[1],speaker[1] false, false,
+            testScenario(languages[2], categorys[1], timecodes[1],speaker[1], false, false,
                     false, channels[2], false);
         } else {
-            testScenario(languages[0], categorys[0], timecodes[0],speaker[2] false, false,
+            testScenario(languages[0], categorys[0], timecodes[0],speaker[2], false, false,
                     true, channels[1], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
-            testScenario(languages[2], categorys[1], timecodes[1],speaker[1] false, false,
+            testScenario(languages[2], categorys[1], timecodes[1],speaker[1], false, false,
                     false, channels[2],false);
         }
 
