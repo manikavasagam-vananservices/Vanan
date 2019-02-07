@@ -125,12 +125,11 @@ public class Typing extends AccessingElement {
     }
 
     public void selectLanguageFrom(String sourceLanguage) {
-        try {
-            selectDropDown(selectSourceLanguageFromElement, sourceLanguage);
-            //driver.findElement(By.tagName("body")).click();
-        } catch (Exception e) {
-            System.out.println("Unable to select source language " + e);
-        }
+        {
+        WebElement element = driver.findElement(By.id("srclang-selectized"));
+        element.sendKeys(sourceLanguage);
+        element.sendKeys(Keys.RETURN);
+    }
     }
 
     public void selectCategory(String categoryType) {
