@@ -10,7 +10,6 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import com.vanan.CRM.PageObjects.WholeSitePages.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
@@ -44,7 +43,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     private String[] languages = {"English", "Spanish", "Tamil"};
     private String[] timecodes = {"Every 3 sec", "Every 1 minute",
             "Not required"};
-
+private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","10+ speakers"};
     private String comment = "Automation Testing";
     private String country = "India";
     private String fileName = "AutomationTesting";
@@ -55,7 +54,6 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     private String phoneNumber = "1-888-535-5668";
     private String service = "Transcription";
     private String serviceType = "Weekly";
-    private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","10+ speakers"};
 
 
 
@@ -85,12 +83,14 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     public void transcriptionServices() throws IOException,
             InterruptedException, AWTException {
         url = System.getProperty("website");
+       // url ="https://vananservices.com/Transcription-Quote.php";
+     //   driver.get(url);
         System.out.println("\n======================================");
         System.out.println("\nScenario Started");
         System.out.println("\n======================================");
         System.out.println("\nScenario #1");
         if (!url.contains("Upload")) {
-            testScenario(languages[0], categorys[0], timecodes[0],speaker[0], false,
+                testScenario(languages[0], categorys[0], timecodes[0],speaker[0],false,
                     false,true, channels[0], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
@@ -110,11 +110,11 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             testScenario(languages[2], categorys[1], timecodes[1],speaker[1], false, false,
                     false, channels[2], false);
         } else {
-            testScenario(languages[0], categorys[0], timecodes[0],speaker[2], false, false,
+            testScenario(languages[0], categorys[0], timecodes[0],speaker[0], false, false,
                     true, channels[1], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
-            testScenario(languages[2], categorys[1], timecodes[1],speaker[1], false, false,
+            testScenario(languages[2], categorys[1], timecodes[1],speaker[2], false, false,
                     false, channels[2],false);
         }
 
@@ -145,6 +145,8 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             boolean additionalQty, boolean tat, boolean basicPrice, boolean
             offer, String channel) throws AWTException, InterruptedException, IOException {
 
+        /*driver.get(url);*/
+       // url = "https://vananservices.com/Transcription-Quote.php";
         driver.get(url);
         Transcription transcription = new Transcription(driver);
         transcription.clickPersonal();
@@ -168,17 +170,13 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }
         }
         transcription.selectTimeCode(timeCode);
-        transcription.selectSpeakercount(speaker);  
-        waitForProcessCompletion(2);
-        // driver.findElement(By.id("dp_exit_email")).sendKeys(mailId);
-    //    driver.findElement(By.id("privacy_policy_p_v")).click();
-       // driver.findElement(By.xpath("//button[contains(@onclick,'capture_sc()')]")).click();
+        transcription.selectSpeakercount(speaker);
+        transcription.uploadFile(driver, fileName, fileExtention);
+        waitForProcessCompletion(60);
+        transcription.enterFileLength(minute);
         if (additionalQty) {
             transcription.selectAdditionalQtyCheck(1);
         }
-        transcription.uploadFile(driver, fileName, fileExtention);
-        waitForProcessCompletion(90);
-        transcription.enterFileLength(minute);
         if (tat) {
             transcription.selectTAT(1);
         }
@@ -238,9 +236,9 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     transcription.getAddtionalQtyCheck(),
                     transcription.getTranscationFee(), transcription.getGrandTotal(), language);
         }
-       
+
         if (channel.equals(channels[2])) {
-            
+
             if (transcription.isCustomMessageDisplayed()) {
                 System.out.println("Quote info message is displayed");
             }
@@ -268,20 +266,17 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             } else {
                 System.out.println("Fail");
             }*/
-            waitForProcessCompletion(10);
             transcription.clickPrivacyPolicy();
-            waitForProcessCompletion(10);
             transcription.clickEmailMeGetQuote();
         }
 
-        //waitForProcessCompletion(30);
+        waitForProcessCompletion(15);
         String currentUrl = driver.getCurrentUrl();
         if (!channel.equals(channels[1])) {
 
             checkCondition(currentUrl, "additional-information.php");
             AdditionalInformation additionalInformation = new AdditionalInformation
                     (driver);
-            //waitForProcessCompletion(5);
             additionalInformation.enterCustomerName(name);
             additionalInformation.selectCountry(country);
             additionalInformation.enterPhoneNumber(phoneNumber);
@@ -289,7 +284,6 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             //additionalInformation.selectAdditionalServices(additionalService);
             additionalInformation.enterComments(comment);
             additionalInformation.clickPrivacyPolicy();
-            waitForProcessCompletion(5);
             additionalInformation.clickSubmitButton();
         } else {
             checkCondition(currentUrl, "paypal");
@@ -508,13 +502,11 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
 
             if (tickets.get(i).contains(service)) {
 
-                waitForProcessCompletion(20);  
+                waitForProcessCompletion(20);
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
                 waitForProcessCompletion(20);
-                driver.findElement(By.id("view_btn")).click();
-                waitForProcessCompletion(10);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
                 if (viewTicketDetails.getEmailId()
@@ -575,7 +567,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
 
         // Edit a ticket and moved the status into Others
         Edit edit = menus.clickEdit();
-        
+
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
         edit.selectStatus("Others");
@@ -762,7 +754,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     }
 
     private void testScenario(String language, String category, String
-            timeCode,String speaker,boolean addtionalQty, boolean tat, boolean basicPrice,
+            timeCode,String speaker, boolean addtionalQty, boolean tat, boolean basicPrice,
             String channel, boolean offer) throws AWTException,
             InterruptedException, IOException {
 
