@@ -55,6 +55,8 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     private String phoneNumber = "1-888-535-5668";
     private String service = "Transcription";
     private String serviceType = "Weekly";
+    private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","10+ speakers"};
+
 
 
 
@@ -88,7 +90,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
         System.out.println("\n======================================");
         System.out.println("\nScenario #1");
         if (!url.contains("Upload")) {
-            testScenario(languages[0], categorys[0], timecodes[0], false,
+            testScenario(languages[0], categorys[0], timecodes[0],speaker[0], false,
                     false,true, channels[0], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
@@ -101,18 +103,18 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
                     false, channels[0]);
             System.out.println("\n======================================");
             System.out.println("\nScenario #4");*/
-            testScenario(languages[0], categorys[0], timecodes[0], false, false,
+            testScenario(languages[0], categorys[0], timecodes[0],speaker[0] false, false,
                     true, channels[1], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #3");
-            testScenario(languages[2], categorys[1], timecodes[1], false, false,
+            testScenario(languages[2], categorys[1], timecodes[1],speaker[1] false, false,
                     false, channels[2], false);
         } else {
-            testScenario(languages[0], categorys[0], timecodes[0], false, false,
+            testScenario(languages[0], categorys[0], timecodes[0],speaker[2] false, false,
                     true, channels[1], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
-            testScenario(languages[2], categorys[1], timecodes[1], false, false,
+            testScenario(languages[2], categorys[1], timecodes[1],speaker[1] false, false,
                     false, channels[2],false);
         }
 
@@ -139,7 +141,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
         driver.quit();
     }
 
-    private void raiseTicket(String language, String category, String timeCode,
+    private void raiseTicket(String language, String category, String timeCode,String speaker,
             boolean additionalQty, boolean tat, boolean basicPrice, boolean
             offer, String channel) throws AWTException, InterruptedException, IOException {
 
@@ -166,7 +168,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
             }
         }
         transcription.selectTimeCode(timeCode);
-       // transcription.selectSpeakercount(speaker);  
+        transcription.selectSpeakercount(speaker);  
         waitForProcessCompletion(2);
         // driver.findElement(By.id("dp_exit_email")).sendKeys(mailId);
     //    driver.findElement(By.id("privacy_policy_p_v")).click();
@@ -760,11 +762,11 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     }
 
     private void testScenario(String language, String category, String
-            timeCode,boolean addtionalQty, boolean tat, boolean basicPrice,
+            timeCode,String speaker,boolean addtionalQty, boolean tat, boolean basicPrice,
             String channel, boolean offer) throws AWTException,
             InterruptedException, IOException {
 
-        raiseTicket(language, category, timeCode, addtionalQty, tat,
+        raiseTicket(language, category, timeCode,speaker, addtionalQty, tat,
                 basicPrice, offer, channel);
         getCRMCreadential();
         checkCRM(language, category, channel, timeCode, addtionalQty, tat,
