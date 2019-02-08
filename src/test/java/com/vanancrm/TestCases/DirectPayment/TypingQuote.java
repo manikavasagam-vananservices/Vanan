@@ -33,6 +33,7 @@ import com.vanancrm.Common.TypingPrice;
 
 import com.vanancrm.PageObjects.MainPages.AdditionalInformation;
 import com.vanancrm.PageObjects.MainPages.Typing;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Author - Manikavasagam (manikavasagam@vananservices.com)
@@ -179,6 +180,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
             typing.enterPageCount(minute);
         } else if (fileType.equals(fileTypes[1])) {
             typing.enterMinutes(minute);
+            Speakercount();
         }
         typing.selectLanguageFrom(language);
         typing.selectCategory(category);
@@ -703,5 +705,11 @@ public class TypingQuote extends TestBase implements TypingPrice {
         getCRMCreadential();
         checkCRM(fileType, language, category, timeCode, format, offer, tier,
                 cate, formatting, usnativesp, notar, mailin, verb, channel);
+    }
+     private void Speakercount(){
+
+        Select oSelect = new Select(driver.findElement(By.id("speakercnt")));
+
+        oSelect.selectByVisibleText("1 speaker");
     }
 }
