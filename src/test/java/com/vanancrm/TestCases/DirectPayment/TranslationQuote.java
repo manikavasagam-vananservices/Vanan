@@ -130,7 +130,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("*****************");
            
             testScenario(fileTypes[0], srclanguages[1], tarlanguages[1],
-                    true, false, tiers[1], channels[1], false)
+                    true, false, tiers[1], channels[1], false);
             System.out.println("*****************");
             System.out.println("\nFreetrailScenario #3");
             System.out.println("*****************");
