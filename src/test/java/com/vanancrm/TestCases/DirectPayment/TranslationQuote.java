@@ -118,27 +118,25 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("*****************");
             System.out.println("\nFreetrailScenario #1");
             System.out.println("*****************");
-            
+              driver.findElement(By.className("content-added")).getText();
+            System.out.println("HEADING == "+driver.findElement(By.className("content-added")).getText());
+             
             testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
                     false, true, tiers[0], channels[0], false);
-             driver.findElement(By.className("content-added")).getText();
-            System.out.println("Free trail"+driver.findElement(By.className("content-added")).getText());
+           
              
             System.out.println("*****************");
             System.out.println("\nFreetrailScenario #2");
             System.out.println("*****************");
            
             testScenario(fileTypes[0], srclanguages[1], tarlanguages[1],
-                    true, false, tiers[1], channels[1], false);
-              driver.findElement(By.className("content-added")).getText();
-            System.out.println("Free trail"+driver.findElement(By.className("content-added")).getText());
+                    true, false, tiers[1], channels[1], false)
             System.out.println("*****************");
             System.out.println("\nFreetrailScenario #3");
             System.out.println("*****************");
            testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-               driver.findElement(By.className("content-added")).getText();
-            System.out.println("Free trail"+driver.findElement(By.className("content-added")).getText());
+          
 
 
         } else if (url.contains("quote")){
