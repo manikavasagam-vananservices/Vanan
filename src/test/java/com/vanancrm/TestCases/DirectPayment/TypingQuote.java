@@ -102,49 +102,33 @@ public class TypingQuote extends TestBase implements TypingPrice {
         System.out.println("\nScenario Started");
         System.out.println("\n======================================");
         System.out.println("\nScenario #1");
-        if (!url.contains("Upload")) {
+        if (url.contains("Upload")) {
+	 testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
+		            "", false, tiers[1],
+		            true, false, true, false, false, true, channels[1]);
+		    System.out.println("\nScenario #2");
+		    System.out.println("\n======================================");
+		    testScenario(fileTypes[0], languages[2], categorys[0], "",
+		            formattings[0], false, 0,
+		            true, true, false, true, true, false, channels[2]);
+	}else if(url.contains("Quote")){
 
-            testScenario(fileTypes[0], languages[0], categorys[0], "",
-                    formattings[0], false, tiers[0],
-                    true, true, false, true, true, false, channels[0]);
-            /*testScenario(fileTypes[0], languages[0], categorys[0], "",
-                    formattings[1],false, tiers[0],
-                    false, false, false, true, true, false, channels[0]);
-            testScenario(fileTypes[0], languages[0], categorys[1], "",
-                    formattings[1],false, tiers[0],
-                    true, false, false, true, true, false, channels[0]);*/
-            System.out.println("\nScenario #2");
-            System.out.println("\n======================================");
-            testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
-                    "", false, tiers[1],
-                    true, false, true, false, false, true, channels[1]);
-            /*testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
-                    "",false, tiers[0],
-                    false, false, false, false, false, true, channels[0]);
-            testScenario(fileTypes[1], languages[0], categorys[1], timecodes[1],
-                    "",false, tiers[0],
-                    true, false, false, false, false, false, channels[0]);*/
-            System.out.println("\nScenario #3");
-            System.out.println("\n======================================");
-            testScenario(fileTypes[0], languages[2], categorys[0], "",
-                    formattings[0], false, 0,
-                    true, true, false, true, true, false, channels[2]);
-            /*testScenario(fileTypes[0], languages[1], categorys[0], "",
-                    formattings[1],false, tiers[1],
-                    false, false, false, true, true, false, channels[0]);
-            testScenario(fileTypes[0], languages[1], categorys[1], "",
-                    formattings[1],false, tiers[1],
-                    true, false, false, true, true, false, channels[0]);*/
-        } else {
-            testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],
-                    "", false, tiers[1],
-                    true, false, true, false, false, true, channels[1]);
-            System.out.println("\nScenario #2");
-            System.out.println("\n======================================");
-            testScenario(fileTypes[0], languages[2], categorys[0], "",
-                    formattings[0], false, 0,
-                    true, true, false, true, true, false, channels[2]);
-        }
+	testScenario(fileTypes[0], languages[0], categorys[0], "",
+		            formattings[0], false, tiers[0],
+		            true, true, false, true, true, false, channels[0]);
+	 System.out.println("\nScenario #2");
+	  System.out.println("\n======================================");
+	  testScenario(fileTypes[1], languages[0], categorys[0], timecodes[0],  "", false, tiers[1],true, false, true, false, false, true, channels[1]);
+
+	 System.out.println("\nScenario #3");
+		    System.out.println("\n======================================");
+		    testScenario(fileTypes[0], languages[2], categorys[0], "",
+		            formattings[0], false, 0,
+		            true, true, false, true, true, false, channels[2]);
+	}else if(url.contains("Free")){
+	testScenario(fileTypes[0], languages[1], categorys[1], timecodes[1], "", false, tiers[1],
+		            true, false, true, false, false, true, channels[1]);
+	}
 
         System.out.println("Test Completed");
 
