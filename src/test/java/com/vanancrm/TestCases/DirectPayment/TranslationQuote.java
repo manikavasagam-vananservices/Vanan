@@ -427,7 +427,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
-                waitForProcessCompletion(20);
+               
                  driver.findElement(By.id("view_btn")).click();
                 waitForProcessCompletion(10);
 
@@ -452,7 +452,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 } else {
                     ticketID = "\n\nEither ticket is Not created or Still" +
                             " waiting for ticket";
-                    System.out.println(ticketID);
+                    System.out.println("Ticket Id="+driver.findElement(By.id("header_ticket")).getText());
                 }
                 waitForProcessCompletion(60);
             }
