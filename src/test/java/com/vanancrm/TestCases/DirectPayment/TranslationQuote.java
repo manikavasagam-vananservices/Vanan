@@ -452,7 +452,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 } else {
                     ticketID = "\n\nEither ticket is Not created or Still" +
                             " waiting for ticket";
-                    System.out.println("Ticket Id="+driver.findElement(By.id("header_ticket")).getText());
+                    //System.out.println("Ticket Id="+driver.findElement(By.id("header_ticket")).getText());
                 }
                 waitForProcessCompletion(60);
             }
