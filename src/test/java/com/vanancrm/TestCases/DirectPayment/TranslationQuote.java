@@ -16,6 +16,7 @@ import com.vanancrm.PageObjects.MainPages.Translation;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -476,9 +477,10 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
 
     private void changeTicketStatus() {
 
-        // Edit a ticket and moved the status into Others
+      JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("scroll(0, -250);");
+        System.out.println("Edit clicked");
         Edit edit = menus.clickEdit();
-        
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
         edit.selectStatus("Others");
