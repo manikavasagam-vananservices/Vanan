@@ -79,7 +79,7 @@ public class ViewTicketDetails extends AccessingElement {
         waitForPageLoad(driver);
 
         WebElement element= driver.findElement(
-                By.xpath("//div[@id='ajax-dynamic-form']/div[@class='form-group    '][7]/div/p"));
+                By.xpath("//div[@id='ajax-dynamic-form']/div[@class='form-group    '][10]/div/p"));
         builder = new Actions(driver);
         mouseOverHome = builder.moveToElement(element).build();
         mouseOverHome.perform();
