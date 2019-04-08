@@ -432,8 +432,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                  driver.findElement(By.id("view_btn")).click();
                 waitForProcessCompletion(10);
 
-                if (viewTicketDetails.getEmailId()
-                        .contains(mailId) && viewTicketDetails
+                if (viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel) && url.contains(viewTicketDetails
                         .getWebsite())) {
@@ -602,10 +601,10 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                             false), "free trial");*/
         } else {
 
-            evaluateCondition("Email Id",
-                    emailConversation
-                            .getTicketValuesFromPayment("Email Id",
-                                    false), mailId);
+            //evaluateCondition("Email Id",
+                  //  emailConversation
+                           // .getTicketValuesFromPayment("Email Id",
+                              //      false), mailId);
             evaluateCondition("File type",
                     emailConversation.getTicketValuesFromPayment("File type",
                             false), fileType);
