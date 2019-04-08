@@ -15,8 +15,8 @@ import com.vanancrm.PageObjects.MainPages.Translation;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -72,6 +72,9 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     private String service = "Translation";
     private String serviceType = "Weekly";
     private String url = "";
+    private String status="Automation";
+
+    private System jse;
 
     private double bPrice = 0;
     private double gtot = 0;
@@ -102,6 +105,11 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     public void translationServices() throws IOException,
             InterruptedException, AWTException {
         url = System.getProperty("website");
+      //  url="https://clickfortranslation.com/Translation-Quote.php";
+       // driver.get(url);
+
+
+
         System.out.println("\n======================================");
         System.out.println("\nScenario Started");
         System.out.println("\n======================================");
@@ -121,7 +129,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("\nScenario #4");
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-        } else if (url.contains("Quote")){
+        } else {
             testScenario(fileTypes[0], srclanguages[1], tarlanguages[1],
                     true, false, tiers[1], channels[1],false);
             System.out.println("\n======================================");
@@ -129,15 +137,6 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
         }
-           //     else if(url.contains("Free-Trial")){
-          //      testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
-             //           false, true, tiers[0], channels[0], false);
-            //        System.out.println("\nScenario #2");
-            //    testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
-                //        true, false, 0, channels[2], false);
-
-            //}
-
 
         System.out.println("Test Completed");
 
@@ -428,14 +427,15 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
-               
+                waitForProcessCompletion(5);
                  driver.findElement(By.id("view_btn")).click();
-                waitForProcessCompletion(10);
+                 System.out.println("Title"+driver.findElement(By.id("header_ticket")).getText());
 
-                if (viewTicketDetails
+
+                /*if (viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel) && url.contains(viewTicketDetails
-                        .getWebsite())) {
+                        .getWebsite())) */{
 
                     ticketID = tickets.get(i).substring(tickets.get(i).indexOf("VS"),
                             tickets.get(i).indexOf(service) - 1);
@@ -449,12 +449,14 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                     checkCRMEmailConversation(fileType, srcLang, targetLang, additionalQty, tat,
                              offer);
                     break;
-                } else {
+
+                }
+                /*else {
                     ticketID = "\n\nEither ticket is Not created or Still" +
                             " waiting for ticket";
-                    //System.out.println("Ticket Id="+driver.findElement(By.id("header_ticket")).getText());
-                }
-                waitForProcessCompletion(60);
+                    System.out.println(ticketID);
+                }*/
+             //
             }
         }
     }
@@ -476,9 +478,11 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
 
     private void changeTicketStatus() {
 
-      JavascriptExecutor js = ((JavascriptExecutor) driver);
+        // Edit a ticket and moved the status into Others
+
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("scroll(0, -250);");
-        System.out.println("Edit clicked");
+        System.out.println("clicked");
         Edit edit = menus.clickEdit();
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
@@ -601,10 +605,10 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                             false), "free trial");*/
         } else {
 
-            //evaluateCondition("Email Id",
-                  //  emailConversation
-                           // .getTicketValuesFromPayment("Email Id",
-                              //      false), mailId);
+            evaluateCondition("Email Id",
+                    emailConversation
+                            .getTicketValuesFromPayment("Email Id",
+                                    false), mailId);
             evaluateCondition("File type",
                     emailConversation.getTicketValuesFromPayment("File type",
                             false), fileType);
@@ -702,8 +706,8 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         System.out.println("===========================================");
         System.out.println("Checking View Ticket Details");
         System.out.println("===========================================\n");
-        evaluateCondition("Email", viewTicketDetails
-                .getEmailId(), mailId);
+        /*evaluateCondition("Email", viewTicketDetails
+                .getEmailId(), mailId);*/
         evaluateCondition("Websites", url,
                 viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
