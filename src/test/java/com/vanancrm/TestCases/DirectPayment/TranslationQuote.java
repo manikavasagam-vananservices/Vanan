@@ -44,7 +44,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     private static String password = "";
     private WebDriver driver;
     private String[] additionalService = {"Captioning/Subtitling", "Voice Over"};
-    private String[] channels = {"Email Quote", "Direct Payment", "Request for Quote"};
+    private String[] channels = {"Email Quote", "Direct Payment", "Request for Quote","Free Trial"};
     private String[] categorys = {"General", "Legal"};
 
     private String[] timecodes = {"Every 3 sec", "Every 1 minute",
@@ -114,7 +114,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         System.out.println("\nScenario Started");
         System.out.println("\n======================================");
         System.out.println("\nScenario #1");
-         if (!url.contains("Upload")) {
+         if (url.contains("Quote")) {
             testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
                     false, true, tiers[0], channels[0], false);
             System.out.println("\n======================================");
@@ -129,16 +129,20 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("\nScenario #4");
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-        } else {
+        } else if (url.contains("Upload")) {
             testScenario(fileTypes[0], srclanguages[1], tarlanguages[1],
                     true, false, tiers[1], channels[1],false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-        }
-
-        System.out.println("Test Completed");
+        }else
+             testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
+                     false, true, tiers[0], channels[3], false);
+        System.out.println("\nScenario #2");
+        testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
+                true, false, 0, channels[3], false);
+        System.out.println("Free trail Test Completed");
 
         System.out.println("======================================");
     }
