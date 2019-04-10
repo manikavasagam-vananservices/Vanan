@@ -197,7 +197,7 @@ public class Transcription extends AccessingElement {
     public void selectTimeCode(String timecode) {
         try {
             selectDropDown(timeCode, timecode);
-            driver.findElement(By.tagName("body")).click();
+       //     driver.findElement(By.tagName("body")).click();
         } catch (Exception e) {
             System.out.println("Unable to select time code " + e);
         }
@@ -206,7 +206,7 @@ public class Transcription extends AccessingElement {
 	 public  void selectSpeakercount(String speaker){
     	try{
     		selectDropDown(Speakercount,speaker);
-			driver.findElement(By.tagName("body")).click();
+			//driver.findElement(By.tagName("body")).click();
 		}catch (Exception e){
     		System.out.println("unable to select speaker count");
 		}
