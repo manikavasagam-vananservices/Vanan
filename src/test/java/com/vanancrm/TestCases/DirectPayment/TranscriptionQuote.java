@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Properties;
 
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.JavascriptExecutor;
 
 import com.vanan.CRM.PageObjects.WholeSitePages.*;
 import org.openqa.selenium.Cookie;
@@ -567,7 +568,8 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
     }
 
     private void changeTicketStatus() {
-
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("scroll(0, -250);");
         // Edit a ticket and moved the status into Others
         Edit edit = menus.clickEdit();
 
