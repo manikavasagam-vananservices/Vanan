@@ -519,7 +519,8 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
                  waitForProcessCompletion(10);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
-                if (viewTicketDetails
+                if (viewTicketDetails.getEmailId()
+                        .contains(mailId)&&viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel")
                         .contains(channel) && url.contains(viewTicketDetails
                         .getWebsite())) {
@@ -574,7 +575,7 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
 
     private void changeTicketStatus() {
         JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("scroll(0, -250);");
+        js.executeScript("scroll(0, -200);");
         // Edit a ticket and moved the status into Others
         Edit edit = menus.clickEdit();
 
@@ -678,10 +679,10 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
                     .getTicketFieldValuesFromPayment("free trial",
                     false), "free trial");*/
         } else {
-//evaluateCondition("Email Id",
-                  //  emailConversation
-                 //           .getTicketValuesFromPayment("Email Id",
-                               //     false), mailId);
+evaluateCondition("Email Id",
+                   emailConversation
+                           .getTicketValuesFromPayment("Email Id",
+                                    false), mailId);
             evaluateCondition("File length",
                     emailConversation.getTicketValuesFromPayment("File " +
                             "length", false), minute);
@@ -751,8 +752,8 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
         System.out.println("===========================================");
         System.out.println("Checking View Ticket Details");
         System.out.println("===========================================\n");
-       // evaluateCondition("Email", viewTicketDetails
-            //    .getEmailId(), mailId);
+       evaluateCondition("Email", viewTicketDetails
+            .getEmailId(), mailId);
         evaluateCondition("Websites", url,
                 viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
