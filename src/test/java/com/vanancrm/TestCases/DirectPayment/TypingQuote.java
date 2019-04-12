@@ -125,7 +125,7 @@ public class TypingQuote extends TestBase implements TypingPrice {
 		    testScenario(fileTypes[0], languages[2], categorys[0], "",
 		            formattings[0], false, 0,
 		            true, true, false, true, true, false, channels[2]);
-	}else if(url.contains("Free")){
+	}else {
 	testScenario(fileTypes[0], languages[1], categorys[1], timecodes[1], "", false, tiers[1],
 		            true, false, true, false, false, true, channels[1]);
 	}
