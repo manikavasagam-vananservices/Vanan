@@ -540,6 +540,7 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
                             basicPrice, offer);
                     break;
                 } else {
+                    System.out.println("Title"+driver.findElement(By.id("header_ticket")).getText());
                     ticketID = "\n\nEither ticket is Not created or Still" +
                             " waiting for ticket";
                     System.out.println(ticketID);
