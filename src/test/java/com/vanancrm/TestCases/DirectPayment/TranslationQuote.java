@@ -136,7 +136,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("\nScenario #2");
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-        }else
+        }else if (url.contains("Free-Trial"))
              testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
                      false, true, tiers[0], channels[3], false);
                 System.out.println("File Type"+fileTypes[0]);
@@ -146,8 +146,9 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 
         testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                 true, false, 0, channels[3], false);
+                
+        System.out.println("======================================");     
         System.out.println("Free trail Test Completed");
-
         System.out.println("======================================");
     }
 
