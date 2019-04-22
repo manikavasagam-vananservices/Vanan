@@ -211,7 +211,7 @@ public class TranscriptionQuickQuote extends TestBase {
         Edit edit = menus.clickEdit();
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
-        edit.selectStatus("Others");
+  //      edit.selectStatus("Others");
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
