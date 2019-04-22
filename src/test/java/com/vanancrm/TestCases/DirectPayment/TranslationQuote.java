@@ -717,8 +717,8 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         System.out.println("===========================================");
         System.out.println("Checking View Ticket Details");
         System.out.println("===========================================\n");
-        /*evaluateCondition("Email", viewTicketDetails
-                .getEmailId(), mailId);*/
+        evaluateCondition("Email", viewTicketDetails
+                .getEmailId(), mailId);
         evaluateCondition("Websites", url,
                 viewTicketDetails.getWebsite());
         evaluateCondition("Channel", viewTicketDetails
