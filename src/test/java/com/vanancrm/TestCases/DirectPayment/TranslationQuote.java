@@ -496,7 +496,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         Edit edit = menus.clickEdit();
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
-        edit.selectStatus("Others");
+   //     edit.selectStatus("Others");
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
     }
