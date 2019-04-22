@@ -114,7 +114,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         System.out.println("\nScenario Started");
         System.out.println("\n======================================");
         System.out.println("\nScenario #1");
-         if (url.contains("Quote")) {
+         if (!url.contains("Upload")) {
             testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
                     false, true, tiers[0], channels[0], false);
             System.out.println("\n======================================");
@@ -129,28 +129,28 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("\nScenario #4");
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-        } else if (url.contains("Upload")) {
+        } else {
             testScenario(fileTypes[0], srclanguages[1], tarlanguages[1],
                     true, false, tiers[1], channels[1],false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-        }else if (url.contains("Free-Trial")){
-             testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
-                     false, true, tiers[0], channels[3], false);
-                System.out.println("File Type"+fileTypes[0]);
-                System.out.println("SourceLanguage"+srclanguages[0]);
-                System.out.println("TargetLanguage"+srclanguages[0]);
-        System.out.println("\nScenario #2");
+        }//else if (url.contains("Free-Trial")){
+            // testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
+              //       false, true, tiers[0], channels[3], false);
+              //  System.out.println("File Type"+fileTypes[0]);
+              //  System.out.println("SourceLanguage"+srclanguages[0]);
+               // System.out.println("TargetLanguage"+srclanguages[0]);
+       // System.out.println("\nScenario #2");
                 
-        testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
-                true, false, 0, channels[3], false);
+       // testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
+               //true, false, 0, channels[3], false);
                 
-        System.out.println("======================================");     
-        System.out.println("Free trail Test Completed");
-        System.out.println("======================================");
-    }
+       // System.out.println("======================================");     
+      //  System.out.println("Free trail Test Completed");
+       // System.out.println("======================================");
+  //  }
             }
 
     @BeforeClass
