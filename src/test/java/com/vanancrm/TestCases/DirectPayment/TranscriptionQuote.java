@@ -583,7 +583,7 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
 
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
-        edit.selectStatus("Others");
+    //    edit.selectStatus("Others");
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
     }
