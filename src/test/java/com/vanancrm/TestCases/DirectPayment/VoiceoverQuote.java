@@ -245,7 +245,7 @@ public class VoiceoverQuote extends TestBase {
         
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
-        edit.selectStatus("Others");
+      //  edit.selectStatus("Others");
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
         emailConversation = menus.clickEmailConversation();
