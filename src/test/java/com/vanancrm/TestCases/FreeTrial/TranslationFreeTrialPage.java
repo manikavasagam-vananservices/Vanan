@@ -100,9 +100,9 @@ public class TranslationFreeTrialPage extends TestBase implements TranslationPri
     @Test
     public void translationServices() throws IOException,
             InterruptedException, AWTException {
-        //   url = System.getProperty("website");
-        url="https://vananservices.com/Translation-Free-Trial.php";
-        driver.get(url);
+           url = System.getProperty("website");
+   //    url="https://vananservices.com/Translation-Free-Trial.php";
+     //   driver.get(url);
 
 
 
