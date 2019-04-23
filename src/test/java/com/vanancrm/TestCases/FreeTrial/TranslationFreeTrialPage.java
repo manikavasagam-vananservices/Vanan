@@ -473,6 +473,7 @@ public class TranslationFreeTrialPage extends TestBase implements TranslationPri
         js.executeScript("scroll(0, -250);");
         System.out.println("edit clicked");
         Edit edit = menus.clickEdit();
+        js.executeScript("scroll(0, 250)");
        // edit.selectPaymentType("Full payment");
      //   edit.selectPaymentMode("Square");
         // edit.selectStatus("Others");
