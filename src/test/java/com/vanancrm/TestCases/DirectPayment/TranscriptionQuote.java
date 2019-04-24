@@ -309,7 +309,7 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
                             double transFee, double total, String lang) {
 
         min = Integer.parseInt(minute);
-        if (min >= 1 && min <= 179) {
+        if (min >= 1 && min <= 180) {
             if (nSpeaker) {
                 bPrice = basePri[1];
             }
