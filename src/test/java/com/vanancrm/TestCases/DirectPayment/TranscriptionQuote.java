@@ -91,7 +91,7 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
         System.out.println("\nScenario Started");
         System.out.println("\n======================================");
         System.out.println("\nScenario #1");
-        if (url.contains("Quote")) {
+        if (!url.contains("Upload")) {
                 testScenario(languages[0], categorys[0], timecodes[0],speaker[0],false,
                     false,true, channels[0], false);
             System.out.println("\n======================================");
@@ -111,21 +111,21 @@ private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","1
             System.out.println("\nScenario #3");
             testScenario(languages[2], categorys[1], timecodes[1],speaker[0], false, false,
                     false, channels[2], false);
-        } else if (url.contains("Upload")){
+        } else {
             testScenario(languages[0], categorys[0], timecodes[0],speaker[0], false, false,
                     true, channels[1], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
             testScenario(languages[2], categorys[1], timecodes[1],speaker[0], false, false,
                     false, channels[2],false);
-        }else if (url.contains("Free-Trial")) {
-            testScenario(languages[0], categorys[0], timecodes[0], speaker[0], false,
-                    false, true, channels[0], false);
-            System.out.println("\nScenario #2");
-           testScenario(languages[1], categorys[0], timecodes[0],speaker[0],false,
-                  false,true, channels[0], false);
+        }//else if (url.contains("Free-Trial")) {
+           // testScenario(languages[0], categorys[0], timecodes[0], speaker[0], false,
+          //          false, true, channels[0], false);
+          //  System.out.println("\nScenario #2");
+         //  testScenario(languages[1], categorys[0], timecodes[0],speaker[0],false,
+              //    false,true, channels[0], false);
             
-        }
+        //}
 
 
         System.out.println("Test Completed");
