@@ -42,7 +42,7 @@ public class TranscriptionQuote extends TestBase implements TranscriptionPrice {
     private String[] additionalService = {"Video Services", "Typing"};
     private String[] channels = {"Email Quote", "Direct Payment", "Request for Quote"};
     private String[] categorys = {"General", "Legal"};
-    private String[] languages = {"English", "Spanish", "Tamil"};
+    private String[] languages = {"English", "Spanish", "Aramaic"};
     private String[] timecodes = {"Every 3 sec", "Every 1 minute",
             "Not required"};
 private String[] speaker = {"2 speakers","3 to 5 speakers","6 to 10 speakers","10+ speakers"};
