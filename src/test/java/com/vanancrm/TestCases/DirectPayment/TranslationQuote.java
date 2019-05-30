@@ -267,6 +267,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             }*/
             translation.clickPrivacyPolicy();
             translation.clickGetQuote();
+            waitForProcessCompletion(30);
         } else if (srcLang.equals(srclanguages[1])) {
             /*translation.clickProceedPayment();
             if(translation.getToolTipMessage().contains("Please agree to terms and conditions to proceed")) {
@@ -276,6 +277,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             }*/
             translation.clickPrivacyPolicy();
             translation.clickProceedPayment();
+            waitForProcessCompletion(30);
         } else if (srcLang.equals(srclanguages[0]) || srcLang.equals
                 (srclanguages[2])) {
             /*translation.clickEmailMeGetQuote();
@@ -286,6 +288,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             }*/
             translation.clickPrivacyPolicy();
             translation.clickEmailMeGetQuote();
+            waitForProcessCompletion(30);
         }
 
         waitForProcessCompletion(15);
@@ -306,7 +309,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         } else {
             checkCondition(currentUrl, "paypal");
         }
-        waitForProcessCompletion(20);
+        waitForProcessCompletion(30);
     }
 
     private void checkPrice(int tier, boolean offer,
