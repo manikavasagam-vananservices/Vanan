@@ -13,10 +13,7 @@ import com.vanan.CRM.PageObjects.WholeSitePages.*;
 import com.vanancrm.Common.TranslationPrice;
 import com.vanancrm.PageObjects.MainPages.Translation;
 
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -104,9 +101,9 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     @Test
     public void translationServices() throws IOException,
             InterruptedException, AWTException {
-        url = System.getProperty("website");
-      //  url="https://clickfortranslation.com/Translation-Quote.php";
-       // driver.get(url);
+     //   url = System.getProperty("website");
+        url="https://vananservices.com/Translation-Quote.php";
+        driver.get(url);
 
 
 
@@ -115,7 +112,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         System.out.println("\n======================================");
         System.out.println("\nScenario #1");
          if (!url.contains("Upload")) {
-            testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
+        testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
                     false, true, tiers[0], channels[0], false);
             System.out.println("\n======================================");
             System.out.println("\nScenario #2");
@@ -136,22 +133,21 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("\nScenario #2");
             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
                     true, false, 0, channels[2], false);
-        }//else if (url.contains("Free-Trial")){
-            // testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
-              //       false, true, tiers[0], channels[3], false);
-              //  System.out.println("File Type"+fileTypes[0]);
-              //  System.out.println("SourceLanguage"+srclanguages[0]);
-               // System.out.println("TargetLanguage"+srclanguages[0]);
-       // System.out.println("\nScenario #2");
-                
-       // testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
-               //true, false, 0, channels[3], false);
-                
-       // System.out.println("======================================");     
-      //  System.out.println("Free trail Test Completed");
-       // System.out.println("======================================");
-  //  }
-            }
+
+
+        }/*else {
+             testScenario(fileTypes[0], srclanguages[0], tarlanguages[0],
+                     false, true, tiers[0], channels[3], false);
+             System.out.println("File Type" + fileTypes[0]);
+             System.out.println("\nScenario #2");
+
+             testScenario(fileTypes[1], srclanguages[2], tarlanguages[1],
+                     true, false, 0, channels[3], false);
+             System.out.println("Free trail Test Completed"); }*/
+
+             System.out.println("======================================");
+
+    }
 
     @BeforeClass
     public void beforeClass() {
@@ -177,7 +173,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
 
         driver.get(url);
         Translation translation = new Translation(driver);
-                waitForProcessCompletion(5);
+        waitForProcessCompletion(5);
         translation.clickBusiness();
         translation.selectFileType(fileType);
         if (fileType.equals(fileTypes[1])) {
@@ -497,7 +493,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         Edit edit = menus.clickEdit();
         edit.selectPaymentType("Full payment");
         edit.selectPaymentMode("Square");
-   //     edit.selectStatus("Others");
+       // edit.selectStatus("Others");
         edit.clickUpdateButton();
         waitForProcessCompletion(10);
     }
@@ -510,6 +506,8 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         System.out.println("===========================================\n");
         emailConversation = menus.clickEmailConversation();
         emailConversation.clickReadMore("Quote");
+        String selectAll = Keys.chord(Keys.SHIFT, "e");
+        driver.findElement(By.tagName("body")).sendKeys(selectAll);
         if (emailConversation.getServiceDetailsFromEmailHeading(service)) {
             System.out.println(service + " heading is correct");
         } else {
@@ -616,7 +614,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                             false), "free trial");*/
         } else {
 
-            evaluateCondition("Email Id",
+           evaluateCondition("Email Id",
                     emailConversation
                             .getTicketValuesFromPayment("Email Id",
                                     false), mailId);
@@ -702,6 +700,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
             System.out.println("Others message is not present");
         }
         System.out.println("===========================================");
+
         emailConversation.clickNoActionButton();
         waitForProcessCompletion(5);
         if(emailConversation
