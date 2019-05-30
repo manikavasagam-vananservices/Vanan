@@ -101,8 +101,8 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     @Test
     public void translationServices() throws IOException,
             InterruptedException, AWTException {
-     //   url = System.getProperty("website");
-        url="https://vananservices.com/Translation-Quote.php";
+       url = System.getProperty("website");
+      //  url="https://vananservices.com/Translation-Quote.php";
         driver.get(url);
 
 
