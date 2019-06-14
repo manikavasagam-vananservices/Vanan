@@ -443,7 +443,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                  //waitForProcessCompletion(10);
                 //System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
                 JavascriptExecutor jse = (JavascriptExecutor)drive;
-                jse.executeScript("scroll(0, -100);")
+                jse.executeScript("scroll(0, -100);");
                driver.findElement(By.id("view_btn")).click();
               //  VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
               //  VIEWBUTTON.click();
