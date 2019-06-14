@@ -433,14 +433,14 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
 
             if (tickets.get(i).contains(service)) {
 
-                waitForProcessCompletion(20);
+                waitForProcessCompletion(30);
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
              
-                 waitForProcessCompletion(5);
+                 waitForProcessCompletion(10);
                  driver.findElement(By.id("view_btn")).click();
-                //System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
+                 System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
                  System.out.println("Title"+driver.findElement(By.id("header_ticket")).getText());
 
 
