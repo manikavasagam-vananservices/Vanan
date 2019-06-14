@@ -423,7 +423,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     private void checkTickets(Menus menus, String fileType, String srcLang, String targetLang,
                               boolean additionalQty, boolean tat, int tier,
                               String channel, boolean offer) {
-        WebElement VIEWBUTTON;
+     // WebElement VIEWBUTTON;
         String ticketID = "";
         readTableData = menus.clickNewMenu();
         List<String> tickets = readTableData.readTableRows();
@@ -438,10 +438,10 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                         (i + 1));
              
                  //waitForProcessCompletion(10);
-                //System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
-               //  driver.findElement(By.id("view_btn")).click();
-                VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
-                VIEWBUTTON.click();
+                System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
+               driver.findElement(By.id("view_btn")).click();
+              //  VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
+              //  VIEWBUTTON.click();
                  System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
                  System.out.println("Title"+driver.findElement(By.id("header_ticket")).getText());
 
