@@ -172,12 +172,12 @@ public class TranslationSentQuote extends TestBase {
             if (tickets.get(i).contains(service)) {
 
                 viewTicketDetails = new ViewTicketDetails(driver);
-                waitForProcessCompletion(20);
+                waitForProcessCompletion(30);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
-                waitForProcessCompletion(20);
+                waitForProcessCompletion(40);
                 driver.findElement(By.id("view_btn")).click();
-                waitForProcessCompletion(10);
+                waitForProcessCompletion(5);
                 System.out.println("Channel " + viewTicketDetails
                         .getRunTimeTicketFieldValues("Channel"));
                 if (viewTicketDetails.getEmailId()
