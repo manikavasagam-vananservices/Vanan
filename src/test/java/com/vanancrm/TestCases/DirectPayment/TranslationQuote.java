@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import java.util.List;
 import java.util.Properties;
-
 import java.util.concurrent.TimeUnit;
 
 import com.vanan.CRM.PageObjects.WholeSitePages.*;
@@ -424,7 +423,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
     private void checkTickets(Menus menus, String fileType, String srcLang, String targetLang,
                               boolean additionalQty, boolean tat, int tier,
                               String channel, boolean offer) {
-
+        WebElement VIEWBUTTON;
         String ticketID = "";
         readTableData = menus.clickNewMenu();
         List<String> tickets = readTableData.readTableRows();
@@ -433,13 +432,16 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
 
             if (tickets.get(i).contains(service)) {
 
-                waitForProcessCompletion(30);
+                waitForProcessCompletion(10);
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
              
-                 waitForProcessCompletion(10);
-                 driver.findElement(By.id("view_btn")).click();
+                 //waitForProcessCompletion(10);
+                //System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
+               //  driver.findElement(By.id("view_btn")).click();
+                VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
+                VIEWBUTTON.click();
                  System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
                  System.out.println("Title"+driver.findElement(By.id("header_ticket")).getText());
 
