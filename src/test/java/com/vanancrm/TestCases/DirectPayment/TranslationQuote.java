@@ -424,8 +424,8 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                               boolean additionalQty, boolean tat, int tier,
                               String channel, boolean offer) {
      // WebElement VIEWBUTTON;
-        WebDriver driver = new FirefoxDriver();
-          JavascriptExecutor jse = (JavascriptExecutor)drive;
+        
+          
         String ticketID = "";
         readTableData = menus.clickNewMenu();
         List<String> tickets = readTableData.readTableRows();
@@ -442,6 +442,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
              
                  //waitForProcessCompletion(10);
                 //System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
+                JavascriptExecutor jse = (JavascriptExecutor)drive;
                 jse.executeScript("scroll(0, -100);")
                driver.findElement(By.id("view_btn")).click();
               //  VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
