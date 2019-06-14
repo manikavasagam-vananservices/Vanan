@@ -420,10 +420,12 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
         menus.clickSignOut();
     }
 
-    private void checkTickets(Menus menus, String fileType, String srcLang, String targetLang,
+    public void checkTickets(Menus menus, String fileType, String srcLang, String targetLang,
                               boolean additionalQty, boolean tat, int tier,
                               String channel, boolean offer) {
      // WebElement VIEWBUTTON;
+        WebDriver driver = new FirefoxDriver();
+          JavascriptExecutor jse = (JavascriptExecutor)drive;
         String ticketID = "";
         readTableData = menus.clickNewMenu();
         List<String> tickets = readTableData.readTableRows();
@@ -436,9 +438,11 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 viewTicketDetails = new ViewTicketDetails(driver);
                 viewTicketDetails = readTableData.clickService(service,
                         (i + 1));
+                
              
                  //waitForProcessCompletion(10);
-                System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
+                //System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
+                jse.executeScript("scroll(0, -100);")
                driver.findElement(By.id("view_btn")).click();
               //  VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
               //  VIEWBUTTON.click();
