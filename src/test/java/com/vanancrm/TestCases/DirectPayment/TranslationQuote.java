@@ -444,7 +444,7 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                  //waitForProcessCompletion(10);
             
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
-                js.executeScript("scroll(0, -200)")
+                js.executeScript("scroll(0, -200)");
                driver.findElement(By.id("view_btn")).click();
               //  VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
               //  VIEWBUTTON.click();
