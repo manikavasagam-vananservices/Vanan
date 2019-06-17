@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import java.util.List;
 import java.util.Properties;
+import org.openqa.selenium.JavascriptExecutor;
 import java.util.concurrent.TimeUnit;
 
 import com.vanan.CRM.PageObjects.WholeSitePages.*;
@@ -441,9 +442,9 @@ public class TranslationQuote extends TestBase implements TranslationPrice {
                 
              
                  //waitForProcessCompletion(10);
-                //System.out.println("View"+driver.findElement(By.id("view_btn")).getText());
-           //     JavascriptExecutor jse = (JavascriptExecutor)drive;
-             //   jse.executeScript("scroll(0, -100);");
+            
+                JavascriptExecutor js = ((JavascriptExecutor) driver);
+                js.executeScript("scroll(0, -200)")
                driver.findElement(By.id("view_btn")).click();
               //  VIEWBUTTON = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("view_btn")));
               //  VIEWBUTTON.click();
